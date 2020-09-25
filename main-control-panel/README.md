@@ -1,4 +1,4 @@
-# wiki-courses-app
+# main-control-panel
 
 ## Project setup
 ```
