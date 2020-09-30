@@ -3,19 +3,7 @@
     <h1>{{ pageName }}</h1>
     <p>{{ pageDescription }}</p>
 
-    <div class="container">
-      <div class="alert alert-success alert-dismissible fade show" role="alert">
-        Learn Vue Js
-        <button
-          type="button"
-          class="close"
-          data-dismiss="alert"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    </div>
+    <div class="container"></div>
   </div>
 </template>
 

@@ -1,16 +1,20 @@
 <template>
   <div class="library">
-    <h1>{{ pageName }}</h1>
-
+    <p>{{ pageName }}</p>
     <p>{{ pageDescription }}</p>
-
     <div class="container">
       <div class="row">
-        <div class="col md 8">
-          <Courses />
+        <div class="col-md-8">
+          <div class="courses-area">
+            <LibraryCourses />
+          </div>
         </div>
 
-        <div class="col md 4"></div>
+        <div class="col-md-4">
+          <div class="sidebar-area">
+            <LibrarySidebar />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -18,7 +22,8 @@
 
 <script>
 // @ is an alias to /src
-import Courses from "@/components/Library/Courses.vue";
+import LibraryCourses from "@/components/Library/LibraryCourses.vue";
+import LibrarySidebar from "@/components/Library/LibrarySidebar.vue";
 
 export default {
   name: "Library",
@@ -29,7 +34,8 @@ export default {
     };
   },
   components: {
-    Courses
+    LibraryCourses,
+    LibrarySidebar
   }
 };
 </script>
