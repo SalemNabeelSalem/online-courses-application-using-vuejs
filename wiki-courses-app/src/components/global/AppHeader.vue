@@ -1,17 +1,26 @@
 <template>
   <div class="header">
-    <div class="logo">Wiki Courses</div>
-    <ul class="nav">
-      <router-link to="/" tag="li" exact>
-        <a>Home</a>
-      </router-link>
-      <router-link to="/about" tag="li">
-        <a>About</a>
-      </router-link>
-      <router-link to="/help" tag="li" replace>
-        <a>Help</a>
-      </router-link>
-    </ul>
+    <div class="container">
+      <div class="logo">Wiki Courses</div>
+
+      <ul class="text-right">
+        <router-link to="/" tag="li" exact>
+          <a>Home</a>
+        </router-link>
+
+        <router-link to="/library" tag="li">
+          <a>Library</a>
+        </router-link>
+
+        <router-link to="/about" tag="li">
+          <a>About</a>
+        </router-link>
+
+        <router-link to="/help" tag="li">
+          <a>Help</a>
+        </router-link>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -34,8 +43,7 @@ export default {
     width: 200px;
   }
 
-  .nav {
-    float: left;
+  ul {
     width: calc(100% - 200);
     margin: 0;
 

@@ -1,18 +1,37 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
-    <WelcomeMessage />
+    <h1>{{ pageName }}</h1>
+    <p>{{ pageDescription }}</p>
+
+    <div class="container">
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        Learn Vue Js
+        <button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import WelcomeMessage from "@/components/WelcomeMessage.vue";
 
 export default {
   name: "About",
-  components: {
-    WelcomeMessage
-  }
+  data: function() {
+    return {
+      pageName: "About Page",
+      pageDescription: "This Is Related To About Page."
+    };
+  },
+  components: {}
 };
 </script>
+
+<style lang="scss"></style>
