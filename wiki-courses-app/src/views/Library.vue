@@ -7,6 +7,8 @@
         <div class="col-md-8">
           <div class="courses-area">
             <LibraryCourses />
+
+            <LibraryCourses />
           </div>
         </div>
 
@@ -22,8 +24,8 @@
 
 <script>
 // @ is an alias to /src
-import LibraryCourses from "@/components/Library/LibraryCourses.vue";
-import LibrarySidebar from "@/components/Library/LibrarySidebar.vue";
+import LibraryCourses from "@/components/library/LibraryCourses.vue";
+import LibrarySidebar from "@/components/library/LibrarySidebar.vue";
 
 export default {
   name: "Library",
