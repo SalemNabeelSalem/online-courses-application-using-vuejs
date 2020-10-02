@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "../views/Home.vue";
-import Library from "../views/Library.vue";
+import Blog from "../views/Blog.vue";
 import About from "../views/About.vue";
 import Help from "../views/Help.vue";
 
@@ -14,9 +14,9 @@ const routes = [
     component: Home
   },
   {
-    path: "/library",
-    name: "Library",
-    component: Library
+    path: "/blog",
+    name: "Blog",
+    component: Blog
   },
   {
     path: "/about",

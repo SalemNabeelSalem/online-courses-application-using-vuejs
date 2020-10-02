@@ -8,8 +8,8 @@
           <a>Home</a>
         </router-link>
 
-        <router-link to="/library" tag="li">
-          <a>Library</a>
+        <router-link to="/blog" tag="li">
+          <a>Blog</a>
         </router-link>
 
         <router-link to="/about" tag="li">

@@ -6,15 +6,15 @@
       <div class="row">
         <div class="col-md-8">
           <div class="courses-area">
-            <LibraryCourses />
+            <BlogPosts />
 
-            <LibraryCourses />
+            <BlogPosts />
           </div>
         </div>
 
         <div class="col-md-4">
           <div class="sidebar-area">
-            <LibrarySidebar />
+            <BlogSidebar />
           </div>
         </div>
       </div>
@@ -24,20 +24,20 @@
 
 <script>
 // @ is an alias to /src
-import LibraryCourses from "@/components/library/LibraryCourses.vue";
-import LibrarySidebar from "@/components/library/LibrarySidebar.vue";
+import BlogPosts from "@/components/blog/BlogPosts.vue";
+import BlogSidebar from "@/components/blog/BlogSidebar.vue";
 
 export default {
   name: "Library",
   data: function() {
     return {
-      pageName: "Library Page",
-      pageDescription: "This Is Related To Library Page."
+      pageName: "Blog Page",
+      pageDescription: "This Is Related To Blog Page."
     };
   },
   components: {
-    LibraryCourses,
-    LibrarySidebar
+    BlogPosts,
+    BlogSidebar
   }
 };
 </script>
