@@ -3,10 +3,23 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
+// Normalize File
+import "normalize.css";
+
+// Bootstrap Files
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import "normalize.css";
+// Font Awesome Files
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+
+// Font Awesome Usage
+library.add(fas);
+Vue.component("font-awesome-icon", FontAwesomeIcon);
+
+// Custome Style File
 import "./scss/main.scss";
 
 Vue.config.productionTip = false;

@@ -1,7 +1,9 @@
 <template>
   <div class="blog">
-    <p>{{ pageName }}</p>
+    <p>{{ pageName }}<font-awesome-icon :icon="['fas', 'robot']" /></p>
     <p>{{ pageDescription }}</p>
+    <i class="fas fa-coffee"></i>
+    <i class="fas fa-robot"></i>
     <div class="container">
       <div class="row">
         <div class="col-md-8">
@@ -51,4 +53,8 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.fa-robot {
+  color: red;
+}
+</style>
