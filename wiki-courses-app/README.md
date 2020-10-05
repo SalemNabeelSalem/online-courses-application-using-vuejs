@@ -1,5 +1,10 @@
 # wiki-courses-app
 
+### Create and manage projects using a graphical interface
+```
+vue ui
+```
+
 ## Project setup
 ```
 npm install

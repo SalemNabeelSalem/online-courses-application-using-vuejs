@@ -5,10 +5,10 @@
     <p class="post-content">{{ content }}</p>
     <div class="row">
       <div class="col-sm-6">
-        <span class="post-author">{{ author }}</span>
+        <span class="post-author">{{ author | uppercase | reverse }}</span>
       </div>
       <div class="col-sm-6 text-right">
-        <span class="post-category">{{ category }}</span>
+        <span class="post-category">{{ category | uppercase | reverse }}</span>
       </div>
     </div>
   </div>
