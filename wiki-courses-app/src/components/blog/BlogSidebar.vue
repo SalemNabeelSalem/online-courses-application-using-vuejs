@@ -1,12 +1,17 @@
 <template>
   <div class="sidebar">
-    <h1>Side Bar</h1>
+    <h1>{{ title }}</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: "BlogSidebar"
+  name: "BlogSidebar",
+  data: function() {
+    return {
+      title: "sidebar content ss asd"
+    };
+  }
 };
 </script>
 

@@ -2,7 +2,7 @@
   <div class="post-box">
     <h3 class="post-title">{{ title }}</h3>
     <span class="post-date">{{ date }}</span>
-    <p class="post-content">{{ content }}</p>
+    <p class="post-content">{{ content | shortentext(20, ", ...more") }}</p>
     <div class="row">
       <div class="col-sm-6">
         <span class="post-author">{{ author | uppercase | reverse }}</span>
@@ -17,7 +17,12 @@
 <script>
 export default {
   name: "BlogPosts",
-  props: ["id", "title", "date", "content", "author", "category"]
+  props: ["id", "title", "date", "content", "author", "category"],
+  filters: {
+    shortentext: function(str, strLength, suffix) {
+      return str.substring(0, strLength) + suffix;
+    }
+  }
 };
 </script>
 
