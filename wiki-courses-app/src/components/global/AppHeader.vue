@@ -32,7 +32,7 @@ export default {
 
 <style lang="scss">
 .header {
-  background-color: #333;
+  background-color: #4caf50;
   color: #fff;
   overflow: hidden;
 

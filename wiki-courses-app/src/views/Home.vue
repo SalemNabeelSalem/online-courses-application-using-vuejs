@@ -2,7 +2,6 @@
   <div id="home">
     <h1>{{ pageName }}</h1>
     <p>{{ pageDescription }}</p>
-
     <div id="courses-box">
       <div class="container">
         <div class="row">
@@ -36,6 +35,5 @@ export default {
 <style lang="scss">
 #home {
   height: 1000px;
-  border: 1px solid red;
 }
 </style>
