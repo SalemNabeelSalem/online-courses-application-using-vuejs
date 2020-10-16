@@ -2,8 +2,9 @@
   <div class="help">
     <h1>{{ pageName }}</h1>
     <p>{{ pageDescription }}</p>
-
-    <div class="container"></div>
+    <b-button v-b-popover.hover.top="'How I Can Help You ?'" title="Help Page">
+      Help Me
+    </b-button>
   </div>
 </template>
 
@@ -14,8 +15,8 @@ export default {
   name: "Help",
   data: function() {
     return {
-      pageName: "Help Page",
-      pageDescription: "This Is Related To Help Page."
+      pageName: "This Is The Help Page.",
+      pageDescription: "Here You Will Find Everything Will Help You."
     };
   },
   components: {}

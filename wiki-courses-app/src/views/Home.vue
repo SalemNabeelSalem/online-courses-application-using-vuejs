@@ -1,92 +1,45 @@
 <template>
   <div id="home">
-    <b-container class="home-container">
+    <b-container class="sections-container">
       <b-row align-v="center">
-        <b-col md="4">
-          <b-card
-            title="Programming"
-            img-src="https://picsum.photos/600/300/?image=30"
-            img-alt="Programming-Image"
-            img-top
-            tag="article"
-            style="max-width:30rem"
-            class="mb-2 mt-4 text-center"
-          >
-            <b-button variant="primary">Show</b-button>
-          </b-card>
-        </b-col>
-
-        <b-col md="4">
-          <b-card
-            title="Programming"
-            img-src="https://picsum.photos/600/300/?image=30"
-            img-alt="Programming-Image"
-            img-top
-            tag="article"
-            style="max-width:30rem"
-            class="mb-2 mt-4 text-center"
-          >
-            <b-button variant="primary">Show</b-button>
-          </b-card>
-        </b-col>
-
-        <b-col md="4">
-          <b-card
-            title="Programming"
-            img-src="https://picsum.photos/600/300/?image=30"
-            img-alt="Programming-Image"
-            img-top
-            tag="article"
-            style="max-width:30rem"
-            class="mb-2 mt-4 text-center"
-          >
-            <b-button variant="primary">Show</b-button>
-          </b-card>
-        </b-col>
-
-        <b-col md="4">
-          <b-card
-            title="Programming"
-            img-src="https://picsum.photos/600/300/?image=30"
-            img-alt="Programming-Image"
-            img-top
-            tag="article"
-            style="max-width:30rem"
-            class="mb-2 mt-4 text-center"
-          >
-            <b-button variant="primary">Show</b-button>
-          </b-card>
-        </b-col>
+        <SectionCard
+          v-for="(section, index) in sections"
+          :key="index"
+          :title="section.title"
+          :cover_image_url="section.cover_image_url"
+          :brief="section.brief"
+        />
       </b-row>
     </b-container>
+    <b-container class="classifications-container"></b-container>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import SectionCard from "@/components/home/SectionCard.vue";
+import JsonSections from "../json/sections.json";
 
 export default {
   name: "Home",
   data: function() {
     return {
       pageName: "Home Page",
-      pageDescription: "This Is Related To Home Page."
+      pageDescription: "This Is Related To Home Page.",
+      sections: JsonSections
     };
   },
-  components: {}
+  components: {
+    SectionCard
+  }
 };
 </script>
 
 <style lang="scss">
 #home {
   height: 1000px;
-  .home-container {
-    // border: 1px solid blue;
-    .row {
-      .col {
-        // border: 1px solid red;
-      }
-    }
+  .sections-container {
+    border: 1px solid blue;
   }
 }
 </style>

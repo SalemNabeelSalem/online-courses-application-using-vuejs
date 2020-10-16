@@ -1,62 +1,41 @@
 <template>
-  <div class="header">
-    <div class="container">
-      <div class="logo">Wiki Courses</div>
+  <div>
+    <b-navbar toggleable="lg" type="dark" variant="success">
+      <b-navbar-brand to="/">Wiki-Courses</b-navbar-brand>
 
-      <ul class="text-right">
-        <router-link to="/" tag="li" exact>
-          <a>Home</a>
-        </router-link>
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
-        <router-link to="/blog" tag="li">
-          <a>Blog</a>
-        </router-link>
-
-        <router-link to="/about" tag="li">
-          <a>About</a>
-        </router-link>
-
-        <router-link to="/help" tag="li">
-          <a>Help</a>
-        </router-link>
-      </ul>
-    </div>
+      <b-collapse id="nav-collapse" is-nav>
+        <b-navbar-nav>
+          <b-nav-item to="/">Home</b-nav-item>
+          <b-nav-item to="/blog">Blog</b-nav-item>
+          <b-nav-item to="/about">About</b-nav-item>
+          <b-nav-item to="/help">Help</b-nav-item>
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
   </div>
 </template>
 
 <script>
 export default {
-  name: "AppHeader"
+  name: "AppHeader",
+  components: {}
 };
 </script>
 
-<style lang="scss">
-.header {
-  background-color: #4caf50;
-  color: #fff;
-  overflow: hidden;
+<style lang="scss" scoped>
+.navbar-brand {
+  font-size: 22px;
+}
 
-  .logo {
-    font-size: 24px;
-    padding: 20px;
-    float: left;
-    width: 200px;
+.nav-item {
+  font-size: 18px;
+  a {
+    color: white !important;
   }
-
-  ul {
-    width: calc(100% - 200);
-    margin: 0;
-
-    li {
-      margin: 25px;
-      display: inline-block;
-
-      a {
-        color: #fff;
-        text-decoration: none;
-        font-size: 20px;
-      }
-    }
+  a.router-link-exact-active {
+    color: #212529 !important;
   }
 }
 </style>
