@@ -3,7 +3,7 @@
     <b-card
       :title="title"
       :img-src="cover_image_url"
-      img-alt="Programming-Image"
+      img-alt="Image-Alternative-Text"
       img-top
       tag="article"
       style="max-width:30rem"

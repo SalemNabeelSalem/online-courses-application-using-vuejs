@@ -4,10 +4,13 @@ import App from "./App.vue";
 
 import router from "./router";
 
+// Vuex => State Management Pattern + Library.
 import store from "./store";
 
+// Bootstrap Framework.
 import "./plugins/bootstrap-vue";
 
+// Fontawesome Library.
 import "./plugins/font-awesome";
 
 import "./filters";

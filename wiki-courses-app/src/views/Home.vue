@@ -14,15 +14,19 @@
       </b-row>
 
       <b-pagination
-        v-model="currentPage"
-        :total-rows="rows"
-        :per-page="perPage"
-        @input="paginate(currentPage)"
+        v-model="sectionsPaginateCurrentPage"
+        :total-rows="totalSectionsCount"
+        :per-page="sectionsPaginatePerPage"
+        @input="sectionsPaginate(sectionsPaginateCurrentPage)"
         class="my-2"
       ></b-pagination>
     </b-container>
 
-    <b-container class="classifications-container"></b-container>
+    <b-container class="classifications-container">
+      <h2 class="h2-responsive my-5 py-2 bg-info text-white">
+        Classifications
+      </h2>
+    </b-container>
   </div>
 </template>
 
@@ -35,24 +39,18 @@ export default {
 
   data: function() {
     return {
-      pageName: "Home Page",
+      // Section Component Data.
+      allSections: [],
 
-      pageDescription: "This Is Related To Home Page.",
-
-      sections: [],
-
+      // Section Component Data.
       displaySections: [],
 
-      // Pagination Setting [01]
-      currentPage: 1,
+      // Pagination Data.
+      sectionsPaginateCurrentPage: 1,
 
-      // Pagination Setting [02]
-      perPage: 3
+      // Pagination Data.
+      sectionsPaginatePerPage: 3
     };
-  },
-
-  components: {
-    SectionCard
   },
 
   mounted() {
@@ -63,20 +61,29 @@ export default {
     async fetchAllSections() {
       const response = await fetch("json/sections.json");
       const values = await response.json();
-      this.sections = values;
-      this.displaySections = this.sections.slice(0, 3);
+      this.allSections = values;
+      this.displaySections = this.allSections.slice(0, 3);
     },
 
-    paginate(currentPage) {
-      const start = (currentPage - 1) * this.perPage;
-      this.displaySections = this.sections.slice(start, start + this.perPage);
+    sectionsPaginate(sectionsPaginateCurrentPage) {
+      const start =
+        (sectionsPaginateCurrentPage - 1) * this.sectionsPaginatePerPage;
+
+      this.displaySections = this.allSections.slice(
+        start,
+        start + this.sectionsPaginatePerPage
+      );
     }
   },
 
   computed: {
-    rows() {
-      return this.sections.length;
+    totalSectionsCount() {
+      return this.allSections.length;
     }
+  },
+
+  components: {
+    SectionCard
   }
 };
 </script>
@@ -86,7 +93,7 @@ export default {
   height: 1000px;
 
   .sections-container {
-    border: 1px solid blue;
+    border: 1px solid transparent;
 
     h2.h2-responsive {
       margin: 25px 0px -5px;
