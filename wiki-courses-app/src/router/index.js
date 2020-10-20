@@ -4,6 +4,7 @@ import Home from "../views/Home.vue";
 import Blog from "../views/Blog.vue";
 import About from "../views/About.vue";
 import Help from "../views/Help.vue";
+import Dashboard from "../views/Dashboard.vue";
 
 Vue.use(Router);
 
@@ -27,6 +28,11 @@ const routes = [
     path: "/help",
     name: "Help",
     component: Help
+  },
+  {
+    path: "/dashboard",
+    name: "Dashboard",
+    component: Dashboard
   }
 ];
 
