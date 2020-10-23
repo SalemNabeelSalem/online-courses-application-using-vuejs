@@ -281,7 +281,8 @@ export default {
         {
           id: 1,
           title: "programming",
-          cover_image_url: "https://picsum.photos/600/300/?image=10",
+          cover_image_url:
+            "https://dummyimage.com/600x300/473647/fff.jpg&text=Dummy-Image",
           brief: "lorem ipsum dolor sit amet, consectetur elit.",
           created_at: "25/04/2020",
           updated_at: "25/04/2020",
@@ -290,7 +291,8 @@ export default {
         {
           id: 2,
           title: "database",
-          cover_image_url: "https://picsum.photos/600/300/?image=20",
+          cover_image_url:
+            "https://dummyimage.com/600x300/473647/fff.jpg&text=Dummy-Image",
           brief: "lorem ipsum dolor sit amet, consectetur elit.",
           created_at: "26/04/2020",
           updated_at: "26/04/2020",
@@ -299,7 +301,8 @@ export default {
         {
           id: 3,
           title: "web design",
-          cover_image_url: "https://picsum.photos/600/300/?image=30",
+          cover_image_url:
+            "https://dummyimage.com/600x300/473647/fff.jpg&text=Dummy-Image",
           brief: "lorem ipsum dolor sit amet, consectetur elit.",
           created_at: "27/04/2020",
           updated_at: "27/04/2020",
@@ -308,7 +311,8 @@ export default {
         {
           id: 4,
           title: "networking",
-          cover_image_url: "https://picsum.photos/600/300/?image=40",
+          cover_image_url:
+            "https://dummyimage.com/600x300/473647/fff.jpg&text=Dummy-Image",
           brief: "lorem ipsum dolor sit amet, consectetur elit.",
           created_at: "28/04/2020",
           updated_at: "28/04/2020",
