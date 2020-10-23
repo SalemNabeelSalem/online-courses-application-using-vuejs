@@ -7,7 +7,7 @@
 
 <script>
 // @ is an alias to /src
-import SectionsControlPanel from "@/components/dashboard/SectionsControlPanel.vue";
+import SectionsControlPanel from "@/components/dashboard/sections/SectionsControlPanel.vue";
 
 export default {
   name: "Dashboard",
