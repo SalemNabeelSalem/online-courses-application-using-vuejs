@@ -265,12 +265,10 @@ export default {
 
       // For Sections Displaying Records Table.
       fields: [
-        // { key: "id", label: "Id" },
         { key: "title", label: "Title" },
         { key: "cover_image_url", label: "Cover Image" },
         { key: "brief", label: "Description" },
         { key: "created_at", label: "Created Date" },
-        // { key: "updated_at", label: "Updated Date" },
         { key: "is_active", label: "Activation Status" },
         { key: "update", label: "Update Info" },
         { key: "delete", label: "Delete Record" }
