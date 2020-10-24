@@ -26,23 +26,27 @@
       <hr class="bg-info" />
 
       <div class="alert alert-danger" v-if="errorMessage">
-        Error Message
+        {{ errorMessage }}
       </div>
 
       <div class="alert alert-success" v-if="successMessage">
-        Success Messgae
+        {{ successMessage }}
       </div>
 
       <!-- Displaying Records -->
       <b-row>
         <b-col lg="12">
-          <b-table bordered hover :items="items" :fields="fields">
-            <template #cell(cover_image_url)="data">
-              <img v-bind:src="data.item.cover_image_url" width="200" />
+          <b-table bordered hover :items="allSections" :fields="fields">
+            <template #cell(index)="data">
+              {{ data.index + 1 }}
             </template>
 
-            <template #cell(is_active)="data">
-              <b v-if="data.item.is_active" class="text-info">Active</b>
+            <template #cell(coverImageLink)="data">
+              <img v-bind:src="data.item.coverImageLink" width="200" />
+            </template>
+
+            <template #cell(isActive)="data">
+              <b v-if="data.item.isActive" class="text-info">Active</b>
               <b v-else class="text-danger">Not Active</b>
             </template>
 
@@ -84,13 +88,18 @@
               </button>
             </div>
             <div class="modal-body p-4">
-              <form id="section-form" action="#" method="post">
+              <form
+                id="section-form"
+                @submit="createNewSection(sectionModel)"
+                method="post"
+              >
                 <div class="form-group">
                   <input
                     type="text"
                     name="title"
                     class="form-contrlo form-control-lg"
                     placeholder="Title"
+                    v-model="sectionModel.title"
                   />
                 </div>
                 <div class="form-group">
@@ -99,6 +108,7 @@
                     name="cover_image_url"
                     class="form-contrlo form-control-lg"
                     placeholder="Cover Image Url"
+                    v-model="sectionModel.coverImageLink"
                   />
                 </div>
                 <div class="form-group">
@@ -107,28 +117,13 @@
                     name="brief"
                     class="form-contrlo form-control-lg"
                     placeholder="Brief"
-                  />
-                </div>
-                <div class="form-group">
-                  <input
-                    type="text"
-                    name="created_at"
-                    class="form-contrlo form-control-lg"
-                    placeholder="Created Date"
-                  />
-                </div>
-                <div class="form-group">
-                  <input
-                    type="text"
-                    name="updated_at"
-                    class="form-contrlo form-control-lg"
-                    placeholder="Updated Date"
+                    v-model="sectionModel.brief"
                   />
                 </div>
                 <div class="form-group">
                   <button
                     class="btn btn-info btn-block btn-lg"
-                    @click="closeSectionAddModel"
+                    @click="closeSectionEditModel"
                   >
                     Add Section
                   </button>
@@ -252,70 +247,38 @@
   </div>
 </template>
 <script>
+import axios from "axios";
+
 export default {
   name: "SectionsControlPanel",
 
   data: function() {
     return {
-      errorMessage: false,
-      successMessage: false,
+      errorMessage: "",
+      successMessage: "",
       sectionAddModel: false,
       sectionEditModel: false,
       sectionDeleteModel: false,
 
       // For Sections Displaying Records Table.
-      fields: [
-        { key: "title", label: "Title" },
-        { key: "cover_image_url", label: "Cover Image" },
-        { key: "brief", label: "Description" },
-        { key: "created_at", label: "Created Date" },
-        { key: "is_active", label: "Activation Status" },
-        { key: "update", label: "Update Info" },
-        { key: "delete", label: "Delete Record" }
-      ],
+      allSections: [],
+
+      // Section Data Model For Adding New Section
+      newSection: { title: "", brief: "", coverImageLink: "" },
+
+      currentSection: {},
 
       // For Sections Displaying Records Table.
-      items: [
-        {
-          id: 1,
-          title: "programming",
-          cover_image_url:
-            "https://dummyimage.com/600x300/473647/fff.jpg&text=Dummy-Image",
-          brief: "lorem ipsum dolor sit amet, consectetur elit.",
-          created_at: "25/04/2020",
-          updated_at: "25/04/2020",
-          is_active: true
-        },
-        {
-          id: 2,
-          title: "database",
-          cover_image_url:
-            "https://dummyimage.com/600x300/473647/fff.jpg&text=Dummy-Image",
-          brief: "lorem ipsum dolor sit amet, consectetur elit.",
-          created_at: "26/04/2020",
-          updated_at: "26/04/2020",
-          is_active: false
-        },
-        {
-          id: 3,
-          title: "web design",
-          cover_image_url:
-            "https://dummyimage.com/600x300/473647/fff.jpg&text=Dummy-Image",
-          brief: "lorem ipsum dolor sit amet, consectetur elit.",
-          created_at: "27/04/2020",
-          updated_at: "27/04/2020",
-          is_active: true
-        },
-        {
-          id: 4,
-          title: "networking",
-          cover_image_url:
-            "https://dummyimage.com/600x300/473647/fff.jpg&text=Dummy-Image",
-          brief: "lorem ipsum dolor sit amet, consectetur elit.",
-          created_at: "28/04/2020",
-          updated_at: "28/04/2020",
-          is_active: true
-        }
+      fields: [
+        "index",
+        { key: "title", label: "Title" },
+        { key: "coverImageLink", label: "Cover Image" },
+        { key: "brief", label: "Description" },
+        { key: "createdAt", label: "Created Date" },
+        { key: "updatedAt", label: "Last Updated Date" },
+        { key: "isActive", label: "Activation Status" },
+        { key: "update", label: "Update Info" },
+        { key: "delete", label: "Delete Record" }
       ]
     };
   },
@@ -349,7 +312,37 @@ export default {
     // This method for closing the dialog of delete section.
     closeSectionDeleteModel: function() {
       this.sectionDeleteModel = false;
+    },
+
+    fetchAllSections: function() {
+      axios
+        .get("http://localhost:8383/api/v1/all-sections")
+        .then(response => {
+          this.allSections = response.data;
+          // console.log(response.data);
+        })
+        .catch(error => {
+          this.errorMessage = error;
+          console.error("Error when fetch all sections => ", error);
+        });
+    },
+
+    test: function() {
+      console.log("sectionModel", this.sectionModel);
+    },
+
+    createNewSection: function(sectionModel) {
+      axios
+        .post("localhost:8383/api/v1/add-section", sectionModel)
+        .catch(function(error) {
+          console.error("Error when add new section => ", error);
+        });
     }
+  },
+
+  mounted() {
+    this.fetchAllSections();
+    this.test();
   }
 };
 </script>
