@@ -90,8 +90,8 @@
             <div class="modal-body p-4">
               <form
                 id="section-form"
-                @submit="createNewSection(sectionModel)"
                 method="post"
+                @submit.prevent="createNewSection"
               >
                 <div class="form-group">
                   <input
@@ -99,7 +99,7 @@
                     name="title"
                     class="form-contrlo form-control-lg"
                     placeholder="Title"
-                    v-model="sectionModel.title"
+                    v-model="newSection.title"
                   />
                 </div>
                 <div class="form-group">
@@ -108,7 +108,7 @@
                     name="cover_image_url"
                     class="form-contrlo form-control-lg"
                     placeholder="Cover Image Url"
-                    v-model="sectionModel.coverImageLink"
+                    v-model="newSection.coverImageLink"
                   />
                 </div>
                 <div class="form-group">
@@ -117,11 +117,12 @@
                     name="brief"
                     class="form-contrlo form-control-lg"
                     placeholder="Brief"
-                    v-model="sectionModel.brief"
+                    v-model="newSection.brief"
                   />
                 </div>
                 <div class="form-group">
                   <button
+                    type="submit"
                     class="btn btn-info btn-block btn-lg"
                     @click="closeSectionEditModel"
                   >
@@ -283,6 +284,11 @@ export default {
     };
   },
 
+  mounted() {
+    this.fetchAllSections();
+    // this.test();
+  },
+
   methods: {
     // This method for showing the form of adding new section.
     showSectionAddModel: function() {
@@ -327,22 +333,34 @@ export default {
         });
     },
 
-    test: function() {
-      console.log("sectionModel", this.sectionModel);
-    },
-
-    createNewSection: function(sectionModel) {
+    createNewSection: function() {
       axios
-        .post("localhost:8383/api/v1/add-section", sectionModel)
-        .catch(function(error) {
+        .post("http://localhost:8383/api/v1/add-section", this.newSection)
+        .then(response => {
+          this.newSection = { title: "", brief: "", coverImageLink: "" };
+          this.successMessage = "Section added successfully.";
+          this.fetchAllSections();
+          console.log(response.data);
+        })
+        .catch(error => {
+          this.errorMessage = error;
           console.error("Error when add new section => ", error);
         });
-    }
-  },
+    },
 
-  mounted() {
-    this.fetchAllSections();
-    this.test();
+    editSection: function() {
+      axios
+        .put()
+        .then()
+        .catch(error => {
+          this.errorMessage = error;
+          console.error("Error when edit section => ", error);
+        });
+    },
+
+    test: function() {
+      console.log("newSection", this.newSection);
+    }
   }
 };
 </script>
