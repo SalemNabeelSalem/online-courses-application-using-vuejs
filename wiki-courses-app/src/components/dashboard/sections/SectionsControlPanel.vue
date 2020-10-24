@@ -50,13 +50,22 @@
               <b v-else class="text-danger">Not Active</b>
             </template>
 
-            <template #cell(update)>
+            <template #cell(update)="data">
               <b-button
                 block
                 size="sm"
                 variant="info"
                 class="my-3"
-                @click="showSectionEditModel"
+                @click="
+                  showSectionEditModel();
+                  fillSectionEditForm(
+                    data.item.id,
+                    data.item.title,
+                    data.item.brief,
+                    data.item.coverImageLink,
+                    data.item.isActive
+                  );
+                "
               >
                 Edit
               </b-button>
@@ -151,51 +160,57 @@
               </button>
             </div>
             <div class="modal-body p-4">
-              <form id="section-form" action="#" method="post">
+              <form
+                id="section-form"
+                method="put"
+                @submit.prevent="updateSection"
+              >
                 <div class="form-group">
+                  <label class="float-left">Title</label>
                   <input
                     type="text"
                     name="title"
                     class="form-contrlo form-control-lg"
-                    placeholder="Title"
+                    v-model="currentSection.title"
                   />
                 </div>
+
                 <div class="form-group">
+                  <label class="float-left">Cover Image Link</label>
                   <input
                     type="text"
                     name="cover_image_url"
                     class="form-contrlo form-control-lg"
-                    placeholder="Cover Image Url"
+                    v-model="currentSection.coverImageLink"
                   />
                 </div>
+
                 <div class="form-group">
+                  <label class="float-left">Description</label>
                   <input
                     type="text"
                     name="brief"
                     class="form-contrlo form-control-lg"
-                    placeholder="Brief"
+                    v-model="currentSection.brief"
                   />
                 </div>
+
                 <div class="form-group">
+                  <label>{{
+                    currentSection.isActive ? "Active" : "Not Active"
+                  }}</label>
                   <input
-                    type="text"
-                    name="created_at"
-                    class="form-contrlo form-control-lg"
-                    placeholder="Created Date"
+                    type="checkbox"
+                    name="isActive"
+                    v-model="currentSection.isActive"
                   />
                 </div>
-                <div class="form-group">
-                  <input
-                    type="text"
-                    name="updated_at"
-                    class="form-contrlo form-control-lg"
-                    placeholder="Updated Date"
-                  />
-                </div>
+
                 <div class="form-group">
                   <button
+                    type="submit"
                     class="btn btn-info btn-block btn-lg"
-                    @click="closeSectionEditModel"
+                    @click="closeSectionEditModel;"
                   >
                     Update Section
                   </button>
@@ -267,7 +282,14 @@ export default {
       // Section Data Model For Adding New Section
       newSection: { title: "", brief: "", coverImageLink: "" },
 
-      currentSection: {},
+      currentSectionId: "",
+
+      currentSection: {
+        title: "",
+        brief: "",
+        coverImageLink: "",
+        isActive: ""
+      },
 
       // For Sections Displaying Records Table.
       fields: [
@@ -348,18 +370,39 @@ export default {
         });
     },
 
-    editSection: function() {
+    updateSection: function() {
       axios
-        .put()
-        .then()
+        .put(
+          "http://localhost:8383/api/v1/edit-section/" + this.currentSectionId,
+          this.currentSection
+        )
+        .then(response => {
+          // this.currentSection = {
+          //   title: "",
+          //   brief: "",
+          //   coverImageLink: "",
+          //   isActive: ""
+          // };
+          this.successMessage = "Section updated successfully.";
+          this.fetchAllSections();
+          console.log(response.data);
+        })
         .catch(error => {
           this.errorMessage = error;
           console.error("Error when edit section => ", error);
         });
     },
 
+    fillSectionEditForm: function(id, title, brief, image, status) {
+      this.currentSectionId = id;
+      this.currentSection.title = title;
+      this.currentSection.brief = brief;
+      this.currentSection.coverImageLink = image;
+      this.currentSection.isActive = status;
+    },
+
     test: function() {
-      console.log("newSection", this.newSection);
+      console.log(this.currentSection);
     }
   }
 };
