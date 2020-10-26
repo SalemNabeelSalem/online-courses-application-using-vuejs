@@ -21,8 +21,7 @@
 // @ is an alias to /src
 
 export default {
-  name: "AppHeader",
-  components: {}
+  name: "AppHeader"
 };
 </script>
 

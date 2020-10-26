@@ -5,6 +5,8 @@ import Blog from "../views/Blog.vue";
 import About from "../views/About.vue";
 import Help from "../views/Help.vue";
 import Dashboard from "../views/Dashboard.vue";
+import SectionsControlPanel from "../components/dashboard/sections/SectionsControlPanel.vue";
+import ClassificationsControlPanel from "../components/dashboard/classifications/ClassificationsControlPanel.vue";
 
 Vue.use(Router);
 
@@ -32,7 +34,19 @@ const routes = [
   {
     path: "/dashboard",
     name: "Dashboard",
-    component: Dashboard
+    component: Dashboard,
+    children: [
+      {
+        path: "/dashboard/sections",
+        name: "SectionsControlPanel",
+        component: SectionsControlPanel
+      },
+      {
+        path: "/dashboard/classifications",
+        name: "ClassificationsControlPanel",
+        component: ClassificationsControlPanel
+      }
+    ]
   }
 ];
 

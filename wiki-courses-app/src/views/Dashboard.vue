@@ -1,13 +1,21 @@
 <template>
-  <div>
+  <div id="dashboard">
     <h1 class="my-5">{{ title }}</h1>
-    <SectionsControlPanel />
+
+    <SideBarNav />
+
+    <img src="/img/svg/control_panel.svg" class="img-fluid" width="600" />
+
+    <b-container fluid>
+      <router-view />
+    </b-container>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import SectionsControlPanel from "@/components/dashboard/sections/SectionsControlPanel.vue";
+// import SectionsControlPanel from "@/components/dashboard/sections/SectionsControlPanel.vue";
+import SideBarNav from "@/components/global/SideBarNav.vue";
 
 export default {
   name: "Dashboard",
@@ -19,7 +27,8 @@ export default {
   },
 
   components: {
-    SectionsControlPanel
+    SideBarNav
+    // SectionsControlPanel
   }
 };
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="sections-control-panel">
+  <div id="sections-control-panel">
     <b-container fluid>
       <b-row class="bg-dark">
         <b-col lg="12">
@@ -10,7 +10,7 @@
       </b-row>
     </b-container>
 
-    <b-container>
+    <b-container fluid>
       <b-row class="mt-3">
         <b-col lg="6">
           <h3 class="text-info float-left">Sections</h3>
@@ -377,12 +377,6 @@ export default {
           this.currentSection
         )
         .then(response => {
-          // this.currentSection = {
-          //   title: "",
-          //   brief: "",
-          //   coverImageLink: "",
-          //   isActive: ""
-          // };
           this.successMessage = "Section updated successfully.";
           this.fetchAllSections();
           console.log(response.data);
@@ -404,12 +398,13 @@ export default {
     test: function() {
       console.log(this.currentSection);
     }
-  }
+  },
+  components: {}
 };
 </script>
 
 <style lang="scss" scoped>
-.sections-control-panel {
+#sections-control-panel {
   height: 1000px;
 
   #overlay {
