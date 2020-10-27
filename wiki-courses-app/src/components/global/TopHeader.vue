@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div id="top-header">
     <div class="container">
       <div class="logo">Wiki Courses</div>
       <ul class="text-right">
@@ -27,7 +27,7 @@ export default {
 </script>
 
 <style lang="scss">
-.header {
+#top-header {
   background-color: #4caf50;
   color: #fff;
   overflow: hidden;

@@ -4,7 +4,7 @@
 
     <SideBarNav />
 
-    <img src="/img/svg/control_panel.svg" class="img-fluid" width="600" />
+    <!-- <img src="/img/svg/control_panel.svg" class="img-fluid" width="600" /> -->
 
     <b-container fluid>
       <router-view />

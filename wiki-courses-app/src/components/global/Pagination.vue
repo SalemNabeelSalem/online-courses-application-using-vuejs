@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="pagination">
     <b-pagination
       v-model="currentPage"
       :total-rows="rows"
@@ -29,7 +29,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.pagination {
-  display: inline-flex;
+#pagination {
+  .pagination {
+    display: inline-flex;
+  }
 }
 </style>

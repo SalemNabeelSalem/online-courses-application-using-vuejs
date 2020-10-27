@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="app-header">
     <b-navbar toggleable="lg" type="dark" variant="success">
       <b-navbar-brand to="/">Wiki-Courses</b-navbar-brand>
 
@@ -26,17 +26,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.navbar-brand {
-  font-size: 22px;
-}
-
-.nav-item {
-  font-size: 18px;
-  a {
-    color: white !important;
+#app-header {
+  .navbar-brand {
+    font-size: 22px;
   }
-  a.router-link-exact-active {
-    color: #212529 !important;
+
+  .nav-item {
+    font-size: 18px;
+    a {
+      color: white !important;
+    }
+    a.router-link-exact-active {
+      color: #212529 !important;
+    }
   }
 }
 </style>

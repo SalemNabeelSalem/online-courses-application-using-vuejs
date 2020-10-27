@@ -1,5 +1,6 @@
 <template>
   <div id="home">
+    <Carousel />
     <b-container class="sections-container">
       <h2 class="h2-responsive py-2 bg-info text-white">Sections</h2>
 
@@ -32,6 +33,7 @@
 
 <script>
 // @ is an alias to /src
+import Carousel from "@/components/global/Carousel.vue";
 import SectionCard from "@/components/home/SectionCard.vue";
 
 export default {
@@ -83,6 +85,7 @@ export default {
   },
 
   components: {
+    Carousel,
     SectionCard
   }
 };
