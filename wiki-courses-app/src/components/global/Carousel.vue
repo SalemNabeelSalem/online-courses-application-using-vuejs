@@ -9,18 +9,18 @@
       img-height="1000"
     >
       <b-carousel-slide
-        caption="First slide"
-        img-src="https://picsum.photos/1024/480/?image=10"
+        caption="Learn From The Experts."
+        img-src="img/carousel/slider01.jpg"
       ></b-carousel-slide>
 
       <b-carousel-slide
-        caption="Second Slide"
-        img-src="https://picsum.photos/1024/480/?image=12"
+        caption="We Are Excellent In Education."
+        img-src="img/carousel/slider02.jpg"
       ></b-carousel-slide>
 
       <b-carousel-slide
-        caption="Third Slide"
-        img-src="https://picsum.photos/1024/480/?image=22"
+        caption="Strive for Excellent."
+        img-src="img/carousel/slider03.jpg"
       ></b-carousel-slide>
     </b-carousel>
   </div>
@@ -28,8 +28,18 @@
 
 <script>
 export default {
-  name: "carousel"
+  name: "Carousel"
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+.carousel .carousel-item img {
+  height: 800px;
+}
+
+.carousel .carousel-caption h3 {
+  font-size: 40px;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px 0px;
+}
+</style>

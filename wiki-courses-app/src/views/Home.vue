@@ -1,6 +1,7 @@
 <template>
   <div id="home">
     <Carousel />
+
     <b-container class="sections-container">
       <h2 class="h2-responsive py-2 bg-info text-white">Sections</h2>
 
@@ -91,7 +92,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #home {
   height: 1000px;
 
