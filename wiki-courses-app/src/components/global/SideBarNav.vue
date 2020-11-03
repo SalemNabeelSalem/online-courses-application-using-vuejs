@@ -17,11 +17,11 @@
           <nav class="mb-3">
             <b-nav vertical>
               <b-nav-item to="/dashboard" @click="hide">
-                <i class="fas fa-coffee"></i>
                 <font-awesome-icon :icon="['fas', 'home']" />
                 Dashboard
               </b-nav-item>
               <b-nav-item to="/dashboard/sections" @click="hide">
+                <font-awesome-icon :icon="['fas', 'edit']" />
                 Sections
               </b-nav-item>
               <b-nav-item to="/dashboard/classifications">

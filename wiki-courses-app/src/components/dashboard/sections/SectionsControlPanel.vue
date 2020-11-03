@@ -71,13 +71,16 @@
               </b-button>
             </template>
 
-            <template #cell(delete)>
+            <template #cell(delete)="data">
               <b-button
                 block
                 size="sm"
                 variant="danger"
                 class="my-3"
-                @click="showSectionDeleteModel"
+                @click="
+                  showSectionDeleteModel();
+                  fillSectionEditForm(data.item.id, data.item.title);
+                "
               >
                 Delete
               </b-button>
@@ -240,11 +243,22 @@
               <h4 class="text-danger">
                 Are you sure want to delete this section ?
               </h4>
-              <h5>You are deleting 'programming' section.</h5>
+              <h5>
+                You are deleting
+                <span
+                  style="color:blue; font-weight:bold; text-decoration:underline; text-transform:capitalize;"
+                >
+                  {{ currentSection.title }}
+                </span>
+                section.
+              </h5>
               <hr />
               <button
                 class="btn btn-danger btn-lg m-1"
-                @click="closeSectionDeleteModel"
+                @click="
+                  deleteSection();
+                  closeSectionDeleteModel();
+                "
               >
                 Yes
               </button>
@@ -276,10 +290,10 @@ export default {
       sectionEditModel: false,
       sectionDeleteModel: false,
 
-      // For Sections Displaying Records Table.
+      // For Sections Displying Records Table.
       allSections: [],
 
-      // Section Data Model For Adding New Section
+      // Section Data Model For Adding New Section.
       newSection: { title: "", brief: "", coverImageLink: "" },
 
       currentSectionId: "",
@@ -306,38 +320,39 @@ export default {
     };
   },
 
+  // Life Cycle Method.
   mounted() {
     this.fetchAllSections();
     // this.test();
   },
 
   methods: {
-    // This method for showing the form of adding new section.
+    // This Method For Showing The Form Of Adding New Section.
     showSectionAddModel: function() {
       this.sectionAddModel = true;
     },
 
-    // This method for closing the form of adding new section.
+    // This Method For Closing The Form Of Adding New Section.
     closeSectionAddModel: function() {
       this.sectionAddModel = false;
     },
 
-    // This method for showing the form of editing section.
+    // This Method For Showing The Form Of Editing Section.
     showSectionEditModel: function() {
       this.sectionEditModel = true;
     },
 
-    // This method for closing the form of editing section.
+    // This Method For Closing The Form Of Editing Section.
     closeSectionEditModel: function() {
       this.sectionEditModel = false;
     },
 
-    // This method for showing the dialog of delete section.
+    // This Method For Showing The Dialog Of Delete Section.
     showSectionDeleteModel: function() {
       this.sectionDeleteModel = true;
     },
 
-    // This method for closing the dialog of delete section.
+    // This Method For Closing The Dialog Of Delete Section.
     closeSectionDeleteModel: function() {
       this.sectionDeleteModel = false;
     },
@@ -384,6 +399,23 @@ export default {
         .catch(error => {
           this.errorMessage = error;
           console.error("Error when edit section => ", error);
+        });
+    },
+
+    deleteSection: function() {
+      console.log(this.currentSectionId);
+      axios
+        .delete(
+          "http://localhost:8383/api/v1/delete-section/" + this.currentSectionId
+        )
+        .then(response => {
+          this.successMessage = "Section deleted successfully.";
+          this.fetchAllSections();
+          console.log(response.data);
+        })
+        .catch(error => {
+          this.errorMessage = error;
+          console.error("Error when delete section => ", error);
         });
     },
 
