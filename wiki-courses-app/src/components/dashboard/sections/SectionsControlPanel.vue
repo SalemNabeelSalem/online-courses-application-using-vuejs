@@ -95,10 +95,12 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title">Add New Section</h5>
+
               <button type="button" class="close" @click="closeSectionAddModel">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
+
             <div class="modal-body p-4">
               <form
                 id="section-form"
@@ -114,6 +116,7 @@
                     v-model="newSection.title"
                   />
                 </div>
+
                 <div class="form-group">
                   <input
                     type="text"
@@ -123,6 +126,7 @@
                     v-model="newSection.coverImageLink"
                   />
                 </div>
+
                 <div class="form-group">
                   <input
                     type="text"
@@ -132,6 +136,7 @@
                     v-model="newSection.brief"
                   />
                 </div>
+
                 <div class="form-group">
                   <button
                     type="submit"
@@ -154,6 +159,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title">Edit Section</h5>
+
               <button
                 type="button"
                 class="close"
@@ -162,6 +168,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
+
             <div class="modal-body p-4">
               <form
                 id="section-form"
@@ -199,9 +206,9 @@
                 </div>
 
                 <div class="form-group">
-                  <label>{{
-                    currentSection.isActive ? "Active" : "Not Active"
-                  }}</label>
+                  <label>
+                    {{ currentSection.isActive ? "Active" : "Not Active" }}
+                  </label>
                   <input
                     type="checkbox"
                     name="isActive"
@@ -231,6 +238,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title">Delete Section</h5>
+
               <button
                 type="button"
                 class="close"
@@ -239,10 +247,12 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
+
             <div class="modal-body p-4">
               <h4 class="text-danger">
                 Are you sure want to delete this section ?
               </h4>
+
               <h5>
                 You are deleting
                 <span
@@ -252,7 +262,9 @@
                 </span>
                 section.
               </h5>
+
               <hr />
+
               <button
                 class="btn btn-danger btn-lg m-1"
                 @click="
@@ -262,6 +274,7 @@
               >
                 Yes
               </button>
+
               <button
                 class="btn btn-success btn-lg m-1"
                 @click="closeSectionDeleteModel"

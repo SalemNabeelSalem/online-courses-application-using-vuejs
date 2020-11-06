@@ -25,6 +25,7 @@
                 Sections
               </b-nav-item>
               <b-nav-item to="/dashboard/classifications">
+                <font-awesome-icon :icon="['fas', 'edit']" />
                 Classifications
               </b-nav-item>
             </b-nav>
