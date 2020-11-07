@@ -4,7 +4,7 @@
       <b-row class="bg-dark">
         <b-col lg="12">
           <p class="text-center text-light pt-2" style="font-size:25px;">
-            Sections Control Panel
+            Classifications Control Panel
           </p>
         </b-col>
       </b-row>
@@ -13,12 +13,15 @@
     <b-container fluid>
       <b-row class="mt-3">
         <b-col lg="6">
-          <h3 class="text-info float-left">Sections</h3>
+          <h3 class="text-info float-left">Classifications</h3>
         </b-col>
         <b-col lg="6">
-          <button class="btn btn-info float-right" @click="showSectionAddModel">
+          <button
+            class="btn btn-info float-right"
+            @click="showClassificationAddModel"
+          >
             <font-awesome-icon :icon="['fas', 'plus']" />&nbsp;
-            <span>Add New Section</span>
+            <span>Add New Classification</span>
           </button>
         </b-col>
       </b-row>
@@ -36,7 +39,7 @@
       <!-- Displaying Records -->
       <b-row>
         <b-col lg="12">
-          <b-table bordered hover :items="allSections" :fields="fields">
+          <b-table bordered hover :items="allClassifications" :fields="fields">
             <template #cell(index)="data">
               {{ data.index + 1 }}
             </template>
@@ -57,7 +60,7 @@
                 variant="info"
                 class="my-3"
                 @click="
-                  showSectionEditModel();
+                  showClassificationEditModel();
                   fillSectionEditForm(
                     data.item.id,
                     data.item.title,
@@ -78,7 +81,7 @@
                 variant="danger"
                 class="my-3"
                 @click="
-                  showSectionDeleteModel();
+                  showClassificationDeleteModel();
                   fillSectionEditForm(data.item.id, data.item.title);
                 "
               >
@@ -89,21 +92,25 @@
         </b-col>
       </b-row>
 
-      <!-- Adding New Section Model -->
-      <div id="overlay" v-if="sectionAddModel">
+      <!-- Adding New Classification Model -->
+      <div id="overlay" v-if="classificationAddModel">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Add New Section</h5>
+              <h5 class="modal-title">Add New Classification</h5>
 
-              <button type="button" class="close" @click="closeSectionAddModel">
+              <button
+                type="button"
+                class="close"
+                @click="closeClassificationAddModel"
+              >
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
 
             <div class="modal-body p-4">
               <form
-                id="section-form"
+                id="classification-form"
                 method="post"
                 @submit.prevent="createNewSection"
               >
@@ -113,9 +120,31 @@
                     name="title"
                     class="form-contrlo form-control-lg"
                     placeholder="Title"
-                    v-model="newSection.title"
+                    v-model="newClassification.title"
                   />
                 </div>
+
+                <div class="form-group">
+                  <select
+                    id="sections-drop-down"
+                    v-model="newClassification.sectionId"
+                  >
+                    <option disabled value="">Please select section</option>
+
+                    <option
+                      v-for="section in allSections"
+                      v-bind:value="section.id"
+                      v-bind:key="section"
+                    >
+                      {{ section.title }}
+                    </option>
+                  </select>
+                </div>
+                <!-- <span v-for="section in allSections" v-bind:key="section">
+                  {{ section.title }}
+                </span> -->
+
+                {{ newClassification.sectionId }}
 
                 <div class="form-group">
                   <input
@@ -123,7 +152,7 @@
                     name="cover_image_url"
                     class="form-contrlo form-control-lg"
                     placeholder="Cover Image Url"
-                    v-model="newSection.coverImageLink"
+                    v-model="newClassification.coverImageLink"
                   />
                 </div>
 
@@ -133,7 +162,7 @@
                     name="brief"
                     class="form-contrlo form-control-lg"
                     placeholder="Brief"
-                    v-model="newSection.brief"
+                    v-model="newClassification.brief"
                   />
                 </div>
 
@@ -141,9 +170,9 @@
                   <button
                     type="submit"
                     class="btn btn-info btn-block btn-lg"
-                    @click="closeSectionEditModel"
+                    @click="closeClassificationEditModel"
                   >
-                    Add Section
+                    Add Classification
                   </button>
                 </div>
               </form>
@@ -151,10 +180,10 @@
           </div>
         </div>
       </div>
-      <!-- End Add Section Model -->
+      <!-- End Add Classification Model -->
 
-      <!-- Start Edit Section Model -->
-      <div id="overlay" v-if="sectionEditModel">
+      <!-- Start Edit Classification Model -->
+      <div id="overlay" v-if="classificationEditModel">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -163,7 +192,7 @@
               <button
                 type="button"
                 class="close"
-                @click="closeSectionEditModel"
+                @click="closeClassificationEditModel"
               >
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -171,7 +200,7 @@
 
             <div class="modal-body p-4">
               <form
-                id="section-form"
+                id="classification-form"
                 method="put"
                 @submit.prevent="updateSection"
               >
@@ -220,7 +249,7 @@
                   <button
                     type="submit"
                     class="btn btn-info btn-block btn-lg"
-                    @click="closeSectionEditModel;"
+                    @click="closeClassificationEditModel;"
                   >
                     Update Section
                   </button>
@@ -230,9 +259,9 @@
           </div>
         </div>
       </div>
-      <!-- End Edit Section Model -->
+      <!-- End Edit Classification Model -->
 
-      <!-- Start Delete Section Model -->
+      <!-- Start Delete Classification Model -->
       <div id="overlay" v-if="sectionDeleteModel">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -242,7 +271,7 @@
               <button
                 type="button"
                 class="close"
-                @click="closeSectionDeleteModel"
+                @click="closeClassificationDeleteModel"
               >
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -269,7 +298,7 @@
                 class="btn btn-danger btn-lg m-1"
                 @click="
                   deleteSection();
-                  closeSectionDeleteModel();
+                  closeClassificationDeleteModel();
                 "
               >
                 Yes
@@ -277,7 +306,7 @@
 
               <button
                 class="btn btn-success btn-lg m-1"
-                @click="closeSectionDeleteModel"
+                @click="closeClassificationDeleteModel"
               >
                 No
               </button>
@@ -285,7 +314,7 @@
           </div>
         </div>
       </div>
-      <!-- End Delete Section Model -->
+      <!-- End Delete Classification Model -->
     </b-container>
   </div>
 </template>
@@ -299,15 +328,26 @@ export default {
     return {
       errorMessage: "",
       successMessage: "",
-      sectionAddModel: false,
-      sectionEditModel: false,
-      sectionDeleteModel: false,
+      classificationAddModel: false,
+      classificationEditModel: false,
+      classificationDeleteModel: false,
 
       // For Sections Displying Records Table.
-      allSections: [],
+      allSections: [
+        { id: 1, title: "devops" },
+        { id: 2, title: "testing" }
+      ],
 
-      // Section Data Model For Adding New Section.
-      newSection: { title: "", brief: "", coverImageLink: "" },
+      // For Classifications Displying Records Table.
+      allClassifications: [],
+
+      // Classification Data Model For Adding New Classification.
+      newClassification: {
+        title: "",
+        brief: "",
+        sectionId: "",
+        coverImageLink: ""
+      },
 
       currentSectionId: "",
 
@@ -318,11 +358,12 @@ export default {
         isActive: ""
       },
 
-      // For Sections Displaying Records Table.
+      // For Classifications Displaying Records Table.
       fields: [
         "index",
         { key: "title", label: "Title" },
         { key: "coverImageLink", label: "Cover Image" },
+        { key: "sectionTitle", label: "Section" },
         { key: "brief", label: "Description" },
         { key: "createdAt", label: "Created Date" },
         { key: "updatedAt", label: "Last Updated Date" },
@@ -335,46 +376,46 @@ export default {
 
   // Life Cycle Method.
   mounted() {
-    this.fetchAllSections();
+    this.fetchAllClassifications();
     // this.test();
   },
 
   methods: {
-    // This Method For Showing The Form Of Adding New Section.
-    showSectionAddModel: function() {
-      this.sectionAddModel = true;
+    // This Method For Showing The Form Of Adding New Classification.
+    showClassificationAddModel: function() {
+      this.classificationAddModel = true;
     },
 
-    // This Method For Closing The Form Of Adding New Section.
-    closeSectionAddModel: function() {
-      this.sectionAddModel = false;
+    // This Method For Closing The Form Of Adding New Classification.
+    closeClassificationAddModel: function() {
+      this.classificationAddModel = false;
     },
 
-    // This Method For Showing The Form Of Editing Section.
-    showSectionEditModel: function() {
-      this.sectionEditModel = true;
+    // This Method For Showing The Form Of Editing Classification.
+    showClassificationEditModel: function() {
+      this.classificationEditModel = true;
     },
 
-    // This Method For Closing The Form Of Editing Section.
-    closeSectionEditModel: function() {
-      this.sectionEditModel = false;
+    // This Method For Closing The Form Of Editing Classification.
+    closeClassificationEditModel: function() {
+      this.classificationEditModel = false;
     },
 
-    // This Method For Showing The Dialog Of Delete Section.
-    showSectionDeleteModel: function() {
-      this.sectionDeleteModel = true;
+    // This Method For Showing The Dialog Of Delete Classification.
+    showClassificationDeleteModel: function() {
+      this.classificationDeleteModel = true;
     },
 
-    // This Method For Closing The Dialog Of Delete Section.
-    closeSectionDeleteModel: function() {
-      this.sectionDeleteModel = false;
+    // This Method For Closing The Dialog Of Delete Classification.
+    closeClassificationDeleteModel: function() {
+      this.classificationDeleteModel = false;
     },
 
-    fetchAllSections: function() {
+    fetchAllClassifications: function() {
       axios
-        .get("http://localhost:8383/api/v1/all-sections")
+        .get("http://localhost:8383/api/v1/all-classifications")
         .then(response => {
-          this.allSections = response.data;
+          this.allClassifications = response.data;
           // console.log(response.data);
         })
         .catch(error => {
@@ -383,11 +424,19 @@ export default {
         });
     },
 
-    createNewSection: function() {
+    createNewClassification: function() {
       axios
-        .post("http://localhost:8383/api/v1/add-section", this.newSection)
+        .post(
+          "http://localhost:8383/api/v1/add-classification",
+          this.newClassification
+        )
         .then(response => {
-          this.newSection = { title: "", brief: "", coverImageLink: "" };
+          this.newClassification = {
+            title: "",
+            brief: "",
+            sectionId: "",
+            coverImageLink: ""
+          };
           this.successMessage = "Section added successfully.";
           this.fetchAllSections();
           console.log(response.data);
@@ -460,9 +509,15 @@ export default {
     left: 0;
     background-color: rgba($color: #000000, $alpha: 0.6);
 
-    #section-form {
+    #classification-form {
       input {
         width: 100%;
+      }
+
+      #sections-drop-down {
+        float: left;
+        margin: 10px 0px 20px;
+        font-size: 20px;
       }
     }
   }

@@ -17,15 +17,21 @@
           <nav class="mb-3">
             <b-nav vertical>
               <b-nav-item to="/dashboard" @click="hide">
-                <font-awesome-icon :icon="['fas', 'home']" />
+                <span class="custom-fa-icon">
+                  <font-awesome-icon :icon="['fas', 'home']" />
+                </span>
                 Dashboard
               </b-nav-item>
               <b-nav-item to="/dashboard/sections" @click="hide">
-                <font-awesome-icon :icon="['fas', 'edit']" />
+                <span class="custom-fa-icon">
+                  <font-awesome-icon :icon="['fas', 'edit']" />
+                </span>
                 Sections
               </b-nav-item>
               <b-nav-item to="/dashboard/classifications">
-                <font-awesome-icon :icon="['fas', 'edit']" />
+                <span class="custom-fa-icon">
+                  <font-awesome-icon :icon="['fas', 'shapes']" />
+                </span>
                 Classifications
               </b-nav-item>
             </b-nav>
@@ -46,4 +52,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+#side-bar-nav {
+  .custom-fa-icon {
+    color: green;
+  }
+}
+</style>
