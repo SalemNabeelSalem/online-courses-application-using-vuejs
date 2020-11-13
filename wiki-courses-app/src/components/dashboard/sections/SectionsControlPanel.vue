@@ -120,20 +120,20 @@
                 <div class="form-group">
                   <input
                     type="text"
-                    name="cover_image_url"
+                    name="brief"
                     class="form-contrlo form-control-lg"
-                    placeholder="Cover Image Url"
-                    v-model="newSection.coverImageLink"
+                    placeholder="Description"
+                    v-model="newSection.brief"
                   />
                 </div>
 
                 <div class="form-group">
                   <input
                     type="text"
-                    name="brief"
+                    name="cover_image_url"
                     class="form-contrlo form-control-lg"
-                    placeholder="Brief"
-                    v-model="newSection.brief"
+                    placeholder="Cover Image Url"
+                    v-model="newSection.coverImageLink"
                   />
                 </div>
 
@@ -186,22 +186,22 @@
                 </div>
 
                 <div class="form-group">
-                  <label class="float-left">Cover Image Link</label>
-                  <input
-                    type="text"
-                    name="cover_image_url"
-                    class="form-contrlo form-control-lg"
-                    v-model="currentSection.coverImageLink"
-                  />
-                </div>
-
-                <div class="form-group">
                   <label class="float-left">Description</label>
                   <input
                     type="text"
                     name="brief"
                     class="form-contrlo form-control-lg"
                     v-model="currentSection.brief"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label class="float-left">Cover Image Link</label>
+                  <input
+                    type="text"
+                    name="cover_image_url"
+                    class="form-contrlo form-control-lg"
+                    v-model="currentSection.coverImageLink"
                   />
                 </div>
 

@@ -61,10 +61,11 @@
                 class="my-3"
                 @click="
                   showClassificationEditModel();
-                  fillSectionEditForm(
+                  fillClassificationEditForm(
                     data.item.id,
                     data.item.title,
                     data.item.brief,
+                    null,
                     data.item.coverImageLink,
                     data.item.isActive
                   );
@@ -82,7 +83,7 @@
                 class="my-3"
                 @click="
                   showClassificationDeleteModel();
-                  fillSectionEditForm(data.item.id, data.item.title);
+                  fillClassificationEditForm(data.item.id, data.item.title);
                 "
               >
                 Delete
@@ -112,7 +113,7 @@
               <form
                 id="classification-form"
                 method="post"
-                @submit.prevent="createNewSection"
+                @submit.prevent="createNewClassification"
               >
                 <div class="form-group">
                   <input
@@ -125,26 +126,35 @@
                 </div>
 
                 <div class="form-group">
+                  <input
+                    type="text"
+                    name="brief"
+                    class="form-contrlo form-control-lg"
+                    placeholder="Description"
+                    v-model="newClassification.brief"
+                  />
+                </div>
+
+                <div class="form-group">
                   <select
                     id="sections-drop-down"
                     v-model="newClassification.sectionId"
                   >
-                    <option disabled value="">Please select section</option>
+                    <option disabled value="">
+                      Please select section of classification
+                    </option>
 
                     <option
-                      v-for="section in allSections"
+                      v-for="(section, index) in allSections"
+                      :key="index"
                       v-bind:value="section.id"
-                      v-bind:key="section"
                     >
                       {{ section.title }}
                     </option>
                   </select>
-                </div>
-                <!-- <span v-for="section in allSections" v-bind:key="section">
-                  {{ section.title }}
-                </span> -->
 
-                {{ newClassification.sectionId }}
+                  {{ newClassification.sectionId }}
+                </div>
 
                 <div class="form-group">
                   <input
@@ -153,16 +163,6 @@
                     class="form-contrlo form-control-lg"
                     placeholder="Cover Image Url"
                     v-model="newClassification.coverImageLink"
-                  />
-                </div>
-
-                <div class="form-group">
-                  <input
-                    type="text"
-                    name="brief"
-                    class="form-contrlo form-control-lg"
-                    placeholder="Brief"
-                    v-model="newClassification.brief"
                   />
                 </div>
 
@@ -187,7 +187,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Edit Section</h5>
+              <h5 class="modal-title">Edit Classification</h5>
 
               <button
                 type="button"
@@ -202,7 +202,7 @@
               <form
                 id="classification-form"
                 method="put"
-                @submit.prevent="updateSection"
+                @submit.prevent="updateClassification"
               >
                 <div class="form-group">
                   <label class="float-left">Title</label>
@@ -210,8 +210,39 @@
                     type="text"
                     name="title"
                     class="form-contrlo form-control-lg"
-                    v-model="currentSection.title"
+                    v-model="currentClassification.title"
                   />
+                </div>
+
+                <div class="form-group">
+                  <label class="float-left">Brief</label>
+                  <input
+                    type="text"
+                    name="brief"
+                    class="form-contrlo form-control-lg"
+                    v-model="currentClassification.brief"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <select
+                    id="sections-drop-down"
+                    v-model="currentClassification.sectionId"
+                  >
+                    <option disabled value="">
+                      Please select section of classification
+                    </option>
+
+                    <option
+                      v-for="(section, index) in allSections"
+                      :key="index"
+                      v-bind:value="section.id"
+                    >
+                      {{ section.title }}
+                    </option>
+                  </select>
+
+                  {{ currentClassification.sectionId }}
                 </div>
 
                 <div class="form-group">
@@ -220,28 +251,20 @@
                     type="text"
                     name="cover_image_url"
                     class="form-contrlo form-control-lg"
-                    v-model="currentSection.coverImageLink"
-                  />
-                </div>
-
-                <div class="form-group">
-                  <label class="float-left">Description</label>
-                  <input
-                    type="text"
-                    name="brief"
-                    class="form-contrlo form-control-lg"
-                    v-model="currentSection.brief"
+                    v-model="currentClassification.coverImageLink"
                   />
                 </div>
 
                 <div class="form-group">
                   <label>
-                    {{ currentSection.isActive ? "Active" : "Not Active" }}
+                    {{
+                      currentClassification.isActive ? "Active" : "Not Active"
+                    }}
                   </label>
                   <input
                     type="checkbox"
                     name="isActive"
-                    v-model="currentSection.isActive"
+                    v-model="currentClassification.isActive"
                   />
                 </div>
 
@@ -251,7 +274,7 @@
                     class="btn btn-info btn-block btn-lg"
                     @click="closeClassificationEditModel;"
                   >
-                    Update Section
+                    Update Classification
                   </button>
                 </div>
               </form>
@@ -262,11 +285,11 @@
       <!-- End Edit Classification Model -->
 
       <!-- Start Delete Classification Model -->
-      <div id="overlay" v-if="sectionDeleteModel">
+      <div id="overlay" v-if="classificationDeleteModel">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Delete Section</h5>
+              <h5 class="modal-title">Delete Classification</h5>
 
               <button
                 type="button"
@@ -279,7 +302,7 @@
 
             <div class="modal-body p-4">
               <h4 class="text-danger">
-                Are you sure want to delete this section ?
+                Are you sure want to delete this Classification ?
               </h4>
 
               <h5>
@@ -287,9 +310,9 @@
                 <span
                   style="color:blue; font-weight:bold; text-decoration:underline; text-transform:capitalize;"
                 >
-                  {{ currentSection.title }}
+                  {{ currentClassification.title }}
                 </span>
-                section.
+                classification.
               </h5>
 
               <hr />
@@ -297,7 +320,7 @@
               <button
                 class="btn btn-danger btn-lg m-1"
                 @click="
-                  deleteSection();
+                  deleteClassification();
                   closeClassificationDeleteModel();
                 "
               >
@@ -332,11 +355,8 @@ export default {
       classificationEditModel: false,
       classificationDeleteModel: false,
 
-      // For Sections Displying Records Table.
-      allSections: [
-        { id: 1, title: "devops" },
-        { id: 2, title: "testing" }
-      ],
+      // For Sections Displying.
+      allSections: [],
 
       // For Classifications Displying Records Table.
       allClassifications: [],
@@ -349,12 +369,13 @@ export default {
         coverImageLink: ""
       },
 
-      currentSectionId: "",
+      currentClassificationId: "",
 
-      currentSection: {
+      currentClassification: {
         title: "",
         brief: "",
         coverImageLink: "",
+        sectionId: "",
         isActive: ""
       },
 
@@ -377,6 +398,7 @@ export default {
   // Life Cycle Method.
   mounted() {
     this.fetchAllClassifications();
+    this.fetchAllSections();
     // this.test();
   },
 
@@ -411,6 +433,18 @@ export default {
       this.classificationDeleteModel = false;
     },
 
+    fetchAllSections: function() {
+      axios
+        .get("http://localhost:8383/api/v1/all-sections")
+        .then(response => {
+          this.allSections = response.data;
+        })
+        .catch(error => {
+          this.errorMessage = error;
+          console.error("Error when fetch all sections =>", error);
+        });
+    },
+
     fetchAllClassifications: function() {
       axios
         .get("http://localhost:8383/api/v1/all-classifications")
@@ -420,7 +454,7 @@ export default {
         })
         .catch(error => {
           this.errorMessage = error;
-          console.error("Error when fetch all sections => ", error);
+          console.error("Error when fetch all classifications => ", error);
         });
     },
 
@@ -437,60 +471,70 @@ export default {
             sectionId: "",
             coverImageLink: ""
           };
-          this.successMessage = "Section added successfully.";
-          this.fetchAllSections();
+          this.successMessage = "Classification added successfully.";
+          this.fetchAllClassifications();
           console.log(response.data);
         })
         .catch(error => {
           this.errorMessage = error;
-          console.error("Error when add new section => ", error);
+          console.error("Error when add new Classification => ", error);
         });
     },
 
-    updateSection: function() {
+    updateClassification: function() {
       axios
         .put(
-          "http://localhost:8383/api/v1/edit-section/" + this.currentSectionId,
-          this.currentSection
+          "http://localhost:8383/api/v1/edit-classification/" +
+            this.currentClassificationId,
+          this.currentClassification
         )
         .then(response => {
-          this.successMessage = "Section updated successfully.";
-          this.fetchAllSections();
+          this.successMessage = "Classifiction updated successfully.";
+          this.fetchAllClassifications();
           console.log(response.data);
         })
         .catch(error => {
           this.errorMessage = error;
-          console.error("Error when edit section => ", error);
+          console.error("Error when edit classification => ", error);
         });
     },
 
-    deleteSection: function() {
-      console.log(this.currentSectionId);
+    deleteClassification: function() {
+      console.log(this.currentClassificationId);
       axios
         .delete(
-          "http://localhost:8383/api/v1/delete-section/" + this.currentSectionId
+          "http://localhost:8383/api/v1/delete-classification/" +
+            this.currentClassificationId
         )
         .then(response => {
-          this.successMessage = "Section deleted successfully.";
-          this.fetchAllSections();
+          this.successMessage = "Classification deleted successfully.";
+          this.fetchAllClassifications();
           console.log(response.data);
         })
         .catch(error => {
           this.errorMessage = error;
-          console.error("Error when delete section => ", error);
+          console.error("Error when delete classification => ", error);
         });
     },
 
-    fillSectionEditForm: function(id, title, brief, image, status) {
-      this.currentSectionId = id;
-      this.currentSection.title = title;
-      this.currentSection.brief = brief;
-      this.currentSection.coverImageLink = image;
-      this.currentSection.isActive = status;
+    fillClassificationEditForm: function(
+      id,
+      title,
+      brief,
+      sectionId,
+      image,
+      status
+    ) {
+      this.currentClassificationId = id;
+      this.currentClassification.title = title;
+      this.currentClassification.brief = brief;
+      this.currentClassification.sectionId = sectionId;
+      this.currentClassification.coverImageLink = image;
+      this.currentClassification.isActive = status;
     },
 
     test: function() {
-      console.log(this.currentSection);
+      console.log(this.currentClassification);
     }
   },
   components: {}
@@ -518,6 +562,7 @@ export default {
         float: left;
         margin: 10px 0px 20px;
         font-size: 20px;
+        padding: 6px 3px;
       }
     }
   }
