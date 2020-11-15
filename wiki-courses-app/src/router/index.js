@@ -1,6 +1,8 @@
 import Vue from "vue";
 import Router from "vue-router";
+
 import Home from "../views/Home.vue";
+import Classifications from "../views/Classifications.vue";
 import Blog from "../views/Blog.vue";
 import About from "../views/About.vue";
 import Help from "../views/Help.vue";
@@ -30,6 +32,11 @@ const routes = [
     path: "/help",
     name: "Help",
     component: Help
+  },
+  {
+    path: "/section/:sectionId",
+    name: "Classifications",
+    component: Classifications
   },
   {
     path: "/dashboard",

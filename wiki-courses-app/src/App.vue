@@ -1,11 +1,13 @@
 <template>
   <div id="app">
     <AppHeader />
+
     <router-view />
   </div>
 </template>
 
 <script>
+// @ is an alias to /src
 import AppHeader from "@/components/global/AppHeader.vue";
 
 export default {
