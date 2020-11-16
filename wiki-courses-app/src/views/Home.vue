@@ -76,33 +76,6 @@
         </div>
       </div>
     </div>
-    <!--
-    <b-container class="sections-container">
-      <b-row align-v="center">
-        <SectionCard
-          v-for="section in displaySections"
-          :key="section.id"
-          :title="section.title"
-          :cover_image_url="section.cover_image_url"
-          :brief="section.brief"
-        />
-      </b-row>
-
-      <b-pagination
-        v-model="sectionsPaginateCurrentPage"
-        :total-rows="totalSectionsCount"
-        :per-page="sectionsPaginatePerPage"
-        @input="sectionsPaginate(sectionsPaginateCurrentPage)"
-        class="my-2"
-      ></b-pagination>
-    </b-container>
-
-    <b-container class="classifications-container">
-      <h2 class="h2-responsive my-5 py-2 bg-info text-white">
-        Classifications
-      </h2>
-    </b-container>
-    -->
   </div>
 </template>
 
@@ -111,7 +84,6 @@ import axios from "axios";
 
 // @ is an alias to /src
 import Carousel from "@/components/global/Carousel.vue";
-// import SectionCard from "@/components/home/SectionCard.vue";
 
 export default {
   name: "Home",
@@ -120,15 +92,6 @@ export default {
     return {
       allActiveSections: [],
       allActiveClassifications: []
-
-      // Section Component Data.
-      // allSections: [],
-      // Section Component Data.
-      // displaySections: [],
-      // Pagination Data.
-      // sectionsPaginateCurrentPage: 1,
-      // Pagination Data.
-      // sectionsPaginatePerPage: 3
     };
   },
 
@@ -168,32 +131,12 @@ export default {
           console.error("Error when fetch all sections => ", error);
         });
     }
-    // async fetchAllSections() {
-    //   const response = await fetch("json/sections.json");
-    //   const values = await response.json();
-    //   this.allSections = values;
-    //   this.displaySections = this.allSections.slice(0, 3);
-    // },
-
-    // sectionsPaginate(sectionsPaginateCurrentPage) {
-    //   const start =
-    //     (sectionsPaginateCurrentPage - 1) * this.sectionsPaginatePerPage;
-    //   this.displaySections = this.allSections.slice(
-    //     start,
-    //     start + this.sectionsPaginatePerPage
-    //   );
-    // }
   },
 
-  computed: {
-    // totalSectionsCount() {
-    //   return this.allSections.length;
-    // }
-  },
+  computed: {},
 
   components: {
     Carousel
-    // SectionCard
   }
 };
 </script>
@@ -208,10 +151,6 @@ export default {
     h2.h2-responsive {
       margin: 25px 0px;
     }
-
-    //     .pagination {
-    //       display: inline-flex;
-    //     }
   }
 }
 </style>
