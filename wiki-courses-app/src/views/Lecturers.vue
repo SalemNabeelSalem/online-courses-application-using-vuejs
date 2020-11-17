@@ -2,7 +2,11 @@
   <div id="lecturers">
     <div class="container">
       <div class="row">
-        <div class="col-md-4 mt-4">
+        <div
+          class="col-md-4 mt-4"
+          v-for="(lecturer, index) in allActiveLecturers"
+          :key="index"
+        >
           <div class="card user-card">
             <div class="card-header">
               <h3>Profile</h3>
@@ -11,27 +15,37 @@
             <div class="card-block">
               <div class="user-image">
                 <img
-                  src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                  :src="lecturer.profileImageLink"
                   class="img-radius"
                   alt="User-Profile-Image"
                 />
               </div>
 
-              <h6 class="f-w-600 m-t-25 m-b-10">Alessa Robert</h6>
+              <h6 class="f-w-600 m-t-25 m-b-10">{{ lecturer.fullName }}</h6>
 
-              <p class="text-muted">Active | Male</p>
+              <p class="text-muted">
+                <span
+                  v-if="lecturer.isActive"
+                  style="font-weight:bold; color:green"
+                >
+                  Active
+                </span>
+                <span v-else style="font-weight:bold; color:red">
+                  Not Active
+                </span>
+
+                |
+
+                <span style="font-weight:bold">
+                  {{ lecturer.gender == "M" ? "Male" : "Female" }}
+                </span>
+              </p>
 
               <hr />
 
-              <p class="text-muted m-t-15">Activity Level: 87%</p>
-
-              <ul class="list-unstyled activity-leval">
-                <li class="active"></li>
-                <li class="active"></li>
-                <li class="active"></li>
-                <li></li>
-                <li></li>
-              </ul>
+              <p class="m-t-15 text-muted">
+                {{ lecturer.description }}
+              </p>
 
               <div class="bg-c-blue counter-block m-t-10 p-20">
                 <div class="row">
@@ -52,248 +66,21 @@
                 </div>
               </div>
 
-              <p class="m-t-15 text-muted">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry.
-              </p>
-
               <hr />
 
               <div class="row justify-content-center user-social-link">
                 <div class="col-auto">
-                  <a href="#!"><i class="fa fa-facebook text-facebook"></i></a>
-                </div>
-
-                <div class="col-auto">
-                  <a href="#!"><i class="fa fa-twitter text-twitter"></i></a>
-                </div>
-
-                <div class="col-auto">
-                  <a href="#!"><i class="fa fa-dribbble text-dribbble"></i></a>
+                  <a :href="`mailto:${lecturer.email}`">
+                    <i class="fa fa-envelope"></i>
+                  </a>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4 mt-4">
-          <div class="card user-card">
-            <div class="card-header">
-              <h3>Profile</h3>
-            </div>
-
-            <div class="card-block">
-              <div class="user-image">
-                <img
-                  src="https://bootdey.com/img/Content/avatar/avatar7.png"
-                  class="img-radius"
-                  alt="User-Profile-Image"
-                />
-              </div>
-
-              <h6 class="f-w-600 m-t-25 m-b-10">Alessa Robert</h6>
-
-              <p class="text-muted">Active | Male</p>
 
               <hr />
 
-              <p class="text-muted m-t-15">Activity Level: 87%</p>
-
-              <ul class="list-unstyled activity-leval">
-                <li class="active"></li>
-                <li class="active"></li>
-                <li class="active"></li>
-                <li></li>
-                <li></li>
-              </ul>
-
-              <div class="bg-c-blue counter-block m-t-10 p-20">
-                <div class="row">
-                  <div class="col-4">
-                    <i class="fa fa-comment"></i>
-                    <p>1256</p>
-                  </div>
-
-                  <div class="col-4">
-                    <i class="fa fa-user"></i>
-                    <p>8562</p>
-                  </div>
-
-                  <div class="col-4">
-                    <i class="fa fa-suitcase"></i>
-                    <p>189</p>
-                  </div>
-                </div>
-              </div>
-
-              <p class="m-t-15 text-muted">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry.
-              </p>
-
-              <hr />
-
-              <div class="row justify-content-center user-social-link">
-                <div class="col-auto">
-                  <a href="#!"><i class="fa fa-facebook text-facebook"></i></a>
-                </div>
-
-                <div class="col-auto">
-                  <a href="#!"><i class="fa fa-twitter text-twitter"></i></a>
-                </div>
-
-                <div class="col-auto">
-                  <a href="#!"><i class="fa fa-dribbble text-dribbble"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4 mt-4">
-          <div class="card user-card">
-            <div class="card-header">
-              <h3>Profile</h3>
-            </div>
-
-            <div class="card-block">
-              <div class="user-image">
-                <img
-                  src="https://bootdey.com/img/Content/avatar/avatar7.png"
-                  class="img-radius"
-                  alt="User-Profile-Image"
-                />
-              </div>
-
-              <h6 class="f-w-600 m-t-25 m-b-10">Alessa Robert</h6>
-
-              <p class="text-muted">Active | Male</p>
-
-              <hr />
-
-              <p class="text-muted m-t-15">Activity Level: 87%</p>
-
-              <ul class="list-unstyled activity-leval">
-                <li class="active"></li>
-                <li class="active"></li>
-                <li class="active"></li>
-                <li></li>
-                <li></li>
-              </ul>
-
-              <div class="bg-c-blue counter-block m-t-10 p-20">
-                <div class="row">
-                  <div class="col-4">
-                    <i class="fa fa-comment"></i>
-                    <p>1256</p>
-                  </div>
-
-                  <div class="col-4">
-                    <i class="fa fa-user"></i>
-                    <p>8562</p>
-                  </div>
-
-                  <div class="col-4">
-                    <i class="fa fa-suitcase"></i>
-                    <p>189</p>
-                  </div>
-                </div>
-              </div>
-
-              <p class="m-t-15 text-muted">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry.
-              </p>
-
-              <hr />
-
-              <div class="row justify-content-center user-social-link">
-                <div class="col-auto">
-                  <a href="#!"><i class="fa fa-facebook text-facebook"></i></a>
-                </div>
-
-                <div class="col-auto">
-                  <a href="#!"><i class="fa fa-twitter text-twitter"></i></a>
-                </div>
-
-                <div class="col-auto">
-                  <a href="#!"><i class="fa fa-dribbble text-dribbble"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4 mt-4">
-          <div class="card user-card">
-            <div class="card-header">
-              <h3>Profile</h3>
-            </div>
-
-            <div class="card-block">
-              <div class="user-image">
-                <img
-                  src="https://bootdey.com/img/Content/avatar/avatar7.png"
-                  class="img-radius"
-                  alt="User-Profile-Image"
-                />
-              </div>
-
-              <h6 class="f-w-600 m-t-25 m-b-10">Alessa Robert</h6>
-
-              <p class="text-muted">Active | Male</p>
-
-              <hr />
-
-              <p class="text-muted m-t-15">Activity Level: 87%</p>
-
-              <ul class="list-unstyled activity-leval">
-                <li class="active"></li>
-                <li class="active"></li>
-                <li class="active"></li>
-                <li></li>
-                <li></li>
-              </ul>
-
-              <div class="bg-c-blue counter-block m-t-10 p-20">
-                <div class="row">
-                  <div class="col-4">
-                    <i class="fa fa-comment"></i>
-                    <p>1256</p>
-                  </div>
-
-                  <div class="col-4">
-                    <i class="fa fa-user"></i>
-                    <p>8562</p>
-                  </div>
-
-                  <div class="col-4">
-                    <i class="fa fa-suitcase"></i>
-                    <p>189</p>
-                  </div>
-                </div>
-              </div>
-
-              <p class="m-t-15 text-muted">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry.
-              </p>
-
-              <hr />
-
-              <div class="row justify-content-center user-social-link">
-                <div class="col-auto">
-                  <a href="#!"><i class="fa fa-facebook text-facebook"></i></a>
-                </div>
-
-                <div class="col-auto">
-                  <a href="#!"><i class="fa fa-twitter text-twitter"></i></a>
-                </div>
-
-                <div class="col-auto">
-                  <a href="#!"><i class="fa fa-dribbble text-dribbble"></i></a>
-                </div>
-              </div>
+              <a class="btn btn-success">
+                Show All Related Coureses
+              </a>
             </div>
           </div>
         </div>
@@ -303,12 +90,31 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "Lecturers",
   data: function() {
     return {
-      title: "Done"
+      allActiveLecturers: []
     };
+  },
+
+  mounted() {
+    this.fetchAllActiveLecturers();
+  },
+
+  methods: {
+    fetchAllActiveLecturers() {
+      axios
+        .get("http://localhost:8383/api/v1/all-lecturers")
+        .then(response => {
+          this.allActiveLecturers = response.data;
+        })
+        .catch(error => {
+          console.error("Error when fetch all lecturers => ", error);
+        });
+    }
   }
 };
 </script>
@@ -456,18 +262,6 @@ export default {
 
   .user-card .card-block .user-social-link i {
     font-size: 30px;
-  }
-
-  .text-facebook {
-    color: #3b5997;
-  }
-
-  .text-twitter {
-    color: #42c0fb;
-  }
-
-  .text-dribbble {
-    color: #ec4a89;
   }
 
   .user-card .card-block .user-image:before {

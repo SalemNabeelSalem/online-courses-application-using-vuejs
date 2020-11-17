@@ -1,10 +1,9 @@
 <template>
   <div id="home">
     <Carousel />
-
     <div class="container sections-container">
       <h2 class="h2-responsive py-2 bg-info text-white">
-        Wiki Courses Sections
+        Lastest Wiki Courses Sections
       </h2>
 
       <div class="row">
@@ -30,7 +29,7 @@
               </p>
 
               <a
-                class="btn btn-primary"
+                class="btn btn-success"
                 @click="goToClassifications(section.id)"
               >
                 Show All Related Classifications
@@ -39,11 +38,13 @@
           </div>
         </div>
       </div>
+      <button class="btn btn-dark">Show More Sections</button>
+      <hr />
     </div>
 
     <div class="container classifications-container">
       <h2 class="h2-responsive my-4 py-2 bg-info text-white">
-        Wiki Courses Classifications
+        Lastest Wiki Courses Classifications
       </h2>
 
       <div class="row">
@@ -68,13 +69,19 @@
                 {{ section.brief }}
               </p>
 
-              <a class="btn btn-primary">
+              <a class="btn btn-success">
                 Show All Related Courses
               </a>
             </div>
           </div>
         </div>
       </div>
+      <button class="btn btn-dark">Show More Classifications</button>
+      <hr />
+    </div>
+
+    <div class="container">
+      <ContactUs />
     </div>
   </div>
 </template>
@@ -84,6 +91,7 @@ import axios from "axios";
 
 // @ is an alias to /src
 import Carousel from "@/components/global/Carousel.vue";
+import ContactUs from "@/components/home/ContactUs.vue";
 
 export default {
   name: "Home",
@@ -96,8 +104,8 @@ export default {
   },
 
   mounted() {
-    this.fetchAllActiceSections();
-    this.fetchAllActiceClassifications();
+    this.fetchAllActiveSections();
+    this.fetchAllActiveClassifications();
   },
 
   methods: {
@@ -110,7 +118,7 @@ export default {
       console.log("Section Id: " + sectionId);
     },
 
-    fetchAllActiceSections() {
+    fetchAllActiveSections() {
       axios
         .get("http://localhost:8383/api/v1/active-sections")
         .then(response => {
@@ -121,11 +129,11 @@ export default {
         });
     },
 
-    fetchAllActiceClassifications() {
+    fetchAllActiveClassifications() {
       axios
         .get("http://localhost:8383/api/v1/active-classifications")
         .then(response => {
-          this.allActiveClassifications = response.data;
+          this.allActiveClassifications = response.data.slice(0, 6);
         })
         .catch(error => {
           console.error("Error when fetch all sections => ", error);
@@ -136,21 +144,21 @@ export default {
   computed: {},
 
   components: {
-    Carousel
+    Carousel,
+    ContactUs
   }
 };
 </script>
 
 <style lang="scss" scoped>
 #home {
-  height: 5000px;
-
+  .classifications-container,
   .sections-container {
-    border: 1px solid transparent;
+    margin-bottom: 20px;
+  }
 
-    h2.h2-responsive {
-      margin: 25px 0px;
-    }
+  h2.h2-responsive {
+    margin: 25px 0px;
   }
 }
 </style>
