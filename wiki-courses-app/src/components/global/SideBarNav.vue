@@ -22,17 +22,26 @@
                 </span>
                 Dashboard
               </b-nav-item>
+
               <b-nav-item to="/dashboard/sections" @click="hide">
                 <span class="custom-fa-icon">
                   <font-awesome-icon :icon="['fas', 'edit']" />
                 </span>
                 Sections
               </b-nav-item>
+
               <b-nav-item to="/dashboard/classifications">
                 <span class="custom-fa-icon">
                   <font-awesome-icon :icon="['fas', 'shapes']" />
                 </span>
                 Classifications
+              </b-nav-item>
+
+              <b-nav-item to="/dashboard/lecturers">
+                <span class="custom-fa-icon">
+                  <font-awesome-icon :icon="['fas', 'user']" />
+                </span>
+                Lecturers
               </b-nav-item>
             </b-nav>
           </nav>

@@ -7,6 +7,7 @@ import Classifications from "../views/Classifications.vue";
 import Dashboard from "../views/Dashboard.vue";
 import SectionsControlPanel from "../components/dashboard/sections/SectionsControlPanel.vue";
 import ClassificationsControlPanel from "../components/dashboard/classifications/ClassificationsControlPanel.vue";
+import LecturersControlPanel from "../components/dashboard/lecturers/LecturersControlPanel.vue";
 
 Vue.use(Router);
 
@@ -40,6 +41,11 @@ const routes = [
         path: "/dashboard/classifications",
         name: "ClassificationsControlPanel",
         component: ClassificationsControlPanel
+      },
+      {
+        path: "/dashboard/lecturers",
+        name: "LecturersControlPanel",
+        component: LecturersControlPanel
       }
     ]
   }
