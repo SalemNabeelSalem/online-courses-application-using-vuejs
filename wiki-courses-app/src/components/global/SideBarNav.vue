@@ -16,12 +16,16 @@
           </h4>
           <nav class="mb-3">
             <b-nav vertical>
+              <hr />
+
               <b-nav-item to="/dashboard" @click="hide">
                 <span class="custom-fa-icon">
                   <font-awesome-icon :icon="['fas', 'home']" />
                 </span>
                 Dashboard
               </b-nav-item>
+
+              <hr />
 
               <b-nav-item to="/dashboard/sections" @click="hide">
                 <span class="custom-fa-icon">
@@ -30,6 +34,8 @@
                 Sections
               </b-nav-item>
 
+              <hr />
+
               <b-nav-item to="/dashboard/classifications">
                 <span class="custom-fa-icon">
                   <font-awesome-icon :icon="['fas', 'shapes']" />
@@ -37,12 +43,16 @@
                 Classifications
               </b-nav-item>
 
+              <hr />
+
               <b-nav-item to="/dashboard/lecturers">
                 <span class="custom-fa-icon">
                   <font-awesome-icon :icon="['fas', 'user']" />
                 </span>
                 Lecturers
               </b-nav-item>
+
+              <hr />
             </b-nav>
           </nav>
           <b-button variant="primary" block @click="hide">
@@ -65,6 +75,12 @@ export default {
 #side-bar-nav {
   .custom-fa-icon {
     color: green;
+  }
+
+  hr {
+    width: 100%;
+    border: 1px solid gray;
+    margin: 0px;
   }
 }
 </style>

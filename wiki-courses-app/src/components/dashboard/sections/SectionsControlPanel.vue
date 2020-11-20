@@ -132,7 +132,7 @@
                     type="text"
                     name="cover_image_url"
                     class="form-contrlo form-control-lg"
-                    placeholder="Cover Image Url"
+                    placeholder="Cover Image URL"
                     v-model="newSection.coverImageLink"
                   />
                 </div>
@@ -196,7 +196,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label class="float-left">Cover Image Link</label>
+                  <label class="float-left">Cover Image URL</label>
                   <input
                     type="text"
                     name="cover_image_url"

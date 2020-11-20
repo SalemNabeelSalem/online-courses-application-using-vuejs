@@ -1,5 +1,5 @@
 <template>
-  <div id="sections-control-panel">
+  <div id="lecturers-control-panel">
     <b-container fluid>
       <b-row class="bg-dark">
         <b-col lg="12">
@@ -13,12 +13,15 @@
     <b-container fluid>
       <b-row class="mt-3">
         <b-col lg="6">
-          <h3 class="text-info float-left">Sections</h3>
+          <h3 class="text-info float-left">Lecturers</h3>
         </b-col>
         <b-col lg="6">
-          <button class="btn btn-info float-right" @click="showSectionAddModel">
+          <button
+            class="btn btn-info float-right"
+            @click="showLecturerAddModel"
+          >
             <font-awesome-icon :icon="['fas', 'plus']" />&nbsp;
-            <span>Add New Section</span>
+            <span>Add New Lecturer</span>
           </button>
         </b-col>
       </b-row>
@@ -36,13 +39,22 @@
       <!-- Displaying Records -->
       <b-row>
         <b-col lg="12">
-          <b-table bordered hover :items="allSections" :fields="fields">
+          <b-table bordered hover :items="allLecturers" :fields="fields">
             <template #cell(index)="data">
               {{ data.index + 1 }}
             </template>
 
-            <template #cell(coverImageLink)="data">
-              <img v-bind:src="data.item.coverImageLink" width="200" />
+            <template #cell(gender)="data">
+              <b v-if="data.item.gender == 'M'">Male</b>
+              <b v-else>Female</b>
+            </template>
+
+            <template #cell(profileImageLink)="data">
+              <img
+                v-bind:src="data.item.profileImageLink"
+                width="200"
+                height="150"
+              />
             </template>
 
             <template #cell(isActive)="data">
@@ -57,12 +69,14 @@
                 variant="info"
                 class="my-3"
                 @click="
-                  showSectionEditModel();
-                  fillSectionEditForm(
+                  showLecturerEditModel();
+                  fillLecturerEditForm(
                     data.item.id,
-                    data.item.title,
-                    data.item.brief,
-                    data.item.coverImageLink,
+                    data.item.fullName,
+                    data.item.gender,
+                    data.item.description,
+                    data.item.email,
+                    data.item.profileImageLink,
                     data.item.isActive
                   );
                 "
@@ -78,8 +92,8 @@
                 variant="danger"
                 class="my-3"
                 @click="
-                  showSectionDeleteModel();
-                  fillSectionEditForm(data.item.id, data.item.title);
+                  showLecturerDeleteModel();
+                  fillLecturerEditForm(data.item.id, data.item.fullName);
                 "
               >
                 Delete
@@ -89,51 +103,83 @@
         </b-col>
       </b-row>
 
-      <!-- Adding New Section Model -->
-      <div id="overlay" v-if="sectionAddModel">
+      <!-- Adding New Lecturer Model -->
+      <div id="overlay" v-if="lecturerAddModel">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Add New Section</h5>
+              <h5 class="modal-title">Add New Lecturer</h5>
 
-              <button type="button" class="close" @click="closeSectionAddModel">
+              <button
+                type="button"
+                class="close"
+                @click="closeLecturerAddModel"
+              >
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
 
             <div class="modal-body p-4">
               <form
-                id="section-form"
+                id="lecturer-form"
                 method="post"
-                @submit.prevent="createNewSection"
+                @submit.prevent="createNewLecturer"
               >
                 <div class="form-group">
                   <input
                     type="text"
-                    name="title"
+                    name="fullName"
                     class="form-contrlo form-control-lg"
-                    placeholder="Title"
-                    v-model="newSection.title"
+                    placeholder="Full Name"
+                    v-model="newLecturer.fullName"
                   />
+                </div>
+
+                <div class="form-group">
+                  <select id="genders-drop-down" v-model="newLecturer.gender">
+                    <option disabled value="">
+                      Please select gender of lecturer
+                    </option>
+
+                    <option
+                      v-for="(gender, index) in genders"
+                      :key="index"
+                      v-bind:value="gender.pref"
+                    >
+                      {{ gender.word }}
+                    </option>
+                  </select>
+
+                  {{ newLecturer.gender }}
                 </div>
 
                 <div class="form-group">
                   <input
                     type="text"
-                    name="brief"
+                    name="description"
                     class="form-contrlo form-control-lg"
                     placeholder="Description"
-                    v-model="newSection.brief"
+                    v-model="newLecturer.description"
                   />
                 </div>
 
                 <div class="form-group">
                   <input
                     type="text"
-                    name="cover_image_url"
+                    name="email"
                     class="form-contrlo form-control-lg"
-                    placeholder="Cover Image Url"
-                    v-model="newSection.coverImageLink"
+                    placeholder="Email Address"
+                    v-model="newLecturer.email"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <input
+                    type="text"
+                    name="profile_image_link"
+                    class="form-contrlo form-control-lg"
+                    placeholder="Profile Image URL"
+                    v-model="newLecturer.profileImageLink"
                   />
                 </div>
 
@@ -141,9 +187,9 @@
                   <button
                     type="submit"
                     class="btn btn-info btn-block btn-lg"
-                    @click="closeSectionEditModel"
+                    @click="closeLecturerEditModel"
                   >
-                    Add Section
+                    Add Lecturer
                   </button>
                 </div>
               </form>
@@ -151,19 +197,19 @@
           </div>
         </div>
       </div>
-      <!-- End Add Section Model -->
+      <!-- End Add Lecturer Model -->
 
-      <!-- Start Edit Section Model -->
-      <div id="overlay" v-if="sectionEditModel">
+      <!-- Start Edit Lecturer Model -->
+      <div id="overlay" v-if="lecturerEditModel">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Edit Section</h5>
+              <h5 class="modal-title">Edit Lecturer</h5>
 
               <button
                 type="button"
                 class="close"
-                @click="closeSectionEditModel"
+                @click="closeLecturerEditModel"
               >
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -171,19 +217,38 @@
 
             <div class="modal-body p-4">
               <form
-                id="section-form"
+                id="lecturer-form"
                 method="put"
-                @submit.prevent="updateSection"
+                @submit.prevent="updateLecturer"
               >
                 <div class="form-group">
-                  <label class="float-left">Title</label>
+                  <label class="float-left">Full Name</label>
                   <input
                     type="text"
                     name="title"
                     class="form-contrlo form-control-lg"
-                    v-model="currentSection.title"
+                    v-model="currentLecturer.email"
                   />
                 </div>
+
+                <div class="form-group">
+                  <label class="float-left">Gender</label>
+                  <select id="genders-drop-down" v-model="newLecturer.gender">
+                    <option disabled value="">
+                      Please select gender of lecturer
+                    </option>
+
+                    <option
+                      v-for="(gender, index) in genders"
+                      :key="index"
+                      v-bind:value="gender.pref"
+                    >
+                      {{ gender.word }}
+                    </option>
+                  </select>
+                </div>
+
+                {{ newLecturer.gender }}
 
                 <div class="form-group">
                   <label class="float-left">Description</label>
@@ -191,28 +256,38 @@
                     type="text"
                     name="brief"
                     class="form-contrlo form-control-lg"
-                    v-model="currentSection.brief"
+                    v-model="currentLecturer.description"
                   />
                 </div>
 
                 <div class="form-group">
-                  <label class="float-left">Cover Image Link</label>
+                  <label class="float-left">Email Address</label>
+                  <input
+                    type="text"
+                    name="email_address"
+                    class="form-contrlo form-control-lg"
+                    v-model="currentLecturer.email"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label class="float-left">Profile Image URL</label>
                   <input
                     type="text"
                     name="cover_image_url"
                     class="form-contrlo form-control-lg"
-                    v-model="currentSection.coverImageLink"
+                    v-model="currentLecturer.profileImageLink"
                   />
                 </div>
 
                 <div class="form-group">
                   <label>
-                    {{ currentSection.isActive ? "Active" : "Not Active" }}
+                    {{ currentLecturer.isActive ? "Active" : "Not Active" }}
                   </label>
                   <input
                     type="checkbox"
                     name="isActive"
-                    v-model="currentSection.isActive"
+                    v-model="currentLecturer.isActive"
                   />
                 </div>
 
@@ -220,9 +295,9 @@
                   <button
                     type="submit"
                     class="btn btn-info btn-block btn-lg"
-                    @click="closeSectionEditModel;"
+                    @click="closeLecturerEditModel;"
                   >
-                    Update Section
+                    Update Lecturer
                   </button>
                 </div>
               </form>
@@ -230,19 +305,19 @@
           </div>
         </div>
       </div>
-      <!-- End Edit Section Model -->
+      <!-- End Edit Lecturer Model -->
 
-      <!-- Start Delete Section Model -->
-      <div id="overlay" v-if="sectionDeleteModel">
+      <!-- Start Delete Lecturer Model -->
+      <div id="overlay" v-if="lecturerDeleteModel">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Delete Section</h5>
+              <h5 class="modal-title">Delete Lecturer</h5>
 
               <button
                 type="button"
                 class="close"
-                @click="closeSectionDeleteModel"
+                @click="closeLecturerDeleteModel"
               >
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -250,7 +325,7 @@
 
             <div class="modal-body p-4">
               <h4 class="text-danger">
-                Are you sure want to delete this section ?
+                Are you sure want to delete this lecturer ?
               </h4>
 
               <h5>
@@ -258,9 +333,9 @@
                 <span
                   style="color:blue; font-weight:bold; text-decoration:underline; text-transform:capitalize;"
                 >
-                  {{ currentSection.title }}
+                  {{ currentLecturer.fullName }}
                 </span>
-                section.
+                lecturer.
               </h5>
 
               <hr />
@@ -268,8 +343,8 @@
               <button
                 class="btn btn-danger btn-lg m-1"
                 @click="
-                  deleteSection();
-                  closeSectionDeleteModel();
+                  deleteLecturer();
+                  closeLecturerDeleteModel();
                 "
               >
                 Yes
@@ -277,7 +352,7 @@
 
               <button
                 class="btn btn-success btn-lg m-1"
-                @click="closeSectionDeleteModel"
+                @click="closeLecturerDeleteModel"
               >
                 No
               </button>
@@ -285,7 +360,7 @@
           </div>
         </div>
       </div>
-      <!-- End Delete Section Model -->
+      <!-- End Delete Lecturer Model -->
     </b-container>
   </div>
 </template>
@@ -300,33 +375,47 @@ export default {
     return {
       errorMessage: "",
       successMessage: "",
-      sectionAddModel: false,
-      sectionEditModel: false,
-      sectionDeleteModel: false,
+      lecturerAddModel: false,
+      lecturerEditModel: false,
+      lecturerDeleteModel: false,
 
-      // For Sections Displying Records Table.
-      allSections: [],
+      genders: [
+        { pref: "M", word: "Male" },
+        { pref: "F", word: "Female" }
+      ],
 
-      // Section Data Model For Adding New Section.
-      newSection: { title: "", brief: "", coverImageLink: "" },
+      // For Lecturers Displying Records Table.
+      allLecturers: [],
 
-      currentSectionId: "",
+      // Lecturer Data Model For Adding New Lecturer.
+      newLecturer: {
+        fullName: "",
+        gender: "",
+        description: "",
+        email: "",
+        profileImageLink: ""
+      },
 
-      currentSection: {
-        title: "",
-        brief: "",
-        coverImageLink: "",
+      currentLecturerId: "",
+
+      currentLecturer: {
+        fullName: "",
+        gender: "",
+        description: "",
+        email: "",
+        profileImageLink: "",
         isActive: ""
       },
 
-      // For Sections Displaying Records Table.
+      // For Lecturers Displaying Records Table.
       fields: [
         "index",
-        { key: "title", label: "Title" },
-        { key: "coverImageLink", label: "Cover Image" },
-        { key: "brief", label: "Description" },
-        { key: "createdAt", label: "Created Date" },
-        { key: "updatedAt", label: "Last Updated Date" },
+        { key: "fullName", label: "Full Name" },
+        { key: "gender", label: "Gender" },
+        { key: "description", label: "Description" },
+        { key: "email", label: "Email Address" },
+        { key: "profileImageLink", label: "Profile Image" },
+        { key: "createdAt", label: "Registration Date" },
         { key: "isActive", label: "Activation Status" },
         { key: "update", label: "Update Info" },
         { key: "delete", label: "Delete Record" }
@@ -336,113 +425,131 @@ export default {
 
   // Life Cycle Method.
   mounted() {
-    this.fetchAllSections();
+    this.fetchAllLecturers();
     // this.test();
   },
 
   methods: {
-    // This Method For Showing The Form Of Adding New Section.
-    showSectionAddModel: function() {
-      this.sectionAddModel = true;
+    // This Method For Showing The Form Of Adding New Lecturer.
+    showLecturerAddModel: function() {
+      this.lecturerAddModel = true;
     },
 
-    // This Method For Closing The Form Of Adding New Section.
-    closeSectionAddModel: function() {
-      this.sectionAddModel = false;
+    // This Method For Closing The Form Of Adding New Lecturer.
+    closeLecturerAddModel: function() {
+      this.lecturerAddModel = false;
     },
 
-    // This Method For Showing The Form Of Editing Section.
-    showSectionEditModel: function() {
-      this.sectionEditModel = true;
+    // This Method For Showing The Form Of Editing Lecturer.
+    showLecturerEditModel: function() {
+      this.lecturerEditModel = true;
     },
 
-    // This Method For Closing The Form Of Editing Section.
-    closeSectionEditModel: function() {
-      this.sectionEditModel = false;
+    // This Method For Closing The Form Of Editing Lecturer.
+    closeLecturerEditModel: function() {
+      this.lecturerEditModel = false;
     },
 
-    // This Method For Showing The Dialog Of Delete Section.
-    showSectionDeleteModel: function() {
-      this.sectionDeleteModel = true;
+    // This Method For Showing The Dialog Of Delete Lecturer.
+    showLecturerDeleteModel: function() {
+      this.lecturerDeleteModel = true;
     },
 
-    // This Method For Closing The Dialog Of Delete Section.
-    closeSectionDeleteModel: function() {
-      this.sectionDeleteModel = false;
+    // This Method For Closing The Dialog Of Delete Lecturer.
+    closeLecturerDeleteModel: function() {
+      this.lecturerDeleteModel = false;
     },
 
-    fetchAllSections: function() {
+    fetchAllLecturers: function() {
       axios
-        .get("http://localhost:8383/api/v1/all-sections")
+        .get("http://localhost:8383/api/v1/all-lecturers")
         .then(response => {
-          this.allSections = response.data;
+          this.allLecturers = response.data;
           // console.log(response.data);
         })
         .catch(error => {
           this.errorMessage = error;
-          console.error("Error when fetch all sections => ", error);
+          console.error("Error when fetch all lecturers => ", error);
         });
     },
 
-    createNewSection: function() {
+    createNewLecturer: function() {
       axios
-        .post("http://localhost:8383/api/v1/add-section", this.newSection)
+        .post("http://localhost:8383/api/v1/add-lecturer", this.newLecturer)
         .then(response => {
-          this.newSection = { title: "", brief: "", coverImageLink: "" };
-          this.successMessage = "Section added successfully.";
-          this.fetchAllSections();
+          this.newLecturer = {
+            fullName: "",
+            gender: "",
+            description: "",
+            email: "",
+            profileImageLink: ""
+          };
+          this.successMessage = "Lecturer added successfully.";
+          this.fetchAllLecturers();
           console.log(response.data);
         })
         .catch(error => {
           this.errorMessage = error;
-          console.error("Error when add new section => ", error);
+          console.error("Error when add new lecturer => ", error);
         });
     },
 
-    updateSection: function() {
+    updateLecturer: function() {
       axios
         .put(
-          "http://localhost:8383/api/v1/edit-section/" + this.currentSectionId,
-          this.currentSection
+          "http://localhost:8383/api/v1/edit-lecturer/" +
+            this.currentLecturerId,
+          this.currentLecturer
         )
         .then(response => {
-          this.successMessage = "Section updated successfully.";
-          this.fetchAllSections();
+          this.successMessage = "Lecturer updated successfully.";
+          this.fetchAllLecturers();
           console.log(response.data);
         })
         .catch(error => {
           this.errorMessage = error;
-          console.error("Error when edit section => ", error);
+          console.error("Error when edit lecturer => ", error);
         });
     },
 
-    deleteSection: function() {
-      console.log(this.currentSectionId);
+    deleteLecturer: function() {
+      console.log(this.currentLecturerId);
       axios
         .delete(
-          "http://localhost:8383/api/v1/delete-section/" + this.currentSectionId
+          "http://localhost:8383/api/v1/delete-lecturer/" +
+            this.currentLecturerId
         )
         .then(response => {
-          this.successMessage = "Section deleted successfully.";
-          this.fetchAllSections();
+          this.successMessage = "Lecturer deleted successfully.";
+          this.fetchAllLecturers();
           console.log(response.data);
         })
         .catch(error => {
           this.errorMessage = error;
-          console.error("Error when delete section => ", error);
+          console.error("Error when delete lecturer => ", error);
         });
     },
 
-    fillSectionEditForm: function(id, title, brief, image, status) {
-      this.currentSectionId = id;
-      this.currentSection.title = title;
-      this.currentSection.brief = brief;
-      this.currentSection.coverImageLink = image;
-      this.currentSection.isActive = status;
+    fillLecturerEditForm: function(
+      id,
+      fullName,
+      gender,
+      brief,
+      email,
+      image,
+      status
+    ) {
+      this.currentLecturerId = id;
+      this.currentLecturer.fullName = fullName;
+      this.currentLecturer.gender = gender;
+      this.currentLecturer.description = brief;
+      this.currentLecturer.email = email;
+      this.currentLecturer.profileImageLink = image;
+      this.currentLecturer.isActive = status;
     },
 
     test: function() {
-      console.log(this.currentSection);
+      console.log(this.currentLecturer);
     }
   },
   components: {}
@@ -450,7 +557,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#sections-control-panel {
+#lecturers-control-panel {
   height: 1000px;
 
   #overlay {
@@ -461,10 +568,18 @@ export default {
     left: 0;
     background-color: rgba($color: #000000, $alpha: 0.6);
 
-    #section-form {
+    #lecturer-form {
       input {
         width: 100%;
       }
+    }
+
+    #genders-drop-down {
+      float: left;
+      margin: 10px 0px 20px;
+      font-size: 20px;
+      padding: 6px 3px;
+      width: 100%;
     }
   }
 }

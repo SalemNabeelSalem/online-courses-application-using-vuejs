@@ -161,7 +161,7 @@
                     type="text"
                     name="cover_image_url"
                     class="form-contrlo form-control-lg"
-                    placeholder="Cover Image Url"
+                    placeholder="Cover Image URL"
                     v-model="newClassification.coverImageLink"
                   />
                 </div>
@@ -225,6 +225,7 @@
                 </div>
 
                 <div class="form-group">
+                  <label class="float-left">Section</label>
                   <select
                     id="sections-drop-down"
                     v-model="currentClassification.sectionId"
@@ -241,12 +242,12 @@
                       {{ section.title }}
                     </option>
                   </select>
-
-                  {{ currentClassification.sectionId }}
                 </div>
 
+                {{ currentClassification.sectionId }}
+
                 <div class="form-group">
-                  <label class="float-left">Cover Image Link</label>
+                  <label class="float-left">Cover Image URL</label>
                   <input
                     type="text"
                     name="cover_image_url"
@@ -563,6 +564,7 @@ export default {
         margin: 10px 0px 20px;
         font-size: 20px;
         padding: 6px 3px;
+        width: 100%;
       }
     }
   }
