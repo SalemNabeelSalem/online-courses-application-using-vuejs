@@ -11,6 +11,8 @@
           <b-nav-item to="/lecturers">Lecturers</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
+      <b-nav-item to="/login" style="list-style-type:none;">Login</b-nav-item>
+      <b-nav-item to="/c" style="list-style-type:none;">Sign Up</b-nav-item>
     </b-navbar>
   </div>
 </template>

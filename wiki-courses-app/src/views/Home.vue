@@ -38,7 +38,6 @@
           </div>
         </div>
       </div>
-      <button class="btn btn-dark">Show More Sections</button>
       <hr />
     </div>
 
@@ -73,10 +72,13 @@
                 Show All Related Courses
               </a>
             </div>
+
+            <span class="badge badge-secondary">
+              {{ section.sectionTitle }}
+            </span>
           </div>
         </div>
       </div>
-      <button class="btn btn-dark">Show More Classifications</button>
       <hr />
     </div>
 
@@ -159,6 +161,11 @@ export default {
 
   h2.h2-responsive {
     margin: 25px 0px;
+  }
+
+  .badge {
+    padding: 15px 0px;
+    font-size: 16px;
   }
 }
 </style>
