@@ -30,7 +30,7 @@
 
               <a
                 class="btn btn-success"
-                @click="goToClassifications(section.id)"
+                @click="goToClassifications(section.id, section.title)"
               >
                 Show All Related Classifications
               </a>
@@ -73,7 +73,10 @@
               </a>
             </div>
 
-            <span class="badge badge-secondary">
+            <span
+              class="badge badge-secondary"
+              style="text-transform:capitalize"
+            >
               {{ section.sectionTitle }}
             </span>
           </div>
@@ -111,13 +114,13 @@ export default {
   },
 
   methods: {
-    goToClassifications(sectionId) {
+    goToClassifications(sectionId, sectionTitle) {
       this.$router.push({
         name: "Classifications",
-        params: { sectionId: sectionId }
+        params: { sectionId: sectionId, sectionTitle: sectionTitle }
       });
 
-      console.log("Section Id: " + sectionId);
+      // console.log("Section Id: " + sectionId);
     },
 
     fetchAllActiveSections() {
@@ -138,7 +141,7 @@ export default {
           this.allActiveClassifications = response.data.slice(0, 6);
         })
         .catch(error => {
-          console.error("Error when fetch all sections => ", error);
+          console.error("Error when fetch all classifications => ", error);
         });
     }
   },

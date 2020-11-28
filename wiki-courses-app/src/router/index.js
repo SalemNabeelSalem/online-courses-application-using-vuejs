@@ -31,7 +31,7 @@ const routes = [
     component: Lecturers
   },
   {
-    path: "/section/:sectionId",
+    path: "/sections/:sectionId/classifications",
     name: "Classifications",
     component: Classifications
   },
