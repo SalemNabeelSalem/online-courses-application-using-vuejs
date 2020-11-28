@@ -4,8 +4,6 @@
 
     <SideBarNav />
 
-    <!-- <img src="/img/svg/control_panel.svg" class="img-fluid" width="600" /> -->
-
     <b-container fluid>
       <router-view />
     </b-container>
@@ -15,7 +13,7 @@
 <script>
 // @ is an alias to /src
 // import SectionsControlPanel from "@/components/dashboard/sections/SectionsControlPanel.vue";
-import SideBarNav from "@/components/global/SideBarNav.vue";
+import SideBarNav from "@/components/dashboard/SideBarNav.vue";
 
 export default {
   name: "Dashboard",

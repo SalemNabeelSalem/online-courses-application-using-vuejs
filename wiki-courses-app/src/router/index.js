@@ -13,6 +13,8 @@ import Login from "../views/Login.vue";
 
 import Dashboard from "../views/Dashboard.vue";
 
+import Statistics from "../components/dashboard/Statistics.vue";
+
 import SectionsControlPanel from "../components/dashboard/sections/SectionsControlPanel.vue";
 
 import ClassificationsControlPanel from "../components/dashboard/classifications/ClassificationsControlPanel.vue";
@@ -52,6 +54,11 @@ const routes = [
     name: "Dashboard",
     component: Dashboard,
     children: [
+      {
+        path: "/dashboard/statistics",
+        name: "Statistics",
+        component: Statistics
+      },
       {
         path: "/dashboard/sections",
         name: "SectionsControlPanel",

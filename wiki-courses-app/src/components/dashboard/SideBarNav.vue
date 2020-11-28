@@ -18,7 +18,7 @@
             <b-nav vertical>
               <hr />
 
-              <b-nav-item to="/dashboard" @click="hide">
+              <b-nav-item to="/dashboard/statistics" @click="hide">
                 <span class="custom-fa-icon">
                   <font-awesome-icon :icon="['fas', 'home']" />
                 </span>
