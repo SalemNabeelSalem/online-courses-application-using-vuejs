@@ -3,6 +3,8 @@ import Router from "vue-router";
 
 import Home from "../views/Home.vue";
 
+import Sections from "../views/Sections.vue";
+
 import Lecturers from "../views/Lecturers.vue";
 
 import Classifications from "../views/Classifications.vue";
@@ -24,6 +26,11 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home
+  },
+  {
+    path: "/sections",
+    name: "Sections",
+    component: Sections
   },
   {
     path: "/lecturers",

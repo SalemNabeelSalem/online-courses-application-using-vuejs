@@ -120,14 +120,14 @@ export default {
         params: { sectionId: sectionId, sectionTitle: sectionTitle }
       });
 
-      // console.log("Section Id: " + sectionId);
+      // console.log("section id = " + sectionId);
     },
 
     fetchAllActiveSections() {
       axios
         .get("http://localhost:8383/api/v1/active-sections")
         .then(response => {
-          this.allActiveSections = response.data;
+          this.allActiveSections = response.data.slice(0, 6);
         })
         .catch(error => {
           console.error("Error when fetch all sections => ", error);
@@ -145,8 +145,6 @@ export default {
         });
     }
   },
-
-  computed: {},
 
   components: {
     Carousel,

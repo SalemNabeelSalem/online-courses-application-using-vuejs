@@ -14,7 +14,7 @@
           v-for="(classification, index) in allActiveClassifications"
           :key="index"
         >
-          <div class="card" style="width: 18rem;">
+          <div class="card">
             <img
               class="card-img-top"
               :src="classification.coverImageLink"
@@ -84,7 +84,8 @@ export default {
         )
         .then(response => {
           this.allActiveClassifications = response.data;
-          console.log(this.allActiveClassifications);
+
+          // console.log(this.allActiveClassifications);
         })
         .catch(error => {
           console.error("Error when fetch all classifications => ", error);
