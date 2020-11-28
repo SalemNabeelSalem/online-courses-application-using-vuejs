@@ -8,73 +8,126 @@
       <div class="row">
         <div class="col-md-3 col-sm-6 ">
           <div class="service-box">
-            <div class="service-icon yellow">
+            <div class="service-icon section-color">
               <div class="front-content">
-                <i class="fa fa-trophy"></i>
-                <h3>design</h3>
+                <i class="fa fa-edit"></i>
+                <h3>All Sections</h3>
               </div>
             </div>
             <div class="service-content">
-              <h3>design</h3>
-              <p>
-                No one rejects, dislikes, or avoids pleasure itself, because it
-                is pleasure, but because those who do not know how to pursue
-                pleasure
-              </p>
+              <h3>1001</h3>
             </div>
           </div>
         </div>
+
         <div class="col-md-3 col-sm-6 ">
           <div class="service-box">
-            <div class="service-icon orange">
+            <div class="service-icon section-color">
               <div class="front-content">
-                <i class="fa fa-anchor"></i>
-                <h3>php</h3>
+                <i class="fa fa-edit"></i>
+                <h3>Active Sections</h3>
               </div>
             </div>
             <div class="service-content">
-              <h3>php developer</h3>
-              <p>
-                No one rejects, dislikes, or avoids pleasure itself, because it
-                is pleasure, but because those who do not know how to pursue
-                pleasure
-              </p>
+              <h3>1002</h3>
             </div>
           </div>
         </div>
+
         <div class="col-md-3 col-sm-6">
           <div class="service-box ">
-            <div class="service-icon red">
+            <div class="service-icon section-color">
               <div class="front-content">
-                <i class="fa fa-trophy"></i>
-                <h3>Ui Developer</h3>
+                <i class="fa fa-edit"></i>
+                <h3>Not Active Sections</h3>
               </div>
             </div>
             <div class="service-content">
-              <h3>Developer</h3>
-              <p>
-                No one rejects, dislikes, or avoids pleasure itself, because it
-                is pleasure, but because those who do not know how to pursue
-                pleasure
-              </p>
+              <h3>1003</h3>
             </div>
           </div>
         </div>
+
         <div class="col-md-3 col-sm-6">
           <div class="service-box">
-            <div class="service-icon grey">
+            <div class="service-icon classification-color">
               <div class="front-content">
                 <i class="fa fa-paper-plane-o"></i>
-                <h3>java script</h3>
+                <h3>All Classifications</h3>
               </div>
             </div>
             <div class="service-content">
-              <h3>java script</h3>
-              <p>
-                No one rejects, dislikes, or avoids pleasure itself, because it
-                is pleasure, but because those who do not know how to pursue
-                pleasure
-              </p>
+              <h3>2001</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+          <div class="service-box">
+            <div class="service-icon classification-color">
+              <div class="front-content">
+                <i class="fa fa-paper-plane-o"></i>
+                <h3>Active Classifications</h3>
+              </div>
+            </div>
+            <div class="service-content">
+              <h3>2002</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+          <div class="service-box">
+            <div class="service-icon classification-color">
+              <div class="front-content">
+                <i class="fa fa-paper-plane-o"></i>
+                <h3>Not Active Classifications</h3>
+              </div>
+            </div>
+            <div class="service-content">
+              <h3>2001</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+          <div class="service-box">
+            <div class="service-icon lecturer-color">
+              <div class="front-content">
+                <i class="fa fa-user"></i>
+                <h3>All Lecturers</h3>
+              </div>
+            </div>
+            <div class="service-content">
+              <h3>2001</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+          <div class="service-box">
+            <div class="service-icon lecturer-color">
+              <div class="front-content">
+                <i class="fa fa-user"></i>
+                <h3>Active Lecturers</h3>
+              </div>
+            </div>
+            <div class="service-content">
+              <h3>2001</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+          <div class="service-box">
+            <div class="service-icon lecturer-color">
+              <div class="front-content">
+                <i class="fa fa-user"></i>
+                <h3>Not Active Lecturers</h3>
+              </div>
+            </div>
+            <div class="service-content">
+              <h3>2001</h3>
             </div>
           </div>
         </div>
@@ -95,6 +148,7 @@ h1 {
   text-align: left;
   text-transform: capitalize;
 }
+
 .service-box {
   position: relative;
   overflow: hidden;
@@ -102,6 +156,7 @@ h1 {
   perspective: 1000px;
   -webkit-perspective: 1000px;
 }
+
 .service-icon {
   width: 100%;
   height: 220px;
@@ -130,6 +185,7 @@ h1 {
   -o-transform: translateY(110px) rotateX(-90deg);
   transform: translateY(110px) rotateX(-90deg);
 }
+
 .service-box .service-icon .front-content {
   position: relative;
   top: 80px;
@@ -147,12 +203,13 @@ h1 {
 }
 
 .service-box .service-icon .front-content h3 {
-  font-size: 15px;
+  font-size: 22px;
   color: #fff;
   text-align: center;
   margin-bottom: 15px;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
+
 .service-box .service-content h3 {
   font-size: 15px;
   font-weight: 700;
@@ -160,23 +217,25 @@ h1 {
   margin-bottom: 10px;
   text-transform: uppercase;
 }
+
 .service-box .service-content p {
-  font-size: 13px;
+  font-size: 18px;
   color: #b1b1b1;
   margin: 0;
 }
-.yellow {
-  background-color: #ffc000;
+
+.section-color {
+  background-color: #007bff;
 }
-.orange {
-  background-color: #fc7f0c;
+
+.classification-color {
+  background-color: #009688;
 }
-.red {
-  background-color: #e84b3a;
+
+.lecturer-color {
+  background-color: #6d4c41;
 }
-.grey {
-  background-color: #474747;
-}
+
 .service-box:hover .service-icon {
   opacity: 0;
   -webkit-transform: translateY(-110px) rotateX(90deg);
@@ -185,6 +244,7 @@ h1 {
   -o-transform: translateY(-110px) rotateX(90deg);
   transform: translateY(-110px) rotateX(90deg);
 }
+
 .service-box:hover .service-content {
   opacity: 1;
   -webkit-transform: rotateX(0);
