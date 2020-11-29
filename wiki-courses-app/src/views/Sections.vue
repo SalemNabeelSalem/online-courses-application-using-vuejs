@@ -38,11 +38,16 @@
         </div>
       </div>
     </div>
+
+    <Footer />
   </div>
 </template>
 
 <script>
 import axios from "axios";
+
+// @ is an alias to /src
+import Footer from "@/components/global/Footer.vue";
 
 export default {
   name: "Sections",
@@ -64,7 +69,7 @@ export default {
         params: { sectionId: sectionId, sectionTitle: sectionTitle }
       });
 
-      // console.log("Section Id: " + sectionId);
+      // console.log("section id = " + sectionId);
     },
 
     fetchAllActiveSections() {
@@ -77,6 +82,10 @@ export default {
           console.error("Error when fetch all sections => ", error);
         });
     }
+  },
+
+  components: {
+    Footer
   }
 };
 </script>

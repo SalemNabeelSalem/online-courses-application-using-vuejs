@@ -86,11 +86,16 @@
         </div>
       </div>
     </div>
+
+    <Footer />
   </div>
 </template>
 
 <script>
 import axios from "axios";
+
+// @ is an alias to /src
+import Footer from "@/components/global/Footer.vue";
 
 export default {
   name: "Lecturers",
@@ -115,6 +120,10 @@ export default {
           console.error("Error when fetch all lecturers => ", error);
         });
     }
+  },
+
+  components: {
+    Footer
   }
 };
 </script>
