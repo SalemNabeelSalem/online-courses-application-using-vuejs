@@ -94,12 +94,12 @@
           <div class="service-box">
             <div class="service-icon lecturer-color">
               <div class="front-content">
-                <i class="fa fa-user"></i>
+                <i class="fa fa-users"></i>
                 <h3>All Lecturers</h3>
               </div>
             </div>
             <div class="service-content">
-              <h3>2001</h3>
+              <h3>{{ lecturersStatics.totalLecturers }}</h3>
             </div>
           </div>
         </div>
@@ -113,7 +113,7 @@
               </div>
             </div>
             <div class="service-content">
-              <h3>2001</h3>
+              <h3>{{ lecturersStatics.activeLecturers }}</h3>
             </div>
           </div>
         </div>
@@ -122,12 +122,40 @@
           <div class="service-box">
             <div class="service-icon lecturer-color">
               <div class="front-content">
-                <i class="fa fa-user"></i>
+                <i class="fa fa-user-times"></i>
                 <h3>Not Active Lecturers</h3>
               </div>
             </div>
             <div class="service-content">
-              <h3>2001</h3>
+              <h3>{{ lecturersStatics.notActiveLecturers }}</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+          <div class="service-box">
+            <div class="service-icon lecturer-color">
+              <div class="front-content">
+                <i class="fa fa-male"></i>
+                <h3>Male Lecturers</h3>
+              </div>
+            </div>
+            <div class="service-content">
+              <h3>{{ lecturersStatics.maleLecturers }}</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+          <div class="service-box">
+            <div class="service-icon lecturer-color">
+              <div class="front-content">
+                <i class="fa fa-female"></i>
+                <h3>Female Lecturers</h3>
+              </div>
+            </div>
+            <div class="service-content">
+              <h3>{{ lecturersStatics.femaleLecturers }}</h3>
             </div>
           </div>
         </div>
@@ -137,8 +165,35 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
-  name: "Statistics"
+  name: "Statistics",
+
+  data() {
+    return {
+      lecturersStatics: []
+    };
+  },
+
+  mounted() {
+    this.fetchLecturersStatics();
+  },
+
+  methods: {
+    fetchLecturersStatics() {
+      axios
+        .get("http://localhost:8383/api/v1/lecturer-statics")
+        .then(response => {
+          this.lecturersStatics = response.data;
+
+          console.log(this.lecturersStatics);
+        })
+        .catch(error => {
+          console.error("Error when fetch all lecturers statics => ", error);
+        });
+    }
+  }
 };
 </script>
 
@@ -211,11 +266,11 @@ h1 {
 }
 
 .service-box .service-content h3 {
-  font-size: 15px;
   font-weight: 700;
   color: #fff;
   margin-bottom: 10px;
   text-transform: uppercase;
+  margin-top: 68px;
 }
 
 .service-box .service-content p {

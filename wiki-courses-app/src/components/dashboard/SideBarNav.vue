@@ -20,9 +20,9 @@
 
               <b-nav-item to="/dashboard/statistics" @click="hide">
                 <span class="custom-fa-icon">
-                  <font-awesome-icon :icon="['fas', 'home']" />
+                  <font-awesome-icon :icon="['fas', 'chart-line']" />
                 </span>
-                Dashboard
+                Statistics
               </b-nav-item>
 
               <hr />

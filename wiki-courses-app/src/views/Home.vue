@@ -1,6 +1,7 @@
 <template>
   <div id="home">
     <Carousel />
+
     <div class="container sections-container">
       <h2 class="h2-responsive py-2 bg-info text-white">
         Lastest Wiki Courses Sections
