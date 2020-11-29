@@ -86,10 +86,6 @@
       <hr />
     </div>
 
-    <div class="container">
-      <ContactUs />
-    </div>
-
     <Footer />
   </div>
 </template>
@@ -98,9 +94,8 @@
 import axios from "axios";
 
 // @ is an alias to /src
-import Carousel from "@/components/global/Carousel.vue";
+import Carousel from "@/components/home/Carousel.vue";
 import Footer from "@/components/global/Footer.vue";
-import ContactUs from "@/components/home/ContactUs.vue";
 
 export default {
   name: "Home",
@@ -152,8 +147,7 @@ export default {
 
   components: {
     Carousel,
-    Footer,
-    ContactUs
+    Footer
   }
 };
 </script>

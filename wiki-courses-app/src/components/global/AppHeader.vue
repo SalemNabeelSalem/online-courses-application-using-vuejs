@@ -10,6 +10,7 @@
           <b-nav-item to="/">Home</b-nav-item>
           <b-nav-item to="/sections">Sections</b-nav-item>
           <b-nav-item to="/lecturers">Lecturers</b-nav-item>
+          <b-nav-item to="/contact-us">Contact Us</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
       <b-nav-item to="/login" style="list-style-type:none;">Login</b-nav-item>

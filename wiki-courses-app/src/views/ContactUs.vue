@@ -1,6 +1,6 @@
 <template>
   <div id="contact-us">
-    <h1>Contact Us</h1>
+    <h3>ContactUs</h3>
   </div>
 </template>
 
@@ -10,4 +10,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss"></style>
