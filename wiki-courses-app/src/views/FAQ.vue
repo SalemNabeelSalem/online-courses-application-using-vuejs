@@ -1,194 +1,377 @@
 <template>
   <div id="faq">
-    <h2>Frequently Asked Questions</h2>
-
-    <div
-      style="visibility: hidden; position: absolute; width: 0px; height: 0px;"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg">
-        <symbol viewBox="0 0 24 24" id="expand-more">
-          <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
-          <path d="M0 0h24v24H0z" fill="none" />
-        </symbol>
-        <symbol viewBox="0 0 24 24" id="close">
-          <path
-            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-          />
-          <path d="M0 0h24v24H0z" fill="none" />
-        </symbol>
-      </svg>
+    <div>
+      <section class="faq-section">
+        <div class="container">
+          <div class="row">
+            <!-- ***** FAQ Start ***** -->
+            <div class="col-md-6 offset-md-3">
+              <div class="faq-title text-center pb-3">
+                <h2>FAQ</h2>
+              </div>
+            </div>
+            <div class="col-md-6 offset-md-3">
+              <div class="faq" id="accordion">
+                <div class="card">
+                  <div class="card-header" id="faqHeading-1">
+                    <div class="mb-0">
+                      <h5
+                        class="faq-title"
+                        data-toggle="collapse"
+                        data-target="#faqCollapse-1"
+                        data-aria-expanded="true"
+                        data-aria-controls="faqCollapse-1"
+                      >
+                        <span class="badge">1</span>What is Lorem Ipsum?
+                      </h5>
+                    </div>
+                  </div>
+                  <div
+                    id="faqCollapse-1"
+                    class="collapse"
+                    aria-labelledby="faqHeading-1"
+                    data-parent="#accordion"
+                  >
+                    <div class="card-body">
+                      <p>
+                        Lorem Ipsum is simply dummy text of the printing and
+                        typesetting industry. Lorem Ipsum has been the
+                        industry's standard dummy text ever since the 1500s,
+                        when an unknown printer took a galley of type and
+                        scrambled it to make a type specimen book.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="faqHeading-2">
+                    <div class="mb-0">
+                      <h5
+                        class="faq-title"
+                        data-toggle="collapse"
+                        data-target="#faqCollapse-2"
+                        data-aria-expanded="false"
+                        data-aria-controls="faqCollapse-2"
+                      >
+                        <span class="badge">2</span> Where does it come from?
+                      </h5>
+                    </div>
+                  </div>
+                  <div
+                    id="faqCollapse-2"
+                    class="collapse"
+                    aria-labelledby="faqHeading-2"
+                    data-parent="#accordion"
+                  >
+                    <div class="card-body">
+                      <p>
+                        Contrary to popular belief, Lorem Ipsum is not simply
+                        random text. It has roots in a piece of classical Latin
+                        literature from 45 BC, making it over 2000 years old.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="faqHeading-3">
+                    <div class="mb-0">
+                      <h5
+                        class="faq-title"
+                        data-toggle="collapse"
+                        data-target="#faqCollapse-3"
+                        data-aria-expanded="false"
+                        data-aria-controls="faqCollapse-3"
+                      >
+                        <span class="badge">3</span>Why do we use it?
+                      </h5>
+                    </div>
+                  </div>
+                  <div
+                    id="faqCollapse-3"
+                    class="collapse"
+                    aria-labelledby="faqHeading-3"
+                    data-parent="#accordion"
+                  >
+                    <div class="card-body">
+                      <p>
+                        It is a long established fact that a reader will be
+                        distracted by the readable content of a page when
+                        looking at its layout. The point of using Lorem Ipsum is
+                        that it has a more-or-less normal distribution of
+                        letters, as opposed to using 'Content here, content
+                        here.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="faqHeading-4">
+                    <div class="mb-0">
+                      <h5
+                        class="faq-title"
+                        data-toggle="collapse"
+                        data-target="#faqCollapse-4"
+                        data-aria-expanded="false"
+                        data-aria-controls="faqCollapse-4"
+                      >
+                        <span class="badge">4</span> Where can I get some?
+                      </h5>
+                    </div>
+                  </div>
+                  <div
+                    id="faqCollapse-4"
+                    class="collapse"
+                    aria-labelledby="faqHeading-4"
+                    data-parent="#accordion"
+                  >
+                    <div class="card-body">
+                      <p>
+                        There are many variations of passages of Lorem Ipsum
+                        available, but the majority have suffered alteration in
+                        some form, by injected humour, or randomised words which
+                        don't look even slightly believable.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="faqHeading-5">
+                    <div class="mb-0">
+                      <h5
+                        class="faq-title"
+                        data-toggle="collapse"
+                        data-target="#faqCollapse-5"
+                        data-aria-expanded="false"
+                        data-aria-controls="faqCollapse-5"
+                      >
+                        <span class="badge">5</span> What is Lorem Ipsum?
+                      </h5>
+                    </div>
+                  </div>
+                  <div
+                    id="faqCollapse-5"
+                    class="collapse"
+                    aria-labelledby="faqHeading-5"
+                    data-parent="#accordion"
+                  >
+                    <div class="card-body">
+                      <p>
+                        It has survived not only five centuries, but also the
+                        leap into electronic typesetting, remaining essentially
+                        unchanged. It was popularised in the 1960s with the
+                        release of Letraset sheets containing
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="faqHeading-6">
+                    <div class="mb-0">
+                      <h5
+                        class="faq-title"
+                        data-toggle="collapse"
+                        data-target="#faqCollapse-6"
+                        data-aria-expanded="false"
+                        data-aria-controls="faqCollapse-6"
+                      >
+                        <span class="badge">6</span> Where does it come from?
+                      </h5>
+                    </div>
+                  </div>
+                  <div
+                    id="faqCollapse-6"
+                    class="collapse"
+                    aria-labelledby="faqHeading-6"
+                    data-parent="#accordion"
+                  >
+                    <div class="card-body">
+                      <p>
+                        The standard chunk of Lorem Ipsum used since the 1500s
+                        is reproduced below for those interested. Sections
+                        1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum"
+                        by Cicero are also reproduced in their exact original
+                        form, accompanied by English versions from the 1914
+                        translation by H. Rackham.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="faqHeading-7">
+                    <div class="mb-0">
+                      <h5
+                        class="faq-title"
+                        data-toggle="collapse"
+                        data-target="#faqCollapse-7"
+                        data-aria-expanded="false"
+                        data-aria-controls="faqCollapse-7"
+                      >
+                        <span class="badge">7</span> Why do we use it?
+                      </h5>
+                    </div>
+                  </div>
+                  <div
+                    id="faqCollapse-7"
+                    class="collapse"
+                    aria-labelledby="faqHeading-7"
+                    data-parent="#accordion"
+                  >
+                    <div class="card-body">
+                      <p>
+                        Many desktop publishing packages and web page editors
+                        now use Lorem Ipsum as their default model text, and a
+                        search for 'lorem ipsum' will uncover many web sites
+                        still in their infancy. Various versions have evolved
+                        over the years, sometimes by accident, sometimes on
+                        purpose (injected humour and the like).
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
 
-    <details open>
-      <summary>
-        Does this product have what I need?
-        <svg
-          class="control-icon control-icon-expand"
-          width="24"
-          height="24"
-          role="presentation"
-        >
-          <use
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-            xlink:href="#expand-more"
-          />
-        </svg>
-        <svg
-          class="control-icon control-icon-close"
-          width="24"
-          height="24"
-          role="presentation"
-        >
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#close" />
-        </svg>
-      </summary>
-      <p>Totally. Totally does.</p>
-    </details>
-
-    <details>
-      <summary>
-        Can I use it all the time?
-        <svg
-          class="control-icon control-icon-expand"
-          width="24"
-          height="24"
-          role="presentation"
-        >
-          <use
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-            xlink:href="#expand-more"
-          />
-        </svg>
-        <svg
-          class="control-icon control-icon-close"
-          width="24"
-          height="24"
-          role="presentation"
-        >
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#close" />
-        </svg>
-      </summary>
-      <p>Of course you can, we won't stop you.</p>
-    </details>
-
-    <details>
-      <summary>
-        Are there any restrictions?
-        <svg
-          class="control-icon control-icon-expand"
-          width="24"
-          height="24"
-          role="presentation"
-        >
-          <use
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-            xlink:href="#expand-more"
-          />
-        </svg>
-        <svg
-          class="control-icon control-icon-close"
-          width="24"
-          height="24"
-          role="presentation"
-        >
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#close" />
-        </svg>
-      </summary>
-      <p>Only your imagination my friend. Go forth!</p>
-    </details>
+    <Footer />
   </div>
 </template>
 
 <script>
+// @ is an alias to /src
+import Footer from "@/components/global/Footer.vue";
+
 export default {
-  name: "FAQ"
+  name: "FAQ",
+
+  components: {
+    Footer
+  }
 };
 </script>
 
 <style lang="scss" scoped>
 #faq {
-  h2 {
-    margin: 20px auto 80px;
-    font-size: 38px;
-    font-weight: 300;
-    text-align: center;
-    letter-spacing: 2px;
-    line-height: 1.5;
+  .faq-section {
+    background: #fdfdfd;
+    min-height: 100vh;
+    padding: 10vh 0 0;
   }
 
-  details {
-    width: 75%;
-    min-height: 5px;
-    max-width: 700px;
-    padding: 45px 70px 45px 45px;
-    margin: 0 auto;
+  .faq-title h2 {
     position: relative;
-    font-size: 22px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 15px;
-    box-sizing: border-box;
-    transition: all 0.3s;
+    margin-bottom: 45px;
+    display: inline-block;
+    font-weight: 600;
+    line-height: 1;
   }
 
-  details + details {
-    margin-top: 20px;
-  }
-
-  details[open] {
-    min-height: 50px;
-    background-color: #f6f7f8;
-    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
-  }
-
-  details p {
-    color: #96999d;
-    font-weight: 300;
-  }
-
-  summary {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: 500;
-    cursor: pointer;
-  }
-
-  summary:focus {
-    outline: none;
-  }
-
-  summary:focus::after {
+  .faq-title h2::before {
     content: "";
-    height: 100%;
-    width: 100%;
-    display: block;
     position: absolute;
-    top: 0;
-    left: 0;
-    box-shadow: 0 0 0 5px rebeccapurple;
+    left: 50%;
+    width: 60px;
+    height: 2px;
+    background: #e91e63;
+    bottom: -25px;
+    margin-left: -30px;
   }
 
-  summary::-webkit-details-marker {
-    display: none;
+  .faq-title p {
+    padding: 0 190px;
+    margin-bottom: 10px;
   }
 
-  .control-icon {
-    fill: rebeccapurple;
-    transition: 0.3s ease;
-    pointer-events: none;
+  .faq {
+    background: #ffffff;
+    box-shadow: 0 2px 48px 0 rgba(0, 0, 0, 0.06);
+    border-radius: 4px;
   }
 
-  .control-icon-close {
-    display: none;
+  .faq .card {
+    border: none;
+    background: none;
+    border-bottom: 1px dashed #cee1f8;
   }
 
-  details[open] .control-icon-close {
-    display: initial;
-    transition: 0.3s ease;
+  .faq .card .card-header {
+    padding: 0px;
+    border: none;
+    background: none;
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
   }
 
-  details[open] .control-icon-expand {
-    display: none;
+  .faq .card .card-header:hover {
+    background: rgba(233, 30, 99, 0.1);
+    padding-left: 10px;
+  }
+
+  .faq .card .card-header .faq-title {
+    width: 100%;
+    text-align: left;
+    padding: 0px;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-weight: 400;
+    font-size: 15px;
+    letter-spacing: 1px;
+    color: #3b566e;
+    text-decoration: none !important;
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .faq .card .card-header .faq-title .badge {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 14px;
+    float: none;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+    text-align: center;
+    background: #e91e63;
+    color: #fff;
+    font-size: 12px;
+    margin-right: 20px;
+  }
+
+  .faq .card .card-body {
+    padding: 30px;
+    padding-left: 35px;
+    padding-bottom: 16px;
+    font-weight: 400;
+    font-size: 16px;
+    color: #6f8ba4;
+    line-height: 28px;
+    letter-spacing: 1px;
+    border-top: 1px solid #f3f8ff;
+  }
+
+  .faq .card .card-body p {
+    margin-bottom: 14px;
+  }
+
+  @media (max-width: 991px) {
+    .faq {
+      margin-bottom: 30px;
+    }
+
+    .faq .card .card-header .faq-title {
+      line-height: 26px;
+      margin-top: 10px;
+    }
   }
 }
 </style>
