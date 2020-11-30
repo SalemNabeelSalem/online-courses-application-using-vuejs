@@ -33,7 +33,7 @@
                 </div>
                 <div
                   id="faqCollapse-1"
-                  v-bind:class="collapse"
+                  :class="false ? 'collapse show' : 'collapse'"
                   aria-labelledby="faqHeading-1"
                   data-parent="#accordion"
                 >
@@ -78,10 +78,10 @@ export default {
         .then(response => {
           this.allImprovedFaqAnswers = response.data;
 
-          console.log(this.allImprovedFaqAnswers);
+          // console.log(this.allImprovedFaqAnswers);
         })
         .catch(error => {
-          console.error("Error when fetch all improved faq answers => ", error);
+          console.error("error when fetch all improved faq answers => ", error);
         });
     }
   },

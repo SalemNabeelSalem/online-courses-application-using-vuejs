@@ -442,7 +442,7 @@ export default {
         })
         .catch(error => {
           this.errorMessage = error;
-          console.error("Error when fetch all sections =>", error);
+          console.error("error when fetch all sections =>", error);
         });
     },
 
@@ -455,7 +455,7 @@ export default {
         })
         .catch(error => {
           this.errorMessage = error;
-          console.error("Error when fetch all classifications => ", error);
+          console.error("error when fetch all classifications => ", error);
         });
     },
 
@@ -478,7 +478,7 @@ export default {
         })
         .catch(error => {
           this.errorMessage = error;
-          console.error("Error when add new Classification => ", error);
+          console.error("error when add new classification => ", error);
         });
     },
 
@@ -496,7 +496,7 @@ export default {
         })
         .catch(error => {
           this.errorMessage = error;
-          console.error("Error when edit classification => ", error);
+          console.error("error when edit classification => ", error);
         });
     },
 
@@ -514,7 +514,7 @@ export default {
         })
         .catch(error => {
           this.errorMessage = error;
-          console.error("Error when delete classification => ", error);
+          console.error("error when delete classification => ", error);
         });
     },
 

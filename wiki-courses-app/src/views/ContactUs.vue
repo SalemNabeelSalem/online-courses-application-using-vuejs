@@ -20,7 +20,9 @@
                 <ul class="contact-info">
                   <li>
                     <div class="info-left">
-                      <font-awesome-icon :icon="['fas', 'mobile']" />
+                      <span style="color:#ffc107">
+                        <font-awesome-icon :icon="['fas', 'mobile']" />
+                      </span>
                     </div>
                     <div class="info-right">
                       <h4>+967 2 234 418</h4>
@@ -29,7 +31,9 @@
 
                   <li>
                     <div class="info-left">
-                      <font-awesome-icon :icon="['fas', 'envelope']" />
+                      <span style="color:#ffc107">
+                        <font-awesome-icon :icon="['fas', 'envelope']" />
+                      </span>
                     </div>
                     <div class="info-right">
                       <h4>rector@aden-univ.net</h4>
@@ -38,7 +42,9 @@
 
                   <li>
                     <div class="info-left">
-                      <font-awesome-icon :icon="['fas', 'map-marker-alt']" />
+                      <span style="color:#ffc107">
+                        <font-awesome-icon :icon="['fas', 'map-marker-alt']" />
+                      </span>
                     </div>
                     <div class="info-right">
                       <h4>Aden, Yemen</h4>
@@ -51,7 +57,11 @@
             <div class="col-lg-6 d-flex align-items-center">
               <div class="contact-form">
                 <!--Contact Form-->
-                <form id="contact-form" method="POST">
+                <form
+                  id="contact-form"
+                  method="post"
+                  @submit.prevent="createNewContactUsMessage"
+                >
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
@@ -62,6 +72,7 @@
                           id="first-name"
                           placeholder="Enter Your Name *"
                           required="required"
+                          v-model="newContactUsMessage.name"
                         />
                       </div>
                     </div>
@@ -75,6 +86,7 @@
                           id="email"
                           placeholder="Enter Your Email *"
                           required="required"
+                          v-model="newContactUsMessage.email"
                         />
                       </div>
                     </div>
@@ -88,13 +100,14 @@
                           id="description"
                           placeholder="Enter Your Message *"
                           required="required"
+                          v-model="newContactUsMessage.message"
                         ></textarea>
                       </div>
                     </div>
 
                     <div class="col-md-12">
                       <!--contact button-->
-                      <button class="btn-big">
+                      <button class="btn-big" type="submit">
                         Send Us
                       </button>
                     </div>
@@ -112,11 +125,42 @@
 </template>
 
 <script>
+import axios from "axios";
+
 // @ is an alias to /src
 import Footer from "@/components/global/Footer.vue";
 
 export default {
   name: "ContactUs",
+  data() {
+    return {
+      newContactUsMessage: {
+        name: "",
+        email: "",
+        message: ""
+      }
+    };
+  },
+  methods: {
+    createNewContactUsMessage: function() {
+      axios
+        .post(
+          "http://localhost:8383/api/v1/add-contact-us-message",
+          this.newContactUsMessage
+        )
+        .then(response => {
+          this.newContactUsMessage = {
+            name: "",
+            email: "",
+            message: ""
+          };
+          console.log(response.data);
+        })
+        .catch(error => {
+          console.error("error when add new contact us message => ", error);
+        });
+    }
+  },
   components: {
     Footer
   }
