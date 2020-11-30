@@ -54,7 +54,7 @@ export default {
   .footer-dark {
     padding: 30px 0;
     color: #fff;
-    background-color: #558b2f;
+    background-color: #28a745;
   }
 
   .footer-dark h3 {
