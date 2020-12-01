@@ -1,16 +1,10 @@
 <template>
   <div id="login">
     <div class="container">
-      <h1 class="text-center login-title">Login</h1>
-
-      <div class="row justify-content-center">
+      <div class="row justify-content-center" style="margin:60px 0px">
         <div class="col-sm-6 col-md-4">
           <div class="account-wall">
-            <img
-              class="profile-img"
-              src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
-              alt=""
-            />
+            <img class="profile-img" src="img/resources/user.png" />
 
             <form class="form-signin">
               <div class="form-group">
@@ -36,32 +30,30 @@
                 Login
               </button>
 
-              <label class="checkbox pull-left">
-                <input type="checkbox" value="remember-me" />
-                Remember me
-              </label>
-
-              <a href="#" class="pull-right need-help">Need help? </a
+              <a href="/faq" class="pull-right need-help">Need help?</a
               ><span class="clearfix"></span>
             </form>
           </div>
 
-          <a href="#" class="text-center new-account">Create an account</a>
+          <a href="/sign-up" class="text-center new-account">
+            Create an account
+          </a>
         </div>
       </div>
     </div>
+
+    <Footer />
   </div>
 </template>
 
 <script>
+import Footer from "@/components/global/Footer.vue";
+
 export default {
   name: "Login",
-
-  data() {
-    return {};
-  },
-
-  methods: {}
+  components: {
+    Footer
+  }
 };
 </script>
 

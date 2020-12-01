@@ -16,6 +16,8 @@ import FAQ from "../views/FAQ.vue";
 
 import Login from "../views/Login.vue";
 
+import Register from "../views/Register.vue";
+
 import Dashboard from "../views/Dashboard.vue";
 
 import Statistics from "../components/dashboard/Statistics.vue";
@@ -63,6 +65,11 @@ const routes = [
     path: "/login",
     name: "Login",
     component: Login
+  },
+  {
+    path: "/sign-up",
+    name: "Register",
+    component: Register
   },
   {
     path: "/dashboard",
