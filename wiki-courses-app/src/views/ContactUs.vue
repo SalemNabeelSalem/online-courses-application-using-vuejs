@@ -1,5 +1,13 @@
 <template>
   <div id="contact-us">
+    <div class="alert alert-danger" v-if="errorMessage">
+      {{ errorMessage }}
+    </div>
+
+    <div class="alert alert-success" v-if="successMessage">
+      {{ successMessage }}
+    </div>
+
     <section
       class="section-bg"
       style="background-image: url(img/contact-us/telephone.jpg);"
@@ -134,6 +142,8 @@ export default {
   name: "ContactUs",
   data() {
     return {
+      errorMessage: "",
+      successMessage: "",
       newContactUsMessage: {
         name: "",
         email: "",
@@ -154,6 +164,7 @@ export default {
             email: "",
             message: ""
           };
+          this.successMessage = "your message sent successfully.";
           console.log(response.data);
         })
         .catch(error => {
