@@ -101,11 +101,16 @@ export default {
             email: "",
             profileImageLink: ""
           };
+
           this.successMessage = "Lecturer added successfully.";
+
           console.log(response.data);
+
+          // this.$router.push("/login");
         })
         .catch(error => {
           this.errorMessage = error;
+
           console.error("error when add new lecturer => ", error);
         });
     }
