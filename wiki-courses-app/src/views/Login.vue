@@ -1,12 +1,20 @@
 <template>
   <div id="login">
+    <div class="alert alert-danger" v-if="errorMessage">
+      {{ errorMessage }}
+    </div>
+
     <div class="container">
       <div class="row justify-content-center" style="margin:60px 0px">
         <div class="col-sm-6 col-md-4">
           <div class="account-wall">
-            <img class="profile-img" src="img/resources/user.png" />
+            <img class="profile-img" src="img/resources/login/user.webp" />
 
-            <form class="form-signin">
+            <form
+              class="form-signin"
+              method="post"
+              @submit.prevent="handelSubmit"
+            >
               <div class="form-group">
                 <input
                   type="text"
@@ -14,6 +22,7 @@
                   placeholder="Username"
                   required
                   autofocus
+                  v-model="userLogin.fullName"
                 />
               </div>
 
@@ -23,6 +32,7 @@
                   class="form-control"
                   placeholder="Password"
                   required
+                  v-model="userLogin.email"
                 />
               </div>
 
@@ -47,10 +57,37 @@
 </template>
 
 <script>
+import axios from "axios";
+
+// @ is an alias to /src
 import Footer from "@/components/global/Footer.vue";
 
 export default {
   name: "Login",
+  data() {
+    return {
+      errorMessage: "",
+      userLogin: {
+        fullName: "",
+        email: ""
+      },
+      userData: []
+    };
+  },
+  methods: {
+    handelSubmit() {
+      axios
+        .post("http://localhost:8383/api/v1/lecturer-login", this.userLogin)
+        .then(response => {
+          this.userData = response.data;
+
+          console.log(this.userData);
+        })
+        .catch(error => {
+          console.error("error worng username or password => ", error);
+        });
+    }
+  },
   components: {
     Footer
   }
