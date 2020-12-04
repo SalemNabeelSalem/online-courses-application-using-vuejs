@@ -11,17 +11,17 @@
     >
       <b-carousel-slide
         caption="Learn From The Experts."
-        img-src="img/carousel/slider01.jpg"
+        img-src="img/resources/carousel/slider01.jpg"
       ></b-carousel-slide>
 
       <b-carousel-slide
         caption="We Are Excellent In Education."
-        img-src="img/carousel/slider02.jpg"
+        img-src="img/resources/carousel/slider01.jpg"
       ></b-carousel-slide>
 
       <b-carousel-slide
         caption="Strive for Excellent."
-        img-src="img/carousel/slider03.jpg"
+        img-src="img/resources/carousel/slider01.jpg"
       ></b-carousel-slide>
     </b-carousel>
   </div>
