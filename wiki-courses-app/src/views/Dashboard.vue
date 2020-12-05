@@ -12,7 +12,6 @@
 
 <script>
 // @ is an alias to /src
-// import SectionsControlPanel from "@/components/dashboard/sections/SectionsControlPanel.vue";
 import SideBarNav from "@/components/dashboard/SideBarNav.vue";
 
 export default {
@@ -26,7 +25,6 @@ export default {
 
   components: {
     SideBarNav
-    // SectionsControlPanel
   }
 };
 </script>

@@ -28,6 +28,10 @@ import ClassificationsControlPanel from "../components/dashboard/classifications
 
 import LecturersControlPanel from "../components/dashboard/lecturers/LecturersControlPanel.vue";
 
+import LecturerDashboard from "../views/LecturerDashboard.vue";
+
+import CoursesControlPanel from "../components/lecturer-dashboard/courses/CoursesControlPanel.vue";
+
 Vue.use(Router);
 
 const routes = [
@@ -95,6 +99,18 @@ const routes = [
         path: "/dashboard/lecturers",
         name: "LecturersControlPanel",
         component: LecturersControlPanel
+      }
+    ]
+  },
+  {
+    path: "/lecturer/:lecturerId/dashboard",
+    name: "LecturerDashboard",
+    component: LecturerDashboard,
+    children: [
+      {
+        path: "/lecturer/:lecturerId/dashboard/courses",
+        name: "CoursesControlPanel",
+        component: CoursesControlPanel
       }
     ]
   }

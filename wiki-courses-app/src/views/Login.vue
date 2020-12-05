@@ -82,10 +82,25 @@ export default {
           this.userData = response.data;
 
           console.log(this.userData);
+
+          if (this.userData.id) {
+            // console.log("lecturer id is not null.");
+
+            this.goToLecturerControlPanel(this.userData.id, this.userData);
+          } else {
+            // console.log("lecturer id is null.");
+            this.errorMessage = "Username or Password Is Not Correct.";
+          }
         })
         .catch(error => {
           console.error("error worng username or password => ", error);
         });
+    },
+    goToLecturerControlPanel(lecturerId, lecturerData) {
+      this.$router.push({
+        name: "LecturerDashboard",
+        params: { lecturerId: lecturerId, lecturerData: lecturerData }
+      });
     }
   },
   components: {
