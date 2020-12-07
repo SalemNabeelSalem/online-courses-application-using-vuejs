@@ -537,8 +537,7 @@ export default {
     test: function() {
       console.log(this.currentClassification);
     }
-  },
-  components: {}
+  }
 };
 </script>
 

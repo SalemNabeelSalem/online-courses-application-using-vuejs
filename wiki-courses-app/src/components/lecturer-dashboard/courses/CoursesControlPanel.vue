@@ -1,29 +1,24 @@
 <template>
-  <div id="classifications-control-panel">
+  <div id="courses-control-panel">
     <b-container fluid>
       <b-row class="bg-dark">
         <b-col lg="12">
           <p class="text-center text-light pt-2" style="font-size:25px;">
-            Classifications Control Panel
+            Courses Control Panel
           </p>
         </b-col>
       </b-row>
     </b-container>
 
-    {{ this.$route.params.lecturerId }}
-
     <b-container fluid>
       <b-row class="mt-3">
         <b-col lg="6">
-          <h3 class="text-info float-left">Classifications</h3>
+          <h3 class="text-info float-left">Courses</h3>
         </b-col>
         <b-col lg="6">
-          <button
-            class="btn btn-info float-right"
-            @click="showClassificationAddModel"
-          >
+          <button class="btn btn-info float-right" @click="showCourseAddModel">
             <font-awesome-icon :icon="['fas', 'plus']" />&nbsp;
-            <span>Add New Classification</span>
+            <span>Add New Course</span>
           </button>
         </b-col>
       </b-row>
@@ -41,7 +36,7 @@
       <!-- Displaying Records -->
       <b-row>
         <b-col lg="12">
-          <b-table bordered hover :items="allClassifications" :fields="fields">
+          <b-table bordered hover :items="allCourses" :fields="fields">
             <template #cell(index)="data">
               {{ data.index + 1 }}
             </template>
@@ -62,14 +57,17 @@
                 variant="info"
                 class="my-3"
                 @click="
-                  showClassificationEditModel();
-                  fillClassificationEditForm(
+                  showCourseEditModel();
+                  fillCourseEditForm(
                     data.item.id,
                     data.item.title,
-                    data.item.brief,
+                    data.item.sourceUrl,
+                    data.item.description,
                     null,
-                    data.item.coverImageLink,
-                    data.item.isActive
+                    null,
+                    null,
+                    null,
+                    null
                   );
                 "
               >
@@ -84,8 +82,8 @@
                 variant="danger"
                 class="my-3"
                 @click="
-                  showClassificationDeleteModel();
-                  fillClassificationEditForm(data.item.id, data.item.title);
+                  showCourseDeleteModel();
+                  fillCourseEditForm(data.item.id, data.item.title);
                 "
               >
                 Delete
@@ -95,27 +93,23 @@
         </b-col>
       </b-row>
 
-      <!-- Adding New Classification Model -->
-      <div id="overlay" v-if="classificationAddModel">
+      <!-- Adding New Course Model -->
+      <div id="overlay" v-if="courseAddModel">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Add New Classification</h5>
+              <h5 class="modal-title">Add New Course</h5>
 
-              <button
-                type="button"
-                class="close"
-                @click="closeClassificationAddModel"
-              >
+              <button type="button" class="close" @click="closeCourseAddModel">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
 
             <div class="modal-body p-4">
               <form
-                id="classification-form"
+                id="course-form"
                 method="post"
-                @submit.prevent="createNewClassification"
+                @submit.prevent="createNewCourse"
               >
                 <div class="form-group">
                   <input
@@ -123,39 +117,49 @@
                     name="title"
                     class="form-contrlo form-control-lg"
                     placeholder="Title"
-                    v-model="newClassification.title"
+                    v-model="newCourse.title"
                   />
                 </div>
 
                 <div class="form-group">
                   <input
                     type="text"
-                    name="brief"
+                    name="sourceUrl"
                     class="form-contrlo form-control-lg"
-                    placeholder="Description"
-                    v-model="newClassification.brief"
+                    placeholder="Source Url"
+                    v-model="newCourse.sourceUrl"
                   />
                 </div>
 
                 <div class="form-group">
                   <select
-                    id="sections-drop-down"
-                    v-model="newClassification.sectionId"
+                    id="courses-drop-down"
+                    v-model="newCourse.classificationId"
                   >
                     <option disabled value="">
-                      Please select section of classification
+                      Please select classification of course
                     </option>
 
                     <option
-                      v-for="(section, index) in allSections"
+                      v-for="(classification, index) in allClassifications"
                       :key="index"
-                      v-bind:value="section.id"
+                      v-bind:value="classification.id"
                     >
-                      {{ section.title }}
+                      {{ classification.title }}
                     </option>
                   </select>
 
-                  {{ newClassification.sectionId }}
+                  {{ newCourse.classificationId }}
+                </div>
+
+                <div class="form-group">
+                  <input
+                    type="text"
+                    name="description"
+                    class="form-contrlo form-control-lg"
+                    placeholder="Description"
+                    v-model="newCourse.description"
+                  />
                 </div>
 
                 <div class="form-group">
@@ -164,15 +168,33 @@
                     name="cover_image_url"
                     class="form-contrlo form-control-lg"
                     placeholder="Cover Image URL"
-                    v-model="newClassification.coverImageLink"
+                    v-model="newCourse.coverImageLink"
                   />
+                </div>
+
+                <div class="form-group">
+                  <select id="courses-drop-down" v-model="newCourse.language">
+                    <option disabled value="">
+                      Please select language of course
+                    </option>
+
+                    <option
+                      v-for="(language, index) in languages"
+                      :key="index"
+                      v-bind:value="language.pref"
+                    >
+                      {{ language.word }}
+                    </option>
+                  </select>
+
+                  {{ newCourse.language }}
                 </div>
 
                 <div class="form-group">
                   <button
                     type="submit"
                     class="btn btn-info btn-block btn-lg"
-                    @click="closeClassificationEditModel"
+                    @click="closeCourseEditModel"
                   >
                     Add Classification
                   </button>
@@ -182,100 +204,110 @@
           </div>
         </div>
       </div>
-      <!-- End Add Classification Model -->
+      <!-- End Add Course Model -->
 
-      <!-- Start Edit Classification Model -->
-      <div id="overlay" v-if="classificationEditModel">
+      <!-- Start Edit Course Model -->
+      <div id="overlay" v-if="courseEditModel">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Edit Classification</h5>
+              <h5 class="modal-title">Edit Course</h5>
 
-              <button
-                type="button"
-                class="close"
-                @click="closeClassificationEditModel"
-              >
+              <button type="button" class="close" @click="closeCourseEditModel">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
 
             <div class="modal-body p-4">
               <form
-                id="classification-form"
+                id="course-form"
                 method="put"
-                @submit.prevent="updateClassification"
+                @submit.prevent="updateCourse"
               >
                 <div class="form-group">
-                  <label class="float-left">Title</label>
                   <input
                     type="text"
                     name="title"
                     class="form-contrlo form-control-lg"
-                    v-model="currentClassification.title"
+                    placeholder="Title"
+                    v-model="currentCourse.title"
                   />
                 </div>
 
                 <div class="form-group">
-                  <label class="float-left">Brief</label>
                   <input
                     type="text"
-                    name="brief"
+                    name="sourceUrl"
                     class="form-contrlo form-control-lg"
-                    v-model="currentClassification.brief"
+                    placeholder="Source Url"
+                    v-model="currentCourse.sourceUrl"
                   />
                 </div>
 
                 <div class="form-group">
-                  <label class="float-left">Section</label>
                   <select
-                    id="sections-drop-down"
-                    v-model="currentClassification.sectionId"
+                    id="courses-drop-down"
+                    v-model="currentCourse.classificationId"
                   >
                     <option disabled value="">
-                      Please select section of classification
+                      Please select classification of course
                     </option>
 
                     <option
-                      v-for="(section, index) in allSections"
+                      v-for="(classification, index) in allClassifications"
                       :key="index"
-                      v-bind:value="section.id"
+                      v-bind:value="classification.id"
                     >
-                      {{ section.title }}
+                      {{ classification.title }}
                     </option>
                   </select>
+
+                  {{ currentCourse.classificationId }}
                 </div>
 
-                {{ currentClassification.sectionId }}
+                <div class="form-group">
+                  <input
+                    type="text"
+                    name="description"
+                    class="form-contrlo form-control-lg"
+                    placeholder="Description"
+                    v-model="currentCourse.description"
+                  />
+                </div>
 
                 <div class="form-group">
-                  <label class="float-left">Cover Image URL</label>
                   <input
                     type="text"
                     name="cover_image_url"
                     class="form-contrlo form-control-lg"
-                    v-model="currentClassification.coverImageLink"
+                    placeholder="Cover Image URL"
+                    v-model="currentCourse.coverImageLink"
                   />
                 </div>
 
                 <div class="form-group">
-                  <label>
-                    {{
-                      currentClassification.isActive ? "Active" : "Not Active"
-                    }}
-                  </label>
-                  <input
-                    type="checkbox"
-                    name="isActive"
-                    v-model="currentClassification.isActive"
-                  />
+                  <select id="courses-drop-down" v-model="newCourse.language">
+                    <option disabled value="">
+                      Please select language of course
+                    </option>
+
+                    <option
+                      v-for="(language, index) in languages"
+                      :key="index"
+                      v-bind:value="language.pref"
+                    >
+                      {{ language.word }}
+                    </option>
+                  </select>
+
+                  {{ newCourse.language }}
                 </div>
 
                 <div class="form-group">
                   <button
                     type="submit"
                     class="btn btn-info btn-block btn-lg"
-                    @click="closeClassificationEditModel;"
+                    @click="closeCourseEditModel;"
                   >
                     Update Classification
                   </button>
@@ -285,10 +317,10 @@
           </div>
         </div>
       </div>
-      <!-- End Edit Classification Model -->
+      <!-- End Edit Course Model -->
 
-      <!-- Start Delete Classification Model -->
-      <div id="overlay" v-if="classificationDeleteModel">
+      <!-- Start Delete Course Model -->
+      <div id="overlay" v-if="courseDeleteModel">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -297,7 +329,7 @@
               <button
                 type="button"
                 class="close"
-                @click="closeClassificationDeleteModel"
+                @click="closeCourseDeleteModel"
               >
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -313,7 +345,7 @@
                 <span
                   style="color:blue; font-weight:bold; text-decoration:underline; text-transform:capitalize;"
                 >
-                  {{ currentClassification.title }}
+                  {{ currentCourse.title }}
                 </span>
                 classification.
               </h5>
@@ -324,7 +356,7 @@
                 class="btn btn-danger btn-lg m-1"
                 @click="
                   deleteClassification();
-                  closeClassificationDeleteModel();
+                  closeCourseDeleteModel();
                 "
               >
                 Yes
@@ -332,7 +364,7 @@
 
               <button
                 class="btn btn-success btn-lg m-1"
-                @click="closeClassificationDeleteModel"
+                @click="closeCourseDeleteModel"
               >
                 No
               </button>
@@ -340,7 +372,7 @@
           </div>
         </div>
       </div>
-      <!-- End Delete Classification Model -->
+      <!-- End Delete Course Model -->
     </b-container>
   </div>
 </template>
@@ -348,49 +380,66 @@
 import axios from "axios";
 
 export default {
-  name: "ClassificationsControlPanel",
+  name: "CoursesControlPanel",
 
   data: function() {
     return {
       errorMessage: "",
       successMessage: "",
-      classificationAddModel: false,
-      classificationEditModel: false,
-      classificationDeleteModel: false,
+      courseAddModel: false,
+      courseEditModel: false,
+      courseDeleteModel: false,
 
-      // For Sections Displying.
-      allSections: [],
+      lecturerId: null,
 
-      // For Classifications Displying Records Table.
+      languages: [
+        { pref: "EN", word: "English" },
+        { pref: "AR", word: "Arabic" }
+      ],
+
+      // For Classifications Displying.
       allClassifications: [],
 
-      // Classification Data Model For Adding New Classification.
-      newClassification: {
+      // For Courses Displying Records Table.
+      allCourses: [],
+
+      // Course Data Model For Adding New Course.
+      newCourse: {
         title: "",
-        brief: "",
-        sectionId: "",
-        coverImageLink: ""
+        sourceUrl: "",
+        classificationId: "",
+        description: "",
+        coverImageLink: "",
+        lecturerId: "",
+        language: ""
       },
 
-      currentClassificationId: "",
+      currentCourseId: "",
 
-      currentClassification: {
+      currentCourse: {
         title: "",
-        brief: "",
+        sourceUrl: "",
+        classificationId: "",
+        description: "",
         coverImageLink: "",
-        sectionId: "",
+        lecturerId: "",
+        language: "",
         isActive: ""
       },
 
-      // For Classifications Displaying Records Table.
+      // For Courses Displaying Records Table.
       fields: [
         "index",
         { key: "title", label: "Title" },
+        { key: "sourceUrl", label: "Course URL" },
+        { key: "description", label: "Description" },
+        { key: "classificationTitle", label: "Classification" },
+        { key: "classificationSectionTitle", label: "Section" },
         { key: "coverImageLink", label: "Cover Image" },
-        { key: "sectionTitle", label: "Section" },
-        { key: "brief", label: "Description" },
-        { key: "createdAt", label: "Created Date" },
-        { key: "updatedAt", label: "Last Updated Date" },
+        // { key: "lecturerFullName", label: "Lecturer" },
+        { key: "language", label: "Language" },
+        // { key: "createdAt", label: "Created Date" },
+        // { key: "updatedAt", label: "Last Updated Date" },
         { key: "isActive", label: "Activation Status" },
         { key: "update", label: "Update Info" },
         { key: "delete", label: "Delete Record" }
@@ -400,52 +449,41 @@ export default {
 
   // Life Cycle Method.
   mounted() {
+    this.setLecturerIdFromUrl();
+    this.fetchAllCourses();
     this.fetchAllClassifications();
-    this.fetchAllSections();
     // this.test();
   },
 
   methods: {
-    // This Method For Showing The Form Of Adding New Classification.
-    showClassificationAddModel: function() {
-      this.classificationAddModel = true;
+    // This Method For Showing The Form Of Adding New Course.
+    showCourseAddModel: function() {
+      this.courseAddModel = true;
     },
 
-    // This Method For Closing The Form Of Adding New Classification.
-    closeClassificationAddModel: function() {
-      this.classificationAddModel = false;
+    // This Method For Closing The Form Of Adding New Course.
+    closeCourseAddModel: function() {
+      this.courseAddModel = false;
     },
 
-    // This Method For Showing The Form Of Editing Classification.
-    showClassificationEditModel: function() {
-      this.classificationEditModel = true;
+    // This Method For Showing The Form Of Editing Course.
+    showCourseEditModel: function() {
+      this.courseEditModel = true;
     },
 
-    // This Method For Closing The Form Of Editing Classification.
-    closeClassificationEditModel: function() {
-      this.classificationEditModel = false;
+    // This Method For Closing The Form Of Editing Course.
+    closeCourseEditModel: function() {
+      this.courseEditModel = false;
     },
 
-    // This Method For Showing The Dialog Of Delete Classification.
-    showClassificationDeleteModel: function() {
-      this.classificationDeleteModel = true;
+    // This Method For Showing The Dialog Of Delete Course.
+    showCourseDeleteModel: function() {
+      this.courseDeleteModel = true;
     },
 
-    // This Method For Closing The Dialog Of Delete Classification.
-    closeClassificationDeleteModel: function() {
-      this.classificationDeleteModel = false;
-    },
-
-    fetchAllSections: function() {
-      axios
-        .get("http://localhost:8383/api/v1/all-sections")
-        .then(response => {
-          this.allSections = response.data;
-        })
-        .catch(error => {
-          this.errorMessage = error;
-          console.error("error when fetch all sections =>", error);
-        });
+    // This Method For Closing The Dialog Of Delete Course.
+    closeCourseDeleteModel: function() {
+      this.courseDeleteModel = false;
     },
 
     fetchAllClassifications: function() {
@@ -453,7 +491,20 @@ export default {
         .get("http://localhost:8383/api/v1/all-classifications")
         .then(response => {
           this.allClassifications = response.data;
-          // console.log(response.data);
+          console.log(this.allClassifications);
+        })
+        .catch(error => {
+          this.errorMessage = error;
+          console.error("error when fetch all classifications =>", error);
+        });
+    },
+
+    fetchAllCourses: function() {
+      axios
+        .get("http://localhost:8383/api/v1/" + this.lecturerId + "/all-courses")
+        .then(response => {
+          this.allCourses = response.data;
+          // console.log("all courses => " + response.data);
         })
         .catch(error => {
           this.errorMessage = error;
@@ -461,39 +512,39 @@ export default {
         });
     },
 
-    createNewClassification: function() {
+    createNewCourse: function() {
       axios
-        .post(
-          "http://localhost:8383/api/v1/add-classification",
-          this.newClassification
-        )
+        .post("http://localhost:8383/api/v1/add-courses", this.newCourse)
         .then(response => {
-          this.newClassification = {
+          this.newCourse = {
             title: "",
-            brief: "",
-            sectionId: "",
-            coverImageLink: ""
+            sourceUrl: "",
+            classificationId: "",
+            description: "",
+            coverImageLink: "",
+            lecturerId: "",
+            language: ""
           };
-          this.successMessage = "Classification added successfully.";
-          this.fetchAllClassifications();
+          this.successMessage = "Course added successfully.";
+          this.fetchAllCourses();
           console.log(response.data);
         })
         .catch(error => {
           this.errorMessage = error;
-          console.error("error when add new classification => ", error);
+          console.error("error when add new course => ", error);
         });
     },
 
-    updateClassification: function() {
+    updateCourse: function() {
       axios
         .put(
           "http://localhost:8383/api/v1/edit-classification/" +
-            this.currentClassificationId,
-          this.currentClassification
+            this.currentCourseId,
+          this.currentCourse
         )
         .then(response => {
           this.successMessage = "Classifiction updated successfully.";
-          this.fetchAllClassifications();
+          this.fetchAllCourses();
           console.log(response.data);
         })
         .catch(error => {
@@ -503,15 +554,15 @@ export default {
     },
 
     deleteClassification: function() {
-      console.log(this.currentClassificationId);
+      console.log(this.currentCourseId);
       axios
         .delete(
           "http://localhost:8383/api/v1/delete-classification/" +
-            this.currentClassificationId
+            this.currentCourseId
         )
         .then(response => {
           this.successMessage = "Classification deleted successfully.";
-          this.fetchAllClassifications();
+          this.fetchAllCourses();
           console.log(response.data);
         })
         .catch(error => {
@@ -520,32 +571,45 @@ export default {
         });
     },
 
-    fillClassificationEditForm: function(
+    fillCourseEditForm: function(
       id,
       title,
-      brief,
-      sectionId,
+      sourceUrl,
+      classificationId,
+      description,
       image,
+      lecturerId,
+      language,
       status
     ) {
-      this.currentClassificationId = id;
-      this.currentClassification.title = title;
-      this.currentClassification.brief = brief;
-      this.currentClassification.sectionId = sectionId;
-      this.currentClassification.coverImageLink = image;
-      this.currentClassification.isActive = status;
+      this.currentCourseId = id;
+      this.currentCourse.title = title;
+      this.currentCourse.sourceUrl = sourceUrl;
+      this.currentCourse.classificationId = classificationId;
+      this.currentCourse.description = description;
+      this.currentCourse.coverImageLink = image;
+      this.currentCourse.lecturerId = lecturerId;
+      this.currentCourse.language = language;
+      this.currentCourse.isActive = status;
+
+      console.log(this.currentCourse);
+    },
+
+    setLecturerIdFromUrl() {
+      this.lecturerId = this.$route.params.lecturerId;
+      this.newCourse.lecturerId = this.lecturerId;
+      console.log("lecturer id => " + this.lecturerId);
     },
 
     test: function() {
-      console.log(this.currentClassification);
+      console.log(this.currentCourse);
     }
-  },
-  components: {}
+  }
 };
 </script>
 
 <style lang="scss" scoped>
-#classifications-control-panel {
+#courses-control-panel {
   height: 1000px;
 
   #overlay {
@@ -556,12 +620,12 @@ export default {
     left: 0;
     background-color: rgba($color: #000000, $alpha: 0.6);
 
-    #classification-form {
+    #course-form {
       input {
         width: 100%;
       }
 
-      #sections-drop-down {
+      #courses-drop-down {
         float: left;
         margin: 10px 0px 20px;
         font-size: 20px;

@@ -1,11 +1,5 @@
 <template>
   <div id="lecturer-dashboard">
-    <hr />
-
-    {{ lecturerId }}
-
-    <hr />
-
     <h1 class="my-5">{{ title }}</h1>
 
     <LecSideBarNav />
