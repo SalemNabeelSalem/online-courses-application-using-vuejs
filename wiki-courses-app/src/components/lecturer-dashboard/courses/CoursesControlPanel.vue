@@ -335,7 +335,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Delete Classification</h5>
+              <h5 class="modal-title">Delete Course</h5>
 
               <button
                 type="button"
@@ -348,7 +348,7 @@
 
             <div class="modal-body p-4">
               <h4 class="text-danger">
-                Are you sure want to delete this Classification ?
+                Are you sure want to delete this Course ?
               </h4>
 
               <h5>
@@ -358,7 +358,7 @@
                 >
                   {{ currentCourse.title }}
                 </span>
-                classification.
+                course.
               </h5>
 
               <hr />
@@ -366,7 +366,7 @@
               <button
                 class="btn btn-danger btn-lg m-1"
                 @click="
-                  deleteClassification();
+                  deleteCourse();
                   closeCourseDeleteModel();
                 "
               >
@@ -563,21 +563,20 @@ export default {
         });
     },
 
-    deleteClassification: function() {
+    deleteCourse: function() {
       console.log(this.currentCourseId);
       axios
         .delete(
-          "http://localhost:8383/api/v1/delete-classification/" +
-            this.currentCourseId
+          "http://localhost:8383/api/v1/delete-course/" + this.currentCourseId
         )
         .then(response => {
-          this.successMessage = "Classification deleted successfully.";
+          this.successMessage = "course deleted successfully.";
           this.fetchAllCourses();
           console.log(response.data);
         })
         .catch(error => {
           this.errorMessage = error;
-          console.error("error when delete classification => ", error);
+          console.error("error when delete course => ", error);
         });
     },
 
