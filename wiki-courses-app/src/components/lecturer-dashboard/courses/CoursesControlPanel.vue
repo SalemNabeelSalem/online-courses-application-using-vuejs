@@ -63,11 +63,8 @@
                     data.item.title,
                     data.item.sourceUrl,
                     data.item.description,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null
+                    data.item.coverImageLink,
+                    data.item.isActive
                   );
                 "
               >
@@ -286,7 +283,10 @@
                 </div>
 
                 <div class="form-group">
-                  <select id="courses-drop-down" v-model="newCourse.language">
+                  <select
+                    id="courses-drop-down"
+                    v-model="currentCourse.language"
+                  >
                     <option disabled value="">
                       Please select language of course
                     </option>
@@ -300,7 +300,18 @@
                     </option>
                   </select>
 
-                  {{ newCourse.language }}
+                  {{ currentCourse.language }}
+                </div>
+
+                <div class="form-group">
+                  <label>
+                    {{ currentCourse.isActive ? "Active" : "Not Active" }}
+                  </label>
+                  <input
+                    type="checkbox"
+                    name="isActive"
+                    v-model="currentCourse.isActive"
+                  />
                 </div>
 
                 <div class="form-group">
@@ -309,7 +320,7 @@
                     class="btn btn-info btn-block btn-lg"
                     @click="closeCourseEditModel;"
                   >
-                    Update Classification
+                    Update Course
                   </button>
                 </div>
               </form>
@@ -538,8 +549,7 @@ export default {
     updateCourse: function() {
       axios
         .put(
-          "http://localhost:8383/api/v1/edit-classification/" +
-            this.currentCourseId,
+          "http://localhost:8383/api/v1/edit-course/" + this.currentCourseId,
           this.currentCourse
         )
         .then(response => {
@@ -575,30 +585,35 @@ export default {
       id,
       title,
       sourceUrl,
-      classificationId,
       description,
       image,
-      lecturerId,
-      language,
       status
     ) {
       this.currentCourseId = id;
+
       this.currentCourse.title = title;
+
       this.currentCourse.sourceUrl = sourceUrl;
-      this.currentCourse.classificationId = classificationId;
+
       this.currentCourse.description = description;
+
       this.currentCourse.coverImageLink = image;
-      this.currentCourse.lecturerId = lecturerId;
-      this.currentCourse.language = language;
+
       this.currentCourse.isActive = status;
 
-      console.log(this.currentCourse);
+      // console.log(this.currentCourse);
+
+      // console.log("course id => " + this.currentCourseId);
     },
 
     setLecturerIdFromUrl() {
       this.lecturerId = this.$route.params.lecturerId;
+
       this.newCourse.lecturerId = this.lecturerId;
-      console.log("lecturer id => " + this.lecturerId);
+
+      this.currentCourse.lecturerId = this.lecturerId;
+
+      // console.log("lecturer id => " + this.lecturerId);
     },
 
     test: function() {
