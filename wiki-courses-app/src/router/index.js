@@ -6,6 +6,8 @@ import Home from "../views/Home.vue";
 
 import Sections from "../views/Sections.vue";
 
+import AllClassifications from "../views/AllClassifications.vue";
+
 import Lecturers from "../views/Lecturers.vue";
 
 import Classifications from "../views/Classifications.vue";
@@ -44,6 +46,11 @@ const routes = [
     path: "/sections",
     name: "Sections",
     component: Sections
+  },
+  {
+    path: "/classifications",
+    name: "AllClassifications",
+    component: AllClassifications
   },
   {
     path: "/lecturers",
