@@ -69,7 +69,10 @@
                 {{ classification.brief }}
               </p>
 
-              <a class="btn btn-success">
+              <a
+                class="btn btn-success"
+                @click="goToCourses(classification.id, classification.title)"
+              >
                 Show All Related Courses
               </a>
             </div>
