@@ -50,23 +50,23 @@
       <div class="row">
         <div
           class="col-md-4 mb-3"
-          v-for="(section, index) in allActiveClassifications"
+          v-for="(classification, index) in allActiveClassifications"
           :key="index"
         >
           <div class="card">
             <img
               class="card-img-top"
-              :src="section.coverImageLink"
+              :src="classification.coverImageLink"
               alt="Card image cap"
             />
 
             <div class="card-body">
               <h5 class="card-title text-capitalize font-weight-bold">
-                {{ section.title }}
+                {{ classification.title }}
               </h5>
 
               <p class="card-text">
-                {{ section.brief }}
+                {{ classification.brief }}
               </p>
 
               <a class="btn btn-success">
@@ -78,7 +78,7 @@
               class="badge badge-secondary"
               style="text-transform:capitalize"
             >
-              {{ section.sectionTitle }}
+              {{ classification.sectionTitle }}
             </span>
           </div>
         </div>
@@ -120,6 +120,20 @@ export default {
       });
 
       // console.log("section id = " + sectionId);
+    },
+
+    goToCourses(classificationId, classificationTitle) {
+      this.$router.push({
+        name: "Courses",
+        params: {
+          classificationId: classificationId,
+          classificationTitle: classificationTitle
+        }
+      });
+
+      console.log("classification id = " + classificationId);
+
+      console.log("classification title = " + classificationTitle);
     },
 
     fetchAllActiveSections() {

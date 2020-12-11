@@ -1,5 +1,5 @@
 <template>
-  <div id="classifications">
+  <div id="all-classifications">
     <div class="container classifications-container">
       <h2 class="h2-responsive my-4 py-2 bg-info text-white">
         <span>All Classifications</span>
@@ -23,17 +23,29 @@
               <p class="card-text">
                 {{ classification.brief }}
               </p>
-              <a class="btn btn-info">Show All Related Courses</a>
+              <a class="btn btn-success">Show All Related Courses</a>
             </div>
+
+            <span
+              class="badge badge-secondary"
+              style="text-transform:capitalize"
+            >
+              {{ classification.sectionTitle }}
+            </span>
           </div>
         </div>
       </div>
     </div>
+
+    <Footer />
   </div>
 </template>
 
 <script>
 import axios from "axios";
+
+// @ is an alias to /src
+import Footer from "@/components/global/Footer.vue";
 
 export default {
   name: "Classifications",
@@ -61,8 +73,17 @@ export default {
           console.error("Error when fetch all classifications => ", error);
         });
     }
+  },
+
+  components: {
+    Footer
   }
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.badge {
+  padding: 15px 0px;
+  font-size: 16px;
+}
+</style>
