@@ -15,7 +15,9 @@
           <b-nav-item to="/faq">FAQ</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
-      <b-nav-item to="/login" style="list-style-type:none;">Login</b-nav-item>
+      <b-nav-item to="/login" style="list-style-type:none;">
+        Lecturer Login
+      </b-nav-item>
       <b-nav-item to="/sign-up" style="list-style-type:none;">
         Sign Up
       </b-nav-item>

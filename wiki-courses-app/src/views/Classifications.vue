@@ -44,6 +44,8 @@
         <NotFound />
       </div>
     </div>
+
+    <Footer />
   </div>
 </template>
 
@@ -52,6 +54,7 @@ import axios from "axios";
 
 // @ is an alias to /src
 import NotFound from "@/components/global/NotFound.vue";
+import Footer from "@/components/global/Footer.vue";
 
 export default {
   name: "Classifications",
@@ -94,7 +97,8 @@ export default {
   },
 
   components: {
-    NotFound
+    NotFound,
+    Footer
   }
 };
 </script>

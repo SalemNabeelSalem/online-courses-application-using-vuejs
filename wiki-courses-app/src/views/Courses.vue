@@ -1,49 +1,66 @@
 <template>
-  <div id="classifications">
-    <div class="container classifications-container">
+  <div id="courses">
+    <div class="container courses-container">
       <h2
         class="h2-responsive my-4 py-2 bg-info text-white"
-        v-if="allActiveClassifications.length > 0"
+        v-if="allActiveCourses.length > 0"
       >
-        <span style="text-transform:Capitalize">{{ this.sectionTitle }}</span>
-        Section.
+        <span style="text-transform:Capitalize">
+          {{ this.classificationTitle }}
+        </span>
+        Classification.
       </h2>
-      <div class="row" v-if="allActiveClassifications.length > 0">
+      <div class="row" v-if="allActiveCourses.length > 0">
         <div
           class="col-md-4 mt-2 mb-3"
-          v-for="(classification, index) in allActiveClassifications"
+          v-for="(course, index) in allActiveCourses"
           :key="index"
         >
-          <div class="card">
+          <div class="card text-dark bg-light">
+            <div class="h4 card-header text-danger">
+              {{ course.classificationSectionTitle }} Section
+            </div>
+
             <img
               class="card-img-top"
-              :src="classification.coverImageLink"
+              :src="course.coverImageLink"
               alt="Card image cap"
             />
             <div class="card-body">
-              <h5 class="card-title" style="text-transform:capitalize">
-                {{ classification.title }}
-              </h5>
-              <p class="card-text">
-                {{ classification.brief }}
+              <p
+                class="card-title lead text-light bg-warning"
+                style="text-transform:capitalize"
+              >
+                {{ course.title }}
               </p>
-              <a class="btn btn-info">Show All Related Courses</a>
+
+              <p class="card-text">
+                {{ course.description }}
+              </p>
+
+              <a class="btn btn-info">Show All Related Lessons</a>
+            </div>
+
+            <div class="card-footer text-muted">
+              2 days ago
             </div>
           </div>
         </div>
       </div>
       <div v-else>
         <h2 class="h2-responsive my-4 py-2 bg-secondary text-white">
-          There Are No Classifications On
+          There Are No Courses On
           <span class="text-danger" style="text-transform:Capitalize">
-            {{ this.sectionTitle }}
+            {{ this.classificationTitle }}
           </span>
-          Section.
+          Classification.
         </h2>
 
         <NotFound />
       </div>
     </div>
+
+    <Footer />
   </div>
 </template>
 
@@ -52,49 +69,52 @@ import axios from "axios";
 
 // @ is an alias to /src
 import NotFound from "@/components/global/NotFound.vue";
+import Footer from "@/components/global/Footer.vue";
 
 export default {
   name: "Classifications",
 
   data: function() {
     return {
-      sectionId: null,
-      sectionTitle: null,
-      allActiveClassifications: []
+      classificationId: null,
+      classificationTitle: null,
+      allActiveCourses: []
     };
   },
 
   mounted() {
-    this.getSectionInfoFromUrlParameters();
-    this.fetchAllActiveClassificationsBySectionId();
+    this.getClassificationInfoFromUrlParameters();
+    this.fetchAllActiveCoursesByClassificationId();
   },
 
   methods: {
-    getSectionInfoFromUrlParameters() {
-      this.sectionId = this.$route.params.sectionId;
+    getClassificationInfoFromUrlParameters() {
+      this.classificationId = this.$route.params.classificationId;
 
-      this.sectionTitle = this.$route.params.sectionTitle;
+      this.classificationTitle = this.$route.params.classificationTitle;
     },
 
-    fetchAllActiveClassificationsBySectionId() {
+    fetchAllActiveCoursesByClassificationId() {
       axios
         .get(
-          "http://localhost:8383/api/v1/active-classifications/" +
-            this.sectionId
+          "http://localhost:8383/api/v1/" +
+            this.classificationId +
+            "/all-active-courses"
         )
         .then(response => {
-          this.allActiveClassifications = response.data;
+          this.allActiveCourses = response.data;
 
-          // console.log(this.allActiveClassifications);
+          console.log(this.allActiveCourses);
         })
         .catch(error => {
-          console.error("Error when fetch all classifications => ", error);
+          console.error("Error when fetch all courses => ", error);
         });
     }
   },
 
   components: {
-    NotFound
+    NotFound,
+    Footer
   }
 };
 </script>
