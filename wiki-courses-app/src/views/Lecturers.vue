@@ -112,7 +112,7 @@ export default {
   methods: {
     fetchAllActiveLecturers() {
       axios
-        .get("http://localhost:8383/api/v1/all-lecturers")
+        .get("http://localhost:8383/api/v1/active-lecturers")
         .then(response => {
           this.allActiveLecturers = response.data;
         })

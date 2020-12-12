@@ -35,8 +35,6 @@
                 {{ gender.word }}
               </option>
             </select>
-
-            {{ newLecturer.gender }}
           </div>
 
           <input

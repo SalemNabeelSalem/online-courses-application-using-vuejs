@@ -16,10 +16,14 @@
         </b-navbar-nav>
       </b-collapse>
       <b-nav-item to="/login" style="list-style-type:none;">
-        Lecturer Login
+        Lecturer
       </b-nav-item>
       <b-nav-item to="/sign-up" style="list-style-type:none;">
         Sign Up
+      </b-nav-item>
+
+      <b-nav-item to="/admin" style="list-style-type:none;">
+        Admin
       </b-nav-item>
     </b-navbar>
   </div>
