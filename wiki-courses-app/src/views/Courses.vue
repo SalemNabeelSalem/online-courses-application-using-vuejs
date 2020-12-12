@@ -2,7 +2,7 @@
   <div id="courses">
     <div class="container courses-container">
       <h2
-        class="h2-responsive my-4 py-2 bg-info text-white"
+        class="h2-responsive my-4 p-2 bg-info text-white"
         v-if="allActiveCourses.length > 0"
       >
         <span style="text-transform:Capitalize">
@@ -27,26 +27,17 @@
               alt="Card image cap"
             />
             <div class="card-body">
-              <p
-                class="card-title lead text-light bg-info py-1"
-                style="text-transform:capitalize"
-              >
+              <p class="card-title lead" style="text-transform:capitalize">
                 {{ course.title }}
               </p>
 
-              <p class="card-text lead">
+              <p class="card-text text-light bg-info lead p-4 text-center">
                 {{ course.description }}
               </p>
 
-              <a class="btn btn-success">Show All Related Lessons</a>
-            </div>
-
-            <div class="card-footer text-light bg-info">
-              Course Language: <br />{{ course.language }}.
-            </div>
-
-            <div class="card-footer text-light bg-info">
-              Lecturer Name: <br />{{ course.lecturerFullName }}.
+              <button type="button" class="btn btn-outline-success my-2">
+                Show More Details
+              </button>
             </div>
           </div>
         </div>
