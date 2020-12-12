@@ -145,19 +145,15 @@
                       {{ classification.title }}
                     </option>
                   </select>
-
-                  {{ newCourse.classificationId }}
                 </div>
 
-                <div class="form-group">
-                  <input
-                    type="text"
-                    name="description"
-                    class="form-contrlo form-control-lg"
-                    placeholder="Description"
-                    v-model="newCourse.description"
-                  />
-                </div>
+                <textarea
+                  type="text"
+                  name="description"
+                  class="form-contrlo form-control-lg"
+                  placeholder="Description"
+                  v-model="newCourse.description"
+                ></textarea>
 
                 <div class="form-group">
                   <input
@@ -183,8 +179,6 @@
                       {{ language.word }}
                     </option>
                   </select>
-
-                  {{ newCourse.language }}
                 </div>
 
                 <div class="form-group">
@@ -647,6 +641,13 @@ export default {
         width: 100%;
       }
     }
+  }
+
+  textarea {
+    float: left;
+    height: 100px;
+    width: 100%;
+    margin: 0px 0px 20px 0px;
   }
 }
 </style>

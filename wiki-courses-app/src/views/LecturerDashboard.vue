@@ -1,6 +1,6 @@
 <template>
   <div id="lecturer-dashboard">
-    <h1 class="my-5">{{ title }}</h1>
+    <h1 class="my-5">Welcome {{ lecturerInfo.fullName }} To Your Dashborad.</h1>
 
     <LecSideBarNav />
 
@@ -18,7 +18,6 @@ export default {
   name: "LecturerDashboard",
   data() {
     return {
-      title: "Welcome To Lecturer Dashborad",
       lecturerId: null,
       lecturerInfo: null
     };

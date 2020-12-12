@@ -43,7 +43,7 @@
 
               <hr />
 
-              <p class="m-t-15 text-muted">
+              <p class="m-t-15 text-dark lead">
                 {{ lecturer.description }}
               </p>
 
@@ -78,7 +78,10 @@
 
               <hr />
 
-              <a class="btn btn-success">
+              <a
+                class="btn btn-success"
+                @click="goToCourses(lecturer.id, lecturer.fullName)"
+              >
                 Show All Related Coureses
               </a>
             </div>
@@ -119,6 +122,20 @@ export default {
         .catch(error => {
           console.error("Error when fetch all lecturers => ", error);
         });
+    },
+
+    goToCourses(lecturerId, lecturerFullName) {
+      this.$router.push({
+        name: "LecturerCourses",
+        params: {
+          lecturerId: lecturerId,
+          lecturerFullName: lecturerFullName
+        }
+      });
+
+      console.log("lecturer id = " + lecturerId);
+
+      console.log("lecturer full name = " + lecturerFullName);
     }
   },
 

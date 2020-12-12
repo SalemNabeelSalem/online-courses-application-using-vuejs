@@ -10,6 +10,8 @@ import AllClassifications from "../views/AllClassifications.vue";
 
 import Lecturers from "../views/Lecturers.vue";
 
+import LecturerCourses from "../views/LecturerCourses.vue";
+
 import Classifications from "../views/Classifications.vue";
 
 import Courses from "../views/Courses.vue";
@@ -60,6 +62,11 @@ const routes = [
     path: "/lecturers",
     name: "Lecturers",
     component: Lecturers
+  },
+  {
+    path: "/lecturers/:lecturerId/courses",
+    name: "LecturerCourses",
+    component: LecturerCourses
   },
   {
     path: "/contact-us",
