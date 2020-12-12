@@ -27,7 +27,12 @@
               <p class="card-text">
                 {{ classification.brief }}
               </p>
-              <a class="btn btn-info">Show All Related Courses</a>
+              <a
+                class="btn btn-info"
+                @click="goToCourses(classification.id, classification.title)"
+              >
+                Show All Related Courses
+              </a>
             </div>
           </div>
         </div>
@@ -93,6 +98,20 @@ export default {
         .catch(error => {
           console.error("Error when fetch all classifications => ", error);
         });
+    },
+
+    goToCourses(classificationId, classificationTitle) {
+      this.$router.push({
+        name: "Courses",
+        params: {
+          classificationId: classificationId,
+          classificationTitle: classificationTitle
+        }
+      });
+
+      console.log("classification id = " + classificationId);
+
+      console.log("classification title = " + classificationTitle);
     }
   },
 

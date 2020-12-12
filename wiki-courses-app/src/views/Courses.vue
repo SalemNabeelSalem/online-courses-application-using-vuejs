@@ -17,7 +17,7 @@
           :key="index"
         >
           <div class="card text-dark bg-light">
-            <div class="h4 card-header text-danger">
+            <div class="h4 card-header text-dark">
               {{ course.classificationSectionTitle }} Section
             </div>
 
@@ -28,21 +28,25 @@
             />
             <div class="card-body">
               <p
-                class="card-title lead text-light bg-warning"
+                class="card-title lead text-light bg-info py-1"
                 style="text-transform:capitalize"
               >
                 {{ course.title }}
               </p>
 
-              <p class="card-text">
+              <p class="card-text lead">
                 {{ course.description }}
               </p>
 
-              <a class="btn btn-info">Show All Related Lessons</a>
+              <a class="btn btn-success">Show All Related Lessons</a>
             </div>
 
-            <div class="card-footer text-muted">
-              2 days ago
+            <div class="card-footer text-light bg-info">
+              Course Language: <br />{{ course.language }}.
+            </div>
+
+            <div class="card-footer text-light bg-info">
+              Lecturer Name: <br />{{ course.lecturerFullName }}.
             </div>
           </div>
         </div>
