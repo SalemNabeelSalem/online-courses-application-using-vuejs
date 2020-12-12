@@ -149,8 +149,6 @@
                       {{ gender.word }}
                     </option>
                   </select>
-
-                  {{ newLecturer.gender }}
                 </div>
 
                 <div class="form-group">
@@ -247,8 +245,6 @@
                     </option>
                   </select>
                 </div>
-
-                {{ newLecturer.gender }}
 
                 <div class="form-group">
                   <label class="float-left">Description</label>

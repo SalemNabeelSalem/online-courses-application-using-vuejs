@@ -152,8 +152,6 @@
                       {{ section.title }}
                     </option>
                   </select>
-
-                  {{ newClassification.sectionId }}
                 </div>
 
                 <div class="form-group">
@@ -243,8 +241,6 @@
                     </option>
                   </select>
                 </div>
-
-                {{ currentClassification.sectionId }}
 
                 <div class="form-group">
                   <label class="float-left">Cover Image URL</label>

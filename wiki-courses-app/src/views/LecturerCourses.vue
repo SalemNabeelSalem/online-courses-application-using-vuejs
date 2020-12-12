@@ -6,10 +6,10 @@
         v-if="allActiveCourses.length > 0"
       >
         <span style="text-transform:Capitalize">
-          {{ this.classificationTitle }}
+          {{ this.lecturerFullName }}
         </span>
-        Classification.
       </h2>
+
       <div class="row" v-if="allActiveCourses.length > 0">
         <div
           class="col-md-4 mt-2 mb-3"
@@ -44,11 +44,10 @@
       </div>
       <div v-else>
         <h2 class="h2-responsive my-4 py-2 bg-secondary text-white">
-          There Are No Courses On
+          There Are No Courses Created By:
           <span class="text-danger" style="text-transform:Capitalize">
-            {{ this.classificationTitle }}
+            {{ this.lecturerFullName }}
           </span>
-          Classification.
         </h2>
 
         <NotFound />
@@ -71,30 +70,28 @@ export default {
 
   data: function() {
     return {
-      classificationId: null,
-      classificationTitle: null,
+      lecturerId: null,
+      lecturerFullName: null,
       allActiveCourses: []
     };
   },
 
   mounted() {
-    this.getClassificationInfoFromUrlParameters();
-    this.fetchAllActiveCoursesByClassificationId();
+    this.getLecturerInfoFromUrlParameters();
+    this.fetchAllActiveCoursesByLecturerId();
   },
 
   methods: {
-    getClassificationInfoFromUrlParameters() {
-      this.classificationId = this.$route.params.classificationId;
+    getLecturerInfoFromUrlParameters() {
+      this.lecturerId = this.$route.params.lecturerId;
 
-      this.classificationTitle = this.$route.params.classificationTitle;
+      this.lecturerFullName = this.$route.params.lecturerFullName;
     },
 
-    fetchAllActiveCoursesByClassificationId() {
+    fetchAllActiveCoursesByLecturerId() {
       axios
         .get(
-          "http://localhost:8383/api/v1/" +
-            this.classificationId +
-            "/all-active-courses"
+          "http://localhost:8383/api/v1/" + this.lecturerId + "/active-courses"
         )
         .then(response => {
           this.allActiveCourses = response.data;

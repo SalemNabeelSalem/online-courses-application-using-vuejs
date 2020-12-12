@@ -252,8 +252,6 @@
                       {{ classification.title }}
                     </option>
                   </select>
-
-                  {{ currentCourse.classificationId }}
                 </div>
 
                 <div class="form-group">
@@ -293,8 +291,6 @@
                       {{ language.word }}
                     </option>
                   </select>
-
-                  {{ currentCourse.language }}
                 </div>
 
                 <div class="form-group">
