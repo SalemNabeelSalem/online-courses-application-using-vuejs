@@ -102,6 +102,29 @@
             class="img-fluid rounded mx-auto d-block pb-3"
           />
           <a
+            href="http://adeneng-faculty.edu.ye/research/library.html"
+            class="btn btn-primary rounded-0"
+          >
+            Read More
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="library">
+      <div class="jumbotron">
+        <div class="container">
+          <h1 class="display-4">Explore our Library books & Researches</h1>
+          <p class="lead">
+            The Faculty's Library Contains Hundreds Of Books From Different
+            Fields In Engineering And Science. Papers And Students Final
+            Projects Can Be Found In The Library Too.
+          </p>
+          <img
+            src="img/resources/home/librery.jpg"
+            class="img-fluid rounded mx-auto d-block pb-3"
+          />
+          <a
             href="http://adeneng-faculty.edu.ye/about/campus.html"
             class="btn btn-primary rounded-0"
           >
@@ -211,6 +234,13 @@ export default {
     .jumbotron {
       margin: 0;
       background-color: #f8f9fa;
+    }
+  }
+
+  .library {
+    .jumbotron {
+      margin: 0;
+      background-color: #e9ecef;
     }
   }
 }
