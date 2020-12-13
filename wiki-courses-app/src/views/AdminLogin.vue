@@ -50,8 +50,6 @@
 </template>
 
 <script>
-import axios from "axios";
-
 // @ is an alias to /src
 import Footer from "@/components/global/Footer.vue";
 
@@ -61,38 +59,25 @@ export default {
     return {
       errorMessage: "",
       userLogin: {
-        fullName: "",
-        email: ""
-      },
-      userData: []
+        fullName: "admin",
+        email: "12345"
+      }
     };
   },
   methods: {
     handelSubmit() {
-      axios
-        .post("http://localhost:8383/api/v1/lecturer-login", this.userLogin)
-        .then(response => {
-          this.userData = response.data;
+      if (this.userLogin.fullName == "admin") {
+        // console.log("lecturer id is not null.");
 
-          console.log(this.userData);
-
-          if (this.userData.id) {
-            // console.log("lecturer id is not null.");
-
-            this.goToLecturerControlPanel(this.userData.id, this.userData);
-          } else {
-            // console.log("lecturer id is null.");
-            this.errorMessage = "Username or Password Is Not Correct.";
-          }
-        })
-        .catch(error => {
-          console.error("error worng username or password => ", error);
-        });
+        this.goToDashboard();
+      } else {
+        // console.log("lecturer id is null.");
+        this.errorMessage = "Username or Password Is Not Correct.";
+      }
     },
-    goToLecturerControlPanel(lecturerId, lecturerData) {
+    goToDashboard() {
       this.$router.push({
-        name: "LecturerDashboard",
-        params: { lecturerId: lecturerId, lecturerData: lecturerData }
+        name: "Dashboard"
       });
     }
   },
