@@ -35,7 +35,11 @@
                 {{ course.description }}
               </p>
 
-              <button type="button" class="btn btn-outline-success my-2">
+              <button
+                type="button"
+                class="btn btn-outline-success my-2"
+                @click="goToCourseDetails(course.id)"
+              >
                 Show More Details
               </button>
             </div>
@@ -104,6 +108,17 @@ export default {
         .catch(error => {
           console.error("Error when fetch all courses => ", error);
         });
+    },
+
+    goToCourseDetails(courseId) {
+      this.$router.push({
+        name: "CourseDetails",
+        params: {
+          courseId: courseId
+        }
+      });
+
+      console.log("course id = " + courseId);
     }
   },
 

@@ -78,7 +78,7 @@ export default {
         gender: "",
         description: "lorem ipsum dolor sit amet, consectetur elit.",
         email: "",
-        profileImageLink: "https://bootdey.com/img/Content/avatar/avatar1.png"
+        profileImageLink: "/img/lecturers/lecturer-img.png"
       },
 
       genders: [

@@ -12,6 +12,8 @@ import Lecturers from "../views/Lecturers.vue";
 
 import LecturerCourses from "../views/LecturerCourses.vue";
 
+import CourseDetails from "../views/CourseDetails.vue";
+
 import Classifications from "../views/Classifications.vue";
 
 import Courses from "../views/Courses.vue";
@@ -67,6 +69,11 @@ const routes = [
     path: "/lecturers/:lecturerId/courses",
     name: "LecturerCourses",
     component: LecturerCourses
+  },
+  {
+    path: "/courses/:courseId",
+    name: "CourseDetails",
+    component: CourseDetails
   },
   {
     path: "/contact-us",

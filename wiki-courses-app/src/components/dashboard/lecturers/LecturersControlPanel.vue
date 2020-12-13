@@ -225,7 +225,7 @@
                     type="text"
                     name="title"
                     class="form-contrlo form-control-lg"
-                    v-model="currentLecturer.email"
+                    v-model="currentLecturer.fullName"
                   />
                 </div>
 
