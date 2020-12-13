@@ -38,6 +38,8 @@ import ClassificationsControlPanel from "../components/dashboard/classifications
 
 import LecturersControlPanel from "../components/dashboard/lecturers/LecturersControlPanel.vue";
 
+import FaqControlPanel from "../components/dashboard/faq/FaqControlPanel.vue";
+
 import LecturerDashboard from "../views/LecturerDashboard.vue";
 
 import CoursesControlPanel from "../components/lecturer-dashboard/courses/CoursesControlPanel.vue";
@@ -134,6 +136,11 @@ const routes = [
         path: "/dashboard/lecturers",
         name: "LecturersControlPanel",
         component: LecturersControlPanel
+      },
+      {
+        path: "/dashboard/faq",
+        name: "FaqControlPanel",
+        component: FaqControlPanel
       }
     ]
   },

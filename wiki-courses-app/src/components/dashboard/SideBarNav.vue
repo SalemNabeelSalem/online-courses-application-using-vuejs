@@ -53,6 +53,15 @@
               </b-nav-item>
 
               <hr />
+
+              <b-nav-item to="/dashboard/faq">
+                <span class="custom-fa-icon">
+                  <font-awesome-icon :icon="['fas', 'question']" />
+                </span>
+                FAQs
+              </b-nav-item>
+
+              <hr />
             </b-nav>
           </nav>
           <b-button variant="primary" block @click="hide">
