@@ -89,6 +89,28 @@
       <hr />
     </div>
 
+    <div class="map">
+      <div class="jumbotron">
+        <div class="container">
+          <h1 class="display-4">Take A Tour In Our Campus</h1>
+          <p class="lead">
+            The Faculty Of Engineering Is Located In Al Shaab City, Aden
+            Province. The New Building Was Opened In 2012.
+          </p>
+          <img
+            src="img/resources/home/aden-unv-map.png"
+            class="img-fluid rounded mx-auto d-block pb-3"
+          />
+          <a
+            href="http://adeneng-faculty.edu.ye/about/campus.html"
+            class="btn btn-primary rounded-0"
+          >
+            Read More
+          </a>
+        </div>
+      </div>
+    </div>
+
     <Footer />
   </div>
 </template>
@@ -183,6 +205,13 @@ export default {
   .badge {
     padding: 15px 0px;
     font-size: 16px;
+  }
+
+  .map {
+    .jumbotron {
+      margin: 0;
+      background-color: #f8f9fa;
+    }
   }
 }
 </style>
