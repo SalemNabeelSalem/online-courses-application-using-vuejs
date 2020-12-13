@@ -15,9 +15,18 @@
             <div class="col-sm-6 col-md-3 item">
               <h3>About</h3>
               <ul>
-                <li><a href="#">Company</a></li>
-                <li><a href="#">Team</a></li>
-                <li><a href="#">Careers</a></li>
+                <li>
+                  <a href="http://adeneng-faculty.edu.ye/index.html">Home</a>
+                </li>
+                <li>
+                  <a href="http://adeneng-faculty.edu.ye/about/campus.html">
+                    Campus
+                  </a>
+                </li>
+                <li><a href="/contact-us">Contact Us</a></li>
+                <li>
+                  <a href="/faq">(FAQ)</a>
+                </li>
               </ul>
             </div>
             <div class="col-md-6 item text">
