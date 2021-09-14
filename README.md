@@ -1,6 +1,6 @@
 # online-courses-application-using-vuejs
 
-This is the front-end of my final graduation project at the university of aden using vuejs, it's a free online courses applications.
+This is the front-end of my final graduation project at the University of Aden using vuejs, it's a free online courses applications.
 
 ### Create and manage projects using a graphical interface.
 ```
